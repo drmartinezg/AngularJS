@@ -12,13 +12,13 @@ function AlumnosController($scope) {
 							 curso: $scope.nuevoAlumno.curso});
 
 		$scope.formVisibility=false;
-	}
+	};
 
 	$scope.formVisibility=false;
 
 	$scope.ShowForm=function() {
 		$scope.formVisibility=true;
 		console.log($scope.formVisibility);
-	}
+	};
 
 }
