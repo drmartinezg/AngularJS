@@ -133,6 +133,11 @@ Curso AngularJS
     $ bower list -> Lista los modulos instalados
     $ bower search angular-ui-sortable -> Busca modulos en repositorio
     $ bower install --save angular-ui-sortable jquery-ui
+*** Añadir enlace a los nuevos módulos en index.html
+    Lo hace automáticamente al ejecutar $grunt serve
+*** Cargar el módulo sortable dentro de nuestra aplicación
+    Modificar el archivo scripts/app.js
+    Añadir 'ui.sortable' a la lista de módulos
 
 * Pruebas unitarias con Karma y Jasmine
 ** Ejecutas los test
