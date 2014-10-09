@@ -142,9 +142,14 @@ Curso AngularJS
 * Pruebas unitarias con Karma y Jasmine
 ** Ejecutas los test
    $ grunt test
-** Actualizar configuración en karma.confg.js añadiendo todos los componentes usados.
-
-
-
+** Actualizar configuración en test/karma.confg.js añadiendo todos los componentes usados.
+    files: [
+      ...
+      'bower_components/jquery/dist/jquery.js',
+      'bower_components/jquery-ui/ui/jquery-ui.js',
+      'bower_components/angular-ui-sortable/sortable.js',
+    ],
+** test/spec/controllers - Pruebas unitarias para cada controller
+    
 
 
