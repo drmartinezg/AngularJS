@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="appCtrl as vm">
+<head>
+	<meta charset="UTF-8">
+	<title>Hola mundo en Angular</title>
+</head>
+<body>
+	<input type="text" ng-model="vm.campotexto">
+	<br/>
+	<ul>
+		<li ng-repeat="actual in vm.textos">
+			{{ actual }}
+		</li>
+	</ul>
+	<input type="button" ng-click="vm.agregarTexto()" value="Pulsa aqui para agregar texto">
+
+	<script src="../js/angular.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var app = angular.module("app", []);
+		app.controller("appCtrl", function() {
+			var vm = this;
+			vm.campotexto = "Inicial";
+			vm.textos = [];
+
+			vm.agregarTexto = function() {
+				vm.textos.push(vm.campotexto);
+			};
+		});
+	</script>
+</body>
+</html>
