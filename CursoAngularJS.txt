@@ -150,6 +150,39 @@ Curso AngularJS
       'bower_components/angular-ui-sortable/sortable.js',
     ],
 ** test/spec/controllers - Pruebas unitarias para cada controller
-    
+
+* Persistir datos en almacenamiento local
+** Módulo para almacenar datos en local
+   $ bower install --save angular-local-storage
+** Añadir en index.html una referencia al módulo que acaba de ser instalado
+   Lo añade automáticamente yeoman si lanzamos el servidor.
+   $ grunt serve
+** Cargar el módulo sortable dentro de nuestra aplicación
+   Modificar el archivo scripts/app.js
+   Añadir 'LocalStorageModule' a la lista de módulos
+** Configurar módulo en app.js (entre el array de módulos y el .config(..))   
+   .config(['localStorageServiceProvider', function(localStorageServiceProvider) {
+      localStorageServiceProvider.setPrefix('ls');
+   }])
+** Actualizar en app/script/controllers/main.js
+   Añadir dependencia en MainController
+   .controller('MainCtrl', function ($scope, localStorageService)) {
+     var tareasEnAlmacen = localStorageService.get('tareas');
+     $scope.tareas = tareasEnAlmacen && tareasEnAlmacen.split('\n') || [];
+     $scope.$watch('tareas', function() {
+       localStorageService.add('tareas', $scope.tareas.join(\n));
+     }, true);
+     ...
+   }
+
+* Crear una versión para publicar el proyecto.
+  $ grunt --force
+** Tareas que realiza:
+*** Optimizar código
+*** Realizar pruebas
+*** Minimizar scripts
+*** Optimizar imágenes y compilar
+
+
 
 
