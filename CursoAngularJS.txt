@@ -175,7 +175,7 @@ Curso AngularJS
      ...
    }
 
-* Crear una versión para publicar el proyecto.
+* Crear una versión para publicar el proyecto. (21)
   $ grunt --force
 ** Tareas que realiza:
 *** Optimizar código
