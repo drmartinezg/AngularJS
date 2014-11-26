@@ -108,6 +108,8 @@ Curso AngularJS
 
 * Dependencias en una aplicación Yeoman
 ** bower -> Gestor de dependencias
+** Como instalar Bower  
+    $ npm install -g bower
 *** bower_compnents -> Librerias usadas (bootstrap, angular, jquery, ...) 
 *** bower.json -> Nombre y version del proyecto, dependencias, ...
 ** Karma -> Herramienta de testing
@@ -140,7 +142,9 @@ Curso AngularJS
     Añadir 'ui.sortable' a la lista de módulos
 
 * Pruebas unitarias con Karma y Jasmine
-** Ejecutas los test
+** Instalar Karma
+   $ npm install -g karma
+** Ejecutar los test
    $ grunt test
 ** Actualizar configuración en test/karma.confg.js añadiendo todos los componentes usados.
     files: [
