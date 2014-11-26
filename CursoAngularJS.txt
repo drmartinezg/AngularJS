@@ -138,6 +138,12 @@ Curso AngularJS
 *** Cargar el módulo sortable dentro de nuestra aplicación
     Modificar el archivo scripts/app.js
     Añadir 'ui.sortable' a la lista de módulos
+*** Generar módulos AngularJs desde Yeoman
+    $ yo angular:controller myController
+    $ yo angular:directive myDirective
+    $ yo angular:filter myFilter
+    $ yo angular:service myService   
+    $ yo angular:view myView
 
 * Pruebas unitarias con Karma y Jasmine
 ** Ejecutas los test
