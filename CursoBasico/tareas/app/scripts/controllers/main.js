@@ -22,5 +22,5 @@ angular.module('tareasApp')
 
     $scope.eliminarTarea = function (index) {
     	$scope.tareas.splice(index, 1);
-    }
+    };
   });

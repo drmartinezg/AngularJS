@@ -191,7 +191,23 @@ Curso AngularJS
 *** Optimizar código
 *** Realizar pruebas
 *** Minimizar scripts
-*** Optimizar imágenes y compilar
+*** Optimizar imágenes y compilar salida de cualquier pre-procesador que estemos usando.
+
+* Creación rápida de prototipos con Yeoman (22)
+  $ mkdir prototipo && cd prototipo
+  $ yo angular
+  $ npm install -g generator-angular
+  $ bower install angular-bootstrap
+  $ grunt serve
+** index.html
+   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+** app.js
+  .module('prototipoApp', [
+    ...,
+    'ui.bootstrap'
+  ])
+** Crear un menu -> index.html
+** Añadir un Carrusel (22b)
 
 
 
