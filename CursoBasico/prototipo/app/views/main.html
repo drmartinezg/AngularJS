@@ -1,3 +1,13 @@
+<carousel interval="setInterval">
+  <slide nr-repeat="slide in slides" active="slide.active">
+    <img class="carousel-image" ng-src="{{slide.image}}"/>
+    <div class="carousel-caption">
+      <h2>{{}slide.title}</h2>  
+      <p>{{slide.text}}</p>
+    </div>
+  </slide>
+</carousel>
+
 <div class="jumbotron">
   <h1>'Allo, 'Allo!</h1>
   <p class="lead">

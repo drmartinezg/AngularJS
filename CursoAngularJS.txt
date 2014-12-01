@@ -208,7 +208,7 @@ Curso AngularJS
   ])
 ** Crear un menu -> index.html
 ** Añadir un Carrusel (22b)
-
+** Completar página principal (23)
 
 
 
