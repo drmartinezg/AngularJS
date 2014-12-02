@@ -209,6 +209,6 @@ Curso AngularJS
 ** Crear un menu -> index.html
 ** Añadir un Carrusel (22b)
 ** Completar página principal (23)
-
+** Automatizar creación MVC con Yeoman. (24)
 
 
