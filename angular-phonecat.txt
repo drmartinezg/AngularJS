@@ -28,21 +28,69 @@ Phonecat Tutorial
 
 2 - Angular Templates
   $ git checkout -f step-2
+
   -> test/unit/controllersSpec.js:
-
 		describe('PhoneListCtrl', function(){
-
 		  beforeEach(module('phonecatApp'));
-
 		  it('should create "phones" model with 3 phones', inject(function($controller) {
 		    var scope = {},
 		        ctrl = $controller('PhoneListCtrl', {$scope:scope});
 
 		    expect(scope.phones.length).toBe(3);
 		  }));
-
 		});
 
   $ npm test
 
-3 - Filtering Repeaters
+3 - Filtering Repeaters (2a)
+  $ git checkout -f step-3
+  -> index.html
+		Search: <input ng-model="query">
+		<li ng-repeat="phone in phones | filter:query">
+
+  -> test/e2e/scenarios.js:
+		describe('PhoneCat App', function() {
+		  describe('Phone list view', function() {
+		    beforeEach(function() {
+		      browser.get('app/index.html');
+		    });
+		    it('should filter the phone list as a user types into the search box', function() {
+		      var phoneList = element.all(by.repeater('phone in phones'));
+		      var query = element(by.model('query'));
+		      expect(phoneList.count()).toBe(3);
+
+		      query.sendKeys('nexus');
+		      expect(phoneList.count()).toBe(1);
+
+		      query.clear();
+		      query.sendKeys('motorola');
+		      expect(phoneList.count()).toBe(2);
+		    });
+		  });
+		});
+
+** Ejecutar test End to End con Protractor
+  $ npm start -> Arranca servidor web local de desarrollo 
+  $ npm run protractor -> Ejecuta los test E2E con Protractor
+  $ npm run update-webdriver -> Instala los drivers que necesita Protractor
+
+4 - Two-way Data Binding (2b)
+  $ git checkout -f step-4
+  -> index.html
+
+		Search: <input ng-model="query">
+		Sort by:
+		<select ng-model="orderProp">
+		  <option value="name">Alphabetical</option>
+		  <option value="age">Newest</option>
+		</select>
+
+
+		<ul class="phones">
+		  <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
+		    <span>{{phone.name}}</span>
+		    <p>{{phone.snippet}}</p>
+		  </li>
+		</ul>
+
+5 - XHRs & Dependency Injection (3a)
