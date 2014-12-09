@@ -94,3 +94,17 @@ Phonecat Tutorial
 		</ul>
 
 5 - XHRs & Dependency Injection (3a)
+  $ git checkout -f step-5
+
+  -> controllers.js
+		var phonecatApp = angular.module('phonecatApp', []);
+
+		phonecatApp.controller('PhoneListCtrl', ['$scope', '$http', function($scope, $http) {
+		  $http.get('phones/phones.json').success(function(data) {
+		    $scope.phones = data;
+		  });
+
+		  $scope.orderProp = 'age';
+		}]);  
+
+6 - Templating Links & Images (3b)
