@@ -76,15 +76,14 @@ Phonecat Tutorial
 
 4 - Two-way Data Binding (2b)
   $ git checkout -f step-4
-  -> index.html
 
+  -> index.html
 		Search: <input ng-model="query">
 		Sort by:
 		<select ng-model="orderProp">
 		  <option value="name">Alphabetical</option>
 		  <option value="age">Newest</option>
 		</select>
-
 
 		<ul class="phones">
 		  <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
@@ -108,3 +107,49 @@ Phonecat Tutorial
 		}]);  
 
 6 - Templating Links & Images (3b)
+  $ git checkout -f step-6
+
+  -> index.html
+        <ul class="phones">
+          <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" class="thumbnail">
+            <a href="#/phones/{{phone.id}}" class="thumb"><img ng-src="{{phone.imageUrl}}"></a>
+            <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
+            <p>{{phone.snippet}}</p>
+          </li>
+        </ul>
+
+  -> test/e2e/scenarios.js:
+		it('should render phone specific links', function() {
+		  var query = element(by.model('query'));
+		  query.sendKeys('nexus');
+		  element(by.css('.phones li a')).click();
+		  browser.getLocationAbsUrl().then(function(url) {
+		    expect(url.split('#')[1]).toBe('/phones/nexus-s');
+		  });
+		});
+
+7 - Routing & Multiple Views (4a)
+  $ git checkout -f step-7
+
+  -> app/js/app.js:
+		var phonecatApp = angular.module('phonecatApp', [
+		  'ngRoute',
+		  'phonecatControllers'
+		]);
+
+		phonecatApp.config(['$routeProvider',
+		  function($routeProvider) {
+		    $routeProvider.
+		      when('/phones', {
+		        templateUrl: 'partials/phone-list.html',
+		        controller: 'PhoneListCtrl'
+		      }).
+		      when('/phones/:phoneId', {
+		        templateUrl: 'partials/phone-detail.html',
+		        controller: 'PhoneDetailCtrl'
+		      }).
+		      otherwise({
+		        redirectTo: '/phones'
+		      });
+		  }]);
+
