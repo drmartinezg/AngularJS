@@ -164,3 +164,92 @@ Phonecat Tutorial
 		    });
 		  }]);  
 
+9 - Filters (5a)
+  $ git checkout -f step-9
+
+  -> app/js/filters.js:
+		angular.module('phonecatFilters', []).filter('checkmark', function() {
+		  return function(input) {
+		    return input ? '\u2713' : '\u2718';
+		  };
+		});
+
+  -> app/js/app.js:
+		...
+		angular.module('phonecatApp', ['ngRoute','phonecatControllers','phonecatFilters']);
+		...
+
+  -> app/partials/phone-detail.html:
+		...
+		    <dl>
+		      <dt>Infrared</dt>
+		      <dd>{{phone.connectivity.infrared | checkmark}}</dd>
+		      <dt>GPS</dt>
+		      <dd>{{phone.connectivity.gps | checkmark}}</dd>
+		    </dl>
+		...
+
+  -> test/unit/filtersSpec.js:
+		describe('filter', function() {
+
+		  beforeEach(module('phonecatFilters'));
+
+		  describe('checkmark', function() {
+
+		    it('should convert boolean values to unicode checkmark or cross',
+		        inject(function(checkmarkFilter) {
+		      expect(checkmarkFilter(true)).toBe('\u2713');
+		      expect(checkmarkFilter(false)).toBe('\u2718');
+		    }));
+		  });
+		});
+
+10 - Event Handlers (5b)
+  $ git checkout -f step-10
+
+  -> app/js/controllers.js:
+		...
+		var phonecatControllers = angular.module('phonecatControllers',[]);
+
+		phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', '$http',
+		  function($scope, $routeParams, $http) {
+		    $http.get('phones/' + $routeParams.phoneId + '.json').success(function(data) {
+		      $scope.phone = data;
+		      $scope.mainImageUrl = data.images[0];
+		    });
+
+		    $scope.setImage = function(imageUrl) {
+		      $scope.mainImageUrl = imageUrl;
+		    }
+		  }]);
+
+  -> app/partials/phone-detail.html:
+		<img ng-src="{{mainImageUrl}}" class="phone">
+		...
+		<ul class="phone-thumbs">
+		  <li ng-repeat="img in phone.images">
+		    <img ng-src="{{img}}" ng-click="setImage(img)">
+		  </li>
+		</ul>
+		...
+
+  -> test/e2e/scenarios.js:
+		...
+		  describe('Phone detail view', function() {
+		...
+
+		    it('should display the first phone image as the main phone image', function() {
+		      expect(element(by.css('img.phone')).getAttribute('src')).toMatch(/img\/phones\/nexus-s.0.jpg/);
+		    });
+
+		    it('should swap main image if a thumbnail image is clicked on', function() {
+		      element(by.css('.phone-thumbs li:nth-child(3) img')).click();
+		      expect(element(by.css('img.phone')).getAttribute('src')).toMatch(/img\/phones\/nexus-s.2.jpg/);
+
+		      element(by.css('.phone-thumbs li:nth-child(1) img')).click();
+		      expect(element(by.css('img.phone')).getAttribute('src')).toMatch(/img\/phones\/nexus-s.0.jpg/);
+		    });
+		  });
+
+11 - REST and Custom Services (6)
+  $ git checkout -f step-11
