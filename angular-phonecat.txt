@@ -253,3 +253,127 @@ Phonecat Tutorial
 
 11 - REST and Custom Services (6)
   $ git checkout -f step-11
+
+  -> app/index.html
+		...
+		  <script src="bower_components/angular-resource/angular-resource.js"></script>
+		  <script src="js/services.js"></script>
+		...
+
+  -> app/js/services.js.
+		var phonecatServices = angular.module('phonecatServices', ['ngResource']);
+
+		phonecatServices.factory('Phone', ['$resource',
+		  function($resource){
+		    return $resource('phones/:phoneId.json', {}, {
+		      query: {method:'GET', params:{phoneId:'phones'}, isArray:true}
+		    });
+		  }]);
+
+  -> app/js/app.js.
+		...
+		angular.module('phonecatApp', ['ngRoute', 'phonecatControllers','phonecatFilters', 'phonecatServices']).
+		...
+
+  -> app/js/controllers.js.
+		var phonecatControllers = angular.module('phonecatControllers', []);
+		...
+		phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Phone', function($scope, Phone) {
+		  $scope.phones = Phone.query();
+		  $scope.orderProp = 'age';
+		}]);
+
+		phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone', function($scope, $routeParams, Phone) {
+		  $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone) {
+		    $scope.mainImageUrl = phone.images[0];
+		  });
+
+		  $scope.setImage = function(imageUrl) {
+		    $scope.mainImageUrl = imageUrl;
+		  }
+		}]);
+
+  -> test/karma.conf.js:
+		files : [
+		  'app/bower_components/angular/angular.js',
+		  'app/bower_components/angular-route/angular-route.js',
+		  'app/bower_components/angular-resource/angular-resource.js',
+		  'app/bower_components/angular-mocks/angular-mocks.js',
+		  'app/js/**/*.js',
+		  'test/unit/**/*.js'
+		],
+
+  -> test/unit/controllersSpec.js:
+		describe('PhoneCat controllers', function() {
+
+		  beforeEach(function(){
+		    this.addMatchers({
+		      toEqualData: function(expected) {
+		        return angular.equals(this.actual, expected);
+		      }
+		    });
+		  });
+
+		  beforeEach(module('phonecatApp'));
+		  beforeEach(module('phonecatServices'));
+
+
+		  describe('PhoneListCtrl', function(){
+		    var scope, ctrl, $httpBackend;
+
+		    beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
+		      $httpBackend = _$httpBackend_;
+		      $httpBackend.expectGET('phones/phones.json').
+		          respond([{name: 'Nexus S'}, {name: 'Motorola DROID'}]);
+
+		      scope = $rootScope.$new();
+		      ctrl = $controller('PhoneListCtrl', {$scope: scope});
+		    }));
+
+
+		    it('should create "phones" model with 2 phones fetched from xhr', function() {
+		      expect(scope.phones).toEqualData([]);
+		      $httpBackend.flush();
+
+		      expect(scope.phones).toEqualData(
+		          [{name: 'Nexus S'}, {name: 'Motorola DROID'}]);
+		    });
+
+
+		    it('should set the default value of orderProp model', function() {
+		      expect(scope.orderProp).toBe('age');
+		    });
+		  });
+
+
+		  describe('PhoneDetailCtrl', function(){
+		    var scope, $httpBackend, ctrl,
+		        xyzPhoneData = function() {
+		          return {
+		            name: 'phone xyz',
+		            images: ['image/url1.png', 'image/url2.png']
+		          }
+		        };
+
+
+		    beforeEach(inject(function(_$httpBackend_, $rootScope, $routeParams, $controller) {
+		      $httpBackend = _$httpBackend_;
+		      $httpBackend.expectGET('phones/xyz.json').respond(xyzPhoneData());
+
+		      $routeParams.phoneId = 'xyz';
+		      scope = $rootScope.$new();
+		      ctrl = $controller('PhoneDetailCtrl', {$scope: scope});
+		    }));
+
+
+		    it('should fetch phone detail', function() {
+		      expect(scope.phone).toEqualData({});
+		      $httpBackend.flush();
+
+		      expect(scope.phone).toEqualData(xyzPhoneData());
+		    });
+		  });
+		});
+
+12 - Applying Animations (7)
+  $ git checkout -f step-12
