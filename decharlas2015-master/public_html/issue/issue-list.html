@@ -1,0 +1,35 @@
+<div class="row" ng-controller="IssueListController">
+    <div class="col-xs-12">
+        <div class="panel panel-info" >
+            <div class="panel-heading">
+                <div class="panel-title">Lista de Issues</div>
+                <div style="float:right; position: relative; top:-20px">
+                    Estado:<select ng-model="issueState" ng-options="issueState.id as issueState.name for issueState in issueStates " ></select>
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    Ordenar:<select ng-model="orderProperty" ng-options="orderProperty.id as orderProperty.name for orderProperty in orderProperties " ></select>
+                </div>
+            </div>     
+
+            <div class="panel-body" >
+                
+                
+                
+                <table class="table table-bordered table-condensed">
+                    <tr>
+                        <th>N&ordm;</th>
+                        <th>Titulo</th>
+                        <th>Usuario</th>
+                    </tr>
+
+                    <tr ng-repeat="issue in issues |orderBy: [orderProperty]">
+                        <td>{{issue.number}}</td>
+                        <td><a href="#/issue/detail/{{issue.number}}">{{issue.title}}</a></td>
+                        <td>{{issue.user.login}}</td>
+                    </tr>
+                </table> 
+            </div>
+        </div>
+    </div>
+
+
+</div>
