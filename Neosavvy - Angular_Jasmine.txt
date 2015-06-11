@@ -1,0 +1,54 @@
+Neosavvy - Angular_Jasmine
+* Setup
+** Directorio vacio ns-jasimine-testing
+** Crear directorios app y test
+** Creat proyecto con npm
+	$ npm init
+	Opciones por defecto
+	Crea package.json
+	Crea node_modules donde se instalan los modulos propios del proyecto
+** Instalar karma local o global (recomendado)
+	$ npm install karma --save-dev  -> local
+	$ npm install -g karma -> global
+** Instalar Jasmine
+	$ npm install karma-jasmine --save-dev
+	$ npm install karma-chrome-launcher --save-dev
+** Configurar karma   
+	$ karma init
+	Testing framework > jasmine
+	Require.js > no
+	Browser > Chrome
+	Sources > app/**/*.js
+	Test > test/**/*.js
+	Karma watch all files > yes
+** Crear test en carpeta test: test.js
+	describe("true", function() {
+		it("Should be true", function() {
+			expect(true).toBeTruthy();
+		});
+	});
+** Ejecutar test
+	$ karma start karma.conf.js
+
+* Bower
+** Instalar Gestor de Dependencias bower
+	$ npm install bower -g
+** Añadir dependencias al proyecto
+	$ bower install angular
+	$ bower install angular-mocks
+	$ bower install angular-resource
+** Buscar dependencias con bower
+	$ bower search angular
+** Añadir dependencias a karma. En karma.conf.js
+	files: [
+		'bower_components/angular/angular.js',
+		'bower_components/angular-mocks/angular-mocks.js',
+		'bower_components/angular-resource/angular-resource.js',
+		'app/**/*.js',
+		'test/**/*.js'
+	],
+
+* Controller Testing
+
+      
+
