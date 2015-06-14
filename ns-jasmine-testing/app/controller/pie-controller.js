@@ -8,5 +8,10 @@ angular.module('pie', []).controller('PieController',
 				}
 			};
 
+			this.requestFlavor = function(flavor) {
+				$scope.lastRequestedFlavor = flavor;
+			};
+
+			$scope.lastRequestedFlavor;
 			$scope.slices = 8;
 	}]);

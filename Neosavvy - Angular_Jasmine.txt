@@ -49,7 +49,6 @@ Neosavvy - Angular_Jasmine
 	],
 
 * Controller Testing
-
 ** app/controller/pie-controller.js
 	angular.module('pie', []).controller('PieController', 
 		['$scope',
@@ -104,4 +103,41 @@ Neosavvy - Angular_Jasmine
 	    	});
 	    });    
 
+	});
+
+* Controller Testing ('this' methods)
+** app/controller/pie-controller.js
+	angular.module('pie', []).controller('PieController', 
+		['$scope',
+			...
+				this.requestFlavor = function(flavor) {
+					$scope.lastRequestedFlavor = flavor;
+				};
+
+				$scope.lastRequestedFlavor;
+				$scope.slices = 8;
+		}]);
+
+** test/controller/pie-controller-spec.js
+	describe('PieController', function() {
+	...
+	    describe('Initialization', function() {
+	    ...
+	    	it('Should instantiate $scope.lastRequestedFlavor', function() {
+	    		expect($scope.lastRequestedFlavor).toBeUndefined();
+	    	});
+	    });    
+	});
+
+** test/controller/pie-controller-spec.js
+	describe('PieController', function() {
+	...
+		describe('requestFlavor', function() {
+			
+			it('Should set $scope.lastRequestedFlavor to the passed in argument', function() {
+				controller.requestFlavor("Cherry");
+				expect($scope.lastRequestedFlavor).toEqual("Cherry");
+			});
+		});
+	...
 	});

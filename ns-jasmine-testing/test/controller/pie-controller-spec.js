@@ -28,12 +28,24 @@ describe('PieController', function() {
 				expect($scope.slices).toEqual(0);
 			});
 		});
+
+	});
+
+	describe('requestFlavor', function() {
 		
+		it('Should set $scope.lastRequestedFlavor to the passed in argument', function() {
+			controller.requestFlavor("Cherry");
+			expect($scope.lastRequestedFlavor).toEqual("Cherry");
+		});
 	});
 
     describe('Initialization', function() {
     	it('Should instantiate slices to 8', function() {
     		expect($scope.slices).toEqual(8);
+    	});
+
+    	it('Should instantiate $scope.lastRequestedFlavor', function() {
+    		expect($scope.lastRequestedFlavor).toBeUndefined();
     	});
     });    
 
