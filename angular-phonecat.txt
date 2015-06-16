@@ -1,7 +1,7 @@
 Phonecat Tutorial
 ==================
 
-* Necesario tener instaladi git y nodejs
+* Necesario tener instalado git y nodejs
   $ node --version
 * Clonar repositorio
   $ git clone https://github.com/angular/angular-phonecat.git

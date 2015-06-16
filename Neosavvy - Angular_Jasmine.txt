@@ -1,8 +1,9 @@
 Neosavvy - Angular_Jasmine
-* Setup
+
+01 - Setup
 ** Directorio vacio ns-jasimine-testing
 ** Crear directorios app y test
-** Creat proyecto con npm
+** Crear proyecto con npm
 	$ npm init
 	Opciones por defecto
 	Crea package.json
@@ -30,7 +31,7 @@ Neosavvy - Angular_Jasmine
 ** Ejecutar test
 	$ karma start karma.conf.js
 
-* Bower
+02 - Bower
 ** Instalar Gestor de Dependencias bower
 	$ npm install bower -g
 ** Añadir dependencias al proyecto
@@ -48,8 +49,8 @@ Neosavvy - Angular_Jasmine
 		'test/**/*.js'
 	],
 
-* Controller Testing
-** app/controller/pie-controller.js
+03 - Controller Testing
+** app/controllers/pie-controller.js
 	angular.module('pie', []).controller('PieController', 
 		['$scope',
 			function($scope) {
@@ -63,7 +64,7 @@ Neosavvy - Angular_Jasmine
 				$scope.slices = 8;
 		}]);      
 
-** test/controller/pie-controller-spec.js
+** test/controllers/pie-controller-spec.js
 	describe('PieController', function() {
 		var $rootScope,
 		    $scope,
@@ -105,8 +106,8 @@ Neosavvy - Angular_Jasmine
 
 	});
 
-* Controller Testing ('this' methods)
-** app/controller/pie-controller.js
+04 - Controller Testing ('this' methods)
+** app/controllers/pie-controller.js
 	angular.module('pie', []).controller('PieController', 
 		['$scope',
 			...
@@ -118,7 +119,7 @@ Neosavvy - Angular_Jasmine
 				$scope.slices = 8;
 		}]);
 
-** test/controller/pie-controller-spec.js
+** test/controllers/pie-controller-spec.js
 	describe('PieController', function() {
 	...
 	    describe('Initialization', function() {
@@ -129,7 +130,7 @@ Neosavvy - Angular_Jasmine
 	    });    
 	});
 
-** test/controller/pie-controller-spec.js
+** test/controllers/pie-controller-spec.js
 	describe('PieController', function() {
 	...
 		describe('requestFlavor', function() {
@@ -141,3 +142,145 @@ Neosavvy - Angular_Jasmine
 		});
 	...
 	});
+
+05 - Factory Testing
+** app/managers/dessert-manager.js
+angular.module('desserts', []).value('DessertValues', {
+	pies: [
+		{flavor: "Cherry", score: 6},
+		{flavor: "Apple", score: 7.5},
+		{flavor: "Peach", score: 4}
+	]
+});
+
+angular.module('desserts').factory('DessertManager', 
+	[ 'DessertValues', 
+		function (dessertValues) {
+			return {
+				pieFlavors: function() {
+					return dessertValues.pies.map(function(pie) {
+						return pie.flavor;
+					});
+				}
+			}
+		}
+	]);
+
+** app/managers/dessert-manager-spec.js
+describe('DessertManager', function() {
+	var values, factory;
+
+	beforeEach(function () {
+		module('desserts');
+
+		inject(function ($injector) {
+			values = $injector.get('DessertValues');
+			factory = $injector.get('DessertManager');
+		});
+	});
+
+});
+
+*** Testing values
+describe('DessertManager', function() {
+...
+	describe('DessertValues', function() {
+		
+		it('Should instantiate with 3 pie flavors', function() {
+			expect(values.pies).toEqual([
+				{flavor: "Cherry", score: 6},
+				{flavor: "Apple", score: 7.5},
+				{flavor: "Peach", score: 4}
+			]);
+		});
+
+	});
+});
+
+*** Testing factory
+describe('DessertManager', function() {
+...
+	describe('DessertManager', function() {
+		
+		describe('pieFlavors', function() {
+			
+			it('Should return the 3 pie flavor strings', function() {
+				
+				var flavors = factory.pieFlavors();
+				expect(flavors.length).toEqual(3);
+				expect(flavors[0]).toEqual("Cherry");
+				expect(flavors[1]).toEqual("Apple");
+				expect(flavors[2]).toEqual("Peach");
+			});
+
+			it('Should throw an error if there are no pies', function() {
+				
+				values.pies = null;
+
+				expect(function() {
+					factory.pieFlavors();
+				}).toThrow();
+
+				values.pies = [
+					{flavor: "Cherry", score: 6},
+					{flavor: "Apple", score: 7.5},
+					{flavor: "Peach", score: 4}
+				];
+			});
+		});
+	});
+
+});
+
+06 - Filter Testing
+** app/filters/text/title-case.js
+angular.module('filters', []).filter('titleCase', function() {
+	return function(val) {
+		return val ? val.replace(/\w\S*/g, function(txt) {
+			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		}) : val;
+	};
+});
+
+** test/title-case-spec.js
+describe('titleCase', function() {
+	var $filter, filter;
+
+	beforeEach(function() {
+		module('filters');
+		inject(function($injector) {
+			$filter = $injector.get('$filter');
+			filter = $filter('titleCase');
+		});
+	});
+
+	it('Should return undefined when undefined is passed in', function() {
+		expect(filter(undefined)).toBeUndefined();
+	});
+
+	it('Should return null when null is passed in', function() {
+		expect(filter(null)).toBeNull();
+	});
+
+	it('Should return a blank string when a blank string is passed in', function() {
+		expect(filter("")).toEqual("");
+	});
+
+	it('Should change the casing of lower cased word', function() {
+		expect(filter("george harrison")).toEqual("George Harrison");
+	});
+
+	it('Should change the casing if an upper case word', function() {
+		expect(filter("GEORGE HARRISON")).toEqual("George Harrison");
+	});
+
+	it('Should change the casing of random', function() {
+		expect(filter("the QUiCk BrOwN foX")).toEqual("The Quick Brown Fox");
+	});
+
+	it('Should play nice with a normal phrase', function() {
+		expect(filter("This Is A Control")).toEqual("This Is A Control");
+	});
+
+});
+
