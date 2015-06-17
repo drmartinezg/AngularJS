@@ -284,3 +284,79 @@ describe('titleCase', function() {
 
 });
 
+07 - Directive Testing
+** Añadir jQuery como dependencia al proyecto
+	$ bower install jquery
+** Añadir dependencia jquery a karma. En karma.conf.js
+	files: [
+        'bower_components/jquery/dist/jquery.js',
+		...
+	],
+
+** app/directives/stateful.js 
+angular.module('directives', []).directive('nsStateful',
+	function(){
+		return {
+			restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+			scope: false, // {} = isolate, true = child, false/undefined = no change
+			link: function($scope, element, attrs) {
+				if (!attrs.nsStateful) {
+					throw "You must provide a class name in order to use the nsStateful directive.";
+				}
+
+				element.bind('click', function(e) {
+					scope.$apply(function() {
+						if (!element.hasClass(attrs.nsStateful)) {
+							element.addClass(attrs.nsStateful);
+						} else {
+							element.removeClass(attrs.nsStateful);
+						}
+					});
+				});
+			}
+		}
+	});
+
+** test/directives/stateful-spec.js 
+describe('nsStateful', function() {
+	var $rootScope,
+ 		$scope,
+ 		$compile,
+ 		el,
+ 		body = $('body'),
+ 		simpleHtml = '<button ns-stateful="red"></button>';
+
+	beforeEach(function() {
+		module('directives');
+
+		inject(function($injector) {
+			$rootScope = $injector.get('$rootScope');
+			$scope = $rootScope.$new();
+			$compile = $injector.get('$compile');
+			el = $compile(angular.element(simpleHtml))($scope);
+		});
+
+		$body.append(el);
+		$rootScope.$digest();
+	});
+
+	it('Should be able to toggle the class based on clicks', function() {
+		expect(el.hasClass('red')).toBeFalsy();
+		el.click();
+		$scope.$digest();
+		expect(el.hasClass('red')).toBeTruthy();
+		el.click();
+		$scope.$digest();
+		expect(el.hasClass('red')).toBeFalsy();
+		el.click();
+		$scope.$digest();
+		expect(el.hasClass('red')).toBeTruthy();
+	});
+
+	it('Should throw an error when compiled with an empty name', function() {
+		expect(function() {
+			$compile(angular.element('<a ns-stateful></a>'))($scope);
+		}).toThrow();
+	});
+});
+
