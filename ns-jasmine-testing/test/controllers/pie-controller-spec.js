@@ -11,13 +11,30 @@ describe('PieController', function() {
     		$scope = $rootScope.$new();
     		controller = $injector.get('$controller')('PieController', {$scope: $scope});
     	});
+
+		$scope.$digest();
+    });
+
+    describe('Listeners', function() {
+
+    	describe('pieHasBeenDepleted', function() {
+    		
+    		it('Should set the warning to RED ALERT!', function() {
+    			$rootScope.$broadcast('pieHasBeenDepleted');
+    			$scope.$digest();
+    			expect($scope.warning).toEqual("RED ALERT!");
+    		});
+
+    		it('Should set slices to 0', function() {
+    			$rootScope.$broadcast('pieHasBeenDepleted');
+    			$scope.$digest();
+    			expect($scope.slices).toEqual(0);
+    		});
+    	});
+    	
     });
 
 	describe('Watchers', function() {
-		beforeEach(function() {
-			$scope.$digest();
-		});
-
 		describe('nutritionalValue', function() {
 			it('Should set the warning that carbs have gone up, when only carbs go up', function() {
 				$scope.nutritionalValue.carbs++;

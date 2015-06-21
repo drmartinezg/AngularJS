@@ -555,3 +555,45 @@ describe('PieController', function() {
 
 });
 
+10 - Testing Event Listeners
+** app/controllers/pie-controller.js
+angular.module('pie', []).controller('PieController', 
+	['$scope',
+		function($scope) {
+
+			// Listeners
+			$scope.$on('pieHasBeenDepleted', function() {
+				$scope.warning = "RED ALERT!";
+				$scope.slices = 0;
+			});
+...
+});
+
+** test/controllers/pie-controller-spec.js
+describe('PieController', function() {
+	...
+	beforeEach(function() {
+		...
+		$scope.$digest();
+    });
+
+    describe('Listeners', function() {
+
+    	describe('pieHasBeenDepleted', function() {
+    		
+    		it('Should set the warning to RED ALERT!', function() {
+    			$rootScope.$broadcast('pieHasBeenDepleted');
+    			$scope.$digest();
+    			expect($scope.warning).toEqual("RED ALERT!");
+    		});
+
+    		it('Should set slices to 0', function() {
+    			$rootScope.$broadcast('pieHasBeenDepleted');
+    			$scope.$digest();
+    			expect($scope.slices).toEqual(0);
+    		});
+    	});
+    	
+    });
+});
+
