@@ -10,6 +10,10 @@ angular.module('desserts').factory('DessertManager',
 	[ 'DessertValues', 
 		function (dessertValues) {
 			return {
+				mode: function() {
+
+				},
+				
 				pieFlavors: function() {
 					return dessertValues.pies.map(function(pie) {
 						return pie.flavor;

@@ -1,6 +1,6 @@
 angular.module('pie', []).controller('PieController', 
-	['$scope',
-		function($scope) {
+	['$scope', 'DessertManager',
+		function($scope, dessertManager) {
 
 			// Listeners
 			$scope.$on('pieHasBeenDepleted', function() {
@@ -35,6 +35,15 @@ angular.module('pie', []).controller('PieController',
 				if ($scope.slices) {
 					$scope.slices--;
 				}
+			};
+
+			$scope.toggleMode = function() {
+				if (dessertManager.mode() === 'pie') {
+					dessertManager.mode("cake");
+				} else {
+					dessertManager.mode("pie");
+				};
+
 			};
 
 			this.requestFlavor = function(flavor) {
