@@ -680,5 +680,7 @@ describe('PieController', function() {
 
 Muestra como configurar test de servicios con espias.
 
+14 - Inherited Controller Testing  -> DA ERROR - Faltan componentes
 
+Test de controladores que heredan métodos del $scope y propiedades de otros controladores.
 

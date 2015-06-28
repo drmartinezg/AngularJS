@@ -26,7 +26,27 @@ describe('TableController', function() {
     		expect($scope.pies).toEqual({name: "This is a pie!"});
     	});
     });
-    
+
+	describe('Getters', function() {
+		describe('getSilverWate', function() {
+			it('Should return a fork for 0', function() {
+				expect($scope.getSilverWare(0)).toEqual("Fork");
+			});
+
+			it('Should return a spoon for 1', function() {
+				expect($scope.getSilverWare(1)).toEqual("Spoon");
+			});
+
+			it('Should return a knife for 2', function() {
+				expect($scope.getSilverWare(2)).toEqual("Knife");
+			});
+
+			it('Should return None in other cases', function() {
+				expect($scope.getSilverWare(3)).toEqual("None");
+			});
+		});
+	});
+
     describe('Initialization', function() {
     	
     	it('Should instantiate pies to null', function() {
@@ -34,4 +54,5 @@ describe('TableController', function() {
     	});
     });
 */
+
 });
