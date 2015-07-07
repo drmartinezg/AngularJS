@@ -1,0 +1,74 @@
+Aplicaciones Sailsjs y AngularJS con generator-angular-crud
+===========================================================
+* generator-angular-crud está basado en el generador generator-hottowel de John Papa 
+  y utiliza las guías de estilo de John Papa para el desarrollo de aplicaciones AngularJS.
+  Sólo crea la parte frontend de nuestro proyecto.
+* El backend vamos a desarrollarlo con el framework SailsJS, con el cuál vamos a desarrollar
+  un API REST, y el frontend vamos a desarrollarlo con el propio generator-angular-crud.
+  
+Desarrollando el API REST con SailsJS
+-------------------------------------
+Por defecto, Sails nos devuelve la información de la siguiente forma:
+[
+  {
+    code: 'DepositAccount 1'
+  },
+  {
+    code: 'DepositAccount 2'
+  },
+  {
+    code: 'DepositAccount 3'
+  }
+]
+Pero nosotros la necesitamos de esta otra forma:
+{
+  total: 1000,
+  results: [
+    {
+      code: 'DepositAccount 1'
+    },
+    {
+      code: 'DepositAccount 2'
+    },
+    {
+      code: 'DepositAccount 3'
+    }
+  ]
+}
+Para poder conseguir este comportamiento, copiaremos el fichero sails/api/blueprints/find.js 
+en ROOT_PROJECT/api/blueprints/find.js.
+
+A continuación se exponen todos los pasos necesarios para crear nuestro API REST con Sails:
+
+1. sails generate new <ApplicationName>
+2. cd ApplicationName
+3. sails generate api <EntityName>
+4. agregar propiedades a la entidad
+5. copiar el blueprint find.js
+6. npm install lodash -–save
+7. actualizar el fichero config/models para habilitar el siguiente parámetro: migrate: ‘alter’
+8. actualizar el fichero config/cors para establecer los parámetros allRoutes: true y origin: ‘*’
+9. sails lift
+Con estos nueve sencillos pasos habremos creado nuestro API REST con SailsJS.
+
+Desarrollando el frontend con generator-angular-crud
+----------------------------------------------------
+Para generar el frontend vamos a utilizar el generador generator-angular-crud, que nos va a 
+crear la estructura inicial de nuestra aplicación y que nos va a permitir crear nuevas entidades 
+que se van a representar en forma de tabla. Desde esta tabla vamos a poder crear nuevos registros, 
+obtener listados de nuestros registros, modificarlos, borrarlos, filtrar los datos de la tabla en
+el servidor, ordenar y paginar los registros de la tabla. Todas estas opciones las tendremos 
+disponibles automáticamente si utilizamos generator-angular-crud.
+
+Los pasos para crear nuestra aplicación frontend son los siguientes:
+
+1. npm install -g generator-angular-crud
+2. yo angular-crud: crea el esqueleto de nuestra aplicación
+3. yo angular-crud:feature <EntityName>: crea una nueva entidad
+4. Agregar propiedades a la entidad modificando el fichero: 
+   src/client/app/feature-name/services/feature-name.form.client.service.js
+5. Agregar columnas a la tabla HTML que visualiza las propiedades de nuestra entidad modificando el fichero: 
+   src/client/app/feature-name/views/list.html
+6. gulp serve-dev: ejecuta nuestra aplicación
+
+Con estos pasos habremos creado nuestro frontend.

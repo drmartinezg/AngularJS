@@ -1,0 +1,102 @@
+AngularJs Protractor Tutorial
+
+01 - Framework Setup
+
+Protractor es un programa node.js que permite escribir test de aceptación (end-to-end test).
+Los test escritos en JavaScript permiten simular historias de usuario en el browser.
+Protractor se basa en Webdriver.
+Infraestructura:
+
+* NodeJs - Instalar desde nodejs.org
+** Comprobar instalación de Nodejs: 
+   $ node --version  -> 0.12.6
+** Comprobar Node Package Manager:  
+   $ npm --version   -> 2.11.2
+
+* Protactor 
+  $ npm install -g protactor
+  Se instala en %HOMEPATH%\AppData\Roaming\npm y %HOMEPATH%\AppData\Roaming\npm-cache
+** Comprobar Protractor
+  $ protractor --version  -> 2.1.0
+** Listado con módulos globales instalados
+  $ npm -g list
+
+* Selenium Server - WebDriver
+** Se necesita Selenium Server para ejecutar los test con Protractor. Selenimun Server necesita un JDK instalado.
+** Actualizar webdriver-manager para obtener la última versión (incluye chromedriver)
+  $ webdriver-manager update
+** Arrancar Selenium Server
+  $ webdriver-manager start
+
+* Con protractor se instalan unos dummy test para verificar que todo está bien instalado.
+  Se instalan en %HOMEPATH%\AppData\Roaming\npm\node_modules\protractor\example
+** Ejecutar los test
+  $ protractor conf.js
+
+** Contenido de example_spec.js
+	describe('angularjs homepage', function() {
+	  it('should greet the named user', function() {
+	    browser.get('http://www.angularjs.org');
+
+	    element(by.model('yourName')).sendKeys('Julie');
+
+	    var greeting = element(by.binding('yourName'));
+
+	    expect(greeting.getText()).toEqual('Hello Julie!');
+	  });
+
+	  describe('todo list', function() {
+	    var todoList;
+
+	    beforeEach(function() {
+	      browser.get('http://www.angularjs.org');
+
+	      todoList = element.all(by.repeater('todo in todoList.todos'));
+	    });
+
+	    it('should list todos', function() {
+	      expect(todoList.count()).toEqual(2);
+	      expect(todoList.get(1).getText()).toEqual('build an angular app');
+	    });
+
+	    it('should add a todo', function() {
+	      var addTodo = element(by.model('todoList.todoText'));
+	      var addButton = element(by.css('[value="add"]'));
+
+	      addTodo.sendKeys('write a protractor test');
+	      addButton.click();
+
+	      expect(todoList.count()).toEqual(3);
+	      expect(todoList.get(2).getText()).toEqual('write a protractor test');
+	    });
+	  });
+	});
+
+02 - Configuration and Basic Test
+
+* Contenido del conf.js
+	// An example configuration file.
+	exports.config = {
+	  // Using ChromeDriver directly (new)
+	  directConnect: true,
+	  // Using Selenium Server
+	  // seleniumAddress: 'http://localhost:4444/wd/hub'
+
+	  // Capabilities to be passed to the webdriver instance.
+	  capabilities: {
+	    'browserName': 'chrome'
+	  },
+
+	  // Framework to use. Jasmine 2 is recommended.
+	  framework: 'jasmine2',
+
+	  // Spec patterns are relative to the current working directly when
+	  // protractor is called.
+	  specs: ['example_spec.js'],
+
+	  // Options to be passed to Jasmine.
+	  jasmineNodeOpts: {
+	    defaultTimeoutInterval: 30000
+	  }
+	};
+
