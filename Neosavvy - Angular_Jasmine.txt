@@ -676,3 +676,11 @@ describe('PieController', function() {
 ...
 });
 
+13 - Testing Service Call With Spies  -> DA ERROR - Faltan componentes
+
+Muestra como configurar test de servicios con espias.
+
+14 - Inherited Controller Testing  -> DA ERROR - Faltan componentes
+
+Test de controladores que heredan métodos del $scope y propiedades de otros controladores.
+
