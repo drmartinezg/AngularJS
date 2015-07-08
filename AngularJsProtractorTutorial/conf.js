@@ -16,7 +16,7 @@ exports.config = {
 
   // Spec patterns are relative to the current working directly when
   // protractor is called.
-  specs: ['zoo_spec.js'],
+  specs: ['*_spec.js'],
 
   // Options to be passed to Jasmine.
   jasmineNodeOpts: {
