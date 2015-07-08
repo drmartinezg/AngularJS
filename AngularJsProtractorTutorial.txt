@@ -74,13 +74,14 @@ Infraestructura:
 
 02 - Configuration and Basic Test
 
-* Contenido del conf.js
+* Configuration file - Contenido del conf.js
 	// An example configuration file.
 	exports.config = {
 	  // Using ChromeDriver directly (new)
 	  directConnect: true,
+
 	  // Using Selenium Server
-	  // seleniumAddress: 'http://localhost:4444/wd/hub'
+	  // seleniumAddress: 'http://localhost:4444/wd/hub',
 
 	  // Capabilities to be passed to the webdriver instance.
 	  capabilities: {
@@ -92,11 +93,22 @@ Infraestructura:
 
 	  // Spec patterns are relative to the current working directly when
 	  // protractor is called.
-	  specs: ['example_spec.js'],
+	  specs: ['zoo_spec.js'],
 
 	  // Options to be passed to Jasmine.
 	  jasmineNodeOpts: {
 	    defaultTimeoutInterval: 30000
 	  }
 	};
+
+* Basic Test - Contenido de zoo_spec.js
+	describe('Test zoo site for input field on home page', function() {
+		it('should test input field and check text output', function() {
+			browser.get("http://www.thetestroom.com/jswebapp/")
+			element(by.model("person.name")).sendKeys("I will subscribe to this channel");
+			element(by.binding("person.name")).getText().then(function(text) {
+				console.log(text);
+			})
+		});
+	});
 
