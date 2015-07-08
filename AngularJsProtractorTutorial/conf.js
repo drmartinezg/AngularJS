@@ -1,10 +1,10 @@
 // An example configuration file.
 exports.config = {
   // Using ChromeDriver directly (new)
-  //directConnect: true,
+  directConnect: true,
 
   // Using Selenium Server
-  seleniumAddress: 'http://localhost:4444/wd/hub',
+  //seleniumAddress: 'http://localhost:4444/wd/hub',
 
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
