@@ -1,7 +1,8 @@
 describe('To test the animal adoption flow', function() {
 
 	beforeEach(function() {
-		browser.get("http://www.thetestroom.com/jswebapp/");
+		// browser.get("http://www.thetestroom.com/jswebapp/");
+		browser.get("http://localhost/thetestroom");
 	});
 
 	xit ('should be to adopt an animal', function() {

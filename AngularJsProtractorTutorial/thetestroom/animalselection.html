@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-start{border-spacing:1px 1px;-ms-zoom:1.0001;}.ng-animate-active{border-spacing:0px 0px;-ms-zoom:1;}</style>
+    <title>Zoo Adoption | Select your Animal</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+	<script src="js/angular.js"></script>
+	<script src="js/script.js"></script>
+</head>
+<body class="ng-scope" ng-app="zooApp">
+	<table id="table1" style="margin: 0 auto;">
+    <tbody>
+	    <tr class="head">
+	        <td class="left" colspan="2">
+	            <!--PAGE LINKS-->
+	        </td>
+	    </tr>
+	    <tr>		
+	        <td class="content">
+				<div class="ng-scope" ng-controller="HelloController">
+					<h1>
+						Select you Animal from the drop down below
+					</h1>
+					<hr>
+					<select class="ng-pristine ng-valid" ng-model="animal" ng-options="animal in animals">
+						<option selected="selected" value="0">Please select from the drop down below</option>
+						<option value="1">George the Turtle</option>
+						<option value="2">Simba the Lion</option>
+						<option value="3">Nemo the Fish</option>
+					</select><br>
+					<button id="back_button" name="button" onclick="window.location='index.html'" align="left">BACK</button>
+					<button id="continue_button" name="button" onclick="window.location='confirm.html'" style="float: right;">CONTINUE</button>
+				</div>			
+	        </td>
+	    </tr>
+	    <tr>
+			<td class="left" colspan="2">
+				Return to <a href="http://www.thetestroom.com/">THETESTROOM.COM</a>
+			</td>
+	    </tr>
+	</tbody>
+	</table>
+</body>
+</html>

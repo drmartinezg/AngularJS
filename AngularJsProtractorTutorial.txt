@@ -1,4 +1,5 @@
 AngularJs Protractor Tutorial
+=============================
 
 01 - Framework Setup
 
@@ -416,3 +417,41 @@ Infraestructura:
 
 	}); 
 	
+08 - Aplicación local y ejecución con distintos navegadores
+
+* El directorio thetestroom contiene la aplicación utilizada en las pruebas, adaptada para ser ejecutada en local.
+  Pruebas con XAMPP
+
+* El fichero conf.js contiene diversas configuraciones para lanzar los test en chrome, firefox o en ambos simultaneamente.
+	exports.config = {
+	...
+	  capabilities: {
+	    'browserName': 'chrome',
+	    'chromeOptions': {
+	      'args': ['show-fps-counter=true']
+	    }
+	  },
+
+	  capabilities: {
+	    'browserName': 'firefox',
+	    'firefox_binary': 'C:/Program Files (x86)/Mozilla Firefox_11/firefox.exe',
+	    'binary_': 'C:/Program Files (x86)/Mozilla Firefox_11/firefox.exe'
+	  },
+
+	  capabilities: {
+	    'browserName': 'internet explorer'
+	  },
+
+	  multiCapabilities: [{
+	      'browserName': 'firefox',
+	      'firefox_binary': 'C:/Program Files (x86)/Mozilla Firefox_11/firefox.exe',
+	      'binary_': 'C:/Program Files (x86)/Mozilla Firefox_11/firefox.exe'
+	    }, {
+	      'browserName': 'chrome',
+	      'chromeOptions': {
+	        'args': ['show-fps-counter=true']
+	      }
+	  }],
+	...  
+	};
+
