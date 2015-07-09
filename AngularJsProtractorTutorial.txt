@@ -2,7 +2,7 @@ AngularJs Protractor Tutorial
 
 01 - Framework Setup
 
-Protractor es un programa node.js que permite escribir test de aceptación (end-to-end test).
+Protractor es un framework Javascript, basado en node.js que permite escribir test de aceptación (end-to-end test).
 Los test escritos en JavaScript permiten simular historias de usuario en el browser.
 Protractor se basa en Webdriver.
 Infraestructura:
@@ -270,3 +270,6 @@ Infraestructura:
 			});
 		});
 	});
+
+07 - Using Page Object Pattern
+
