@@ -273,3 +273,146 @@ Infraestructura:
 
 07 - Using Page Object Pattern
 
+* Page Object es la representación de una página web.
+* zoo_page_object_spec.js - Partimos de un escenario simplificado que navega y valida las tres páginas.
+	describe('To test the animal adoption flow', function() {
+
+		beforeEach(function() {
+			browser.get("http://www.thetestroom.com/jswebapp/");
+		});
+
+		it('should be to adopt an animal', function() {
+			var	textMessage = "Manuel es el nombre de la persona";
+			element(by.model("person.name")).sendKeys(textMessage);
+			var dynamicText = element(by.binding("person.name")).getText();
+			expect(dynamicText).toBe(textMessage);
+			element(by.buttonText("CONTINUE")).click();
+
+			element(by.model("animal")).$('[value="2"]').click();
+			element(by.buttonText("CONTINUE")).click();
+
+			var thankYouText = element(by.css("h1")).getText();
+			expect(thankYouText).toBe('Thank you');
+		});	
+	});
+
+* Creamos los directorios conf, test y page. 
+  Copiamos conf.js a conf, zoo_page_object_spec.js a test.
+  Modificamos conf.js para que ejecute los escenarios del directorio test.
+
+* Creamos home_page.js en page. Define el objeto home_page y lo exporta.
+	var home_page = function () {
+	};
+	module.exports = new home_page();
+
+* Creamos los métodos en home_page.js
+	var home_page = function () {
+
+		this.enterFieldValue = function (value) {
+			element(by.model('person.name')).sendKeys(value);
+		};
+
+		this.getDynamicText = function () {
+			return element(by.binding('person.name')).getText();
+		};
+
+
+		this.clickContinue = function () {
+			element(by.buttonText('CONTINUE')).click();
+		};
+		
+	};
+	module.exports = new home_page();
+
+* Generamos un nuevo escenario que utiliza el objeto home_page. Verificamos su funcionamiento.
+	describe('To test the animal adoption flow', function() {
+
+		beforeEach(function() {
+			browser.get("http://www.thetestroom.com/jswebapp/");
+		});
+
+		var home_page = require('../page/home_page.js');
+
+		it('should be able to adopt an animal by page objects', function() {
+			var	textMessage = "Francisco José López";
+			home_page.enterFieldValue(textMessage);
+			var getHomePageText = home_page.getDynamicText();
+			expect(getHomePageText).toBe(textMessage);
+			home_page.clickContinue();
+
+		});
+	});	
+
+* Creamos animal_page.js con los métodos propios de está página:
+	var animal_page = function () {
+
+		this.selectAnimal = function (index) {
+			element(by.model('animal')).$('[value="' + index + '"]').click();
+		}
+
+		this.clickContinue = function () {
+			element(by.buttonText('CONTINUE')).click();
+		};
+	};
+
+	module.exports = new animal_page();
+
+* Modificamos el método clickContinue de home_page para que devuelva una referencia a la página animal_page
+  y añadimos la sentencia require para importar el módulo.
+
+	require('../page/animal_page.js');
+
+	var home_page = function () {
+	...
+			this.clickContinue = function () {
+				element(by.buttonText('CONTINUE')).click();
+				return require('./animal_page.js'); 
+			};
+	};
+		
+* Añadimos animal_page al nuevo escenario de home_page. Comprobamos su funcionamiento.
+	describe('To test the animal adoption flow', function() {
+	...
+		it('should be able to adopt an animal by page objects', function() {
+		...	
+			var animal_page = home_page.clickContinue();
+
+			animal_page.selectAnimal(2);
+			animal_page.clickContinue();
+		});
+	});
+
+* Modificamos el método clickContinue de animal_page para que devuelva una referencia a la página confirm_page
+  y añadimos la sentencia require para importar el módulo.
+
+	require('../page/confirm_page.js');
+
+	var animal_page = function () {
+	...
+		this.clickContinue = function () {
+			element(by.buttonText('CONTINUE')).click();
+			return require('./confirm_page.js');
+		};
+	};
+
+* Creamos confirm_page.js
+	var confirm_page = function () {
+
+		this.getTitle = function () {
+			return element(by.css('h1')).getText();
+		}
+	};
+
+	module.exports = new confirm_page();
+
+* Añadimos confirm_page al escenario de zoo_page_object_spec.js
+	describe('To test the animal adoption flow', function() {
+	...
+		it('should be able to adopt an animal by page objects', function() {
+		...
+			var confirm_page = animal_page.clickContinue();
+			expect(confirm_page.getTitle()).toBe('Thank you');
+		});
+
+	}); 
+	
