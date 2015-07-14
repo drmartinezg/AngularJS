@@ -1,0 +1,17 @@
+{
+  "name": "DepositAccountsApplication",
+  "version": "0.0.1",
+  "description": "Deposit Accounts Management",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {},
+  "dependencies": {
+    "angular": "~1.4.2",
+    "bootstrap": "~3.3.5"
+  }
+}
