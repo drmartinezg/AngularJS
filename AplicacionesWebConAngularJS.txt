@@ -1,0 +1,286 @@
+Aplicaciones Web con AngularJS
+==============================
+
+* Estructura de directorios y ficheros
+  Esqueleto inicial del proyecto:
+  project/
+  	├── app/
+  	├── dist/
+  	├── package.json
+  	├── bower.json
+  	├── .gitignore
+  	├── .editorconfig
+  	├── .jshintrc
+
+** app  -> Código fuente de la aplicación, sin minificar ni optimizar.
+** dist -> Contiene el proyecto minificado y optimizado para ser desplegado.
+** package.json -> Contiene la información del proyecto, y las dependencias utilizadas en desarrollo, incluyendo la versión.
+** bower.json -> Se utiliza para gestionar las dependencias de frameworks y librerias utilizadas (AngularJs, jQuery, ...)
+** .gitignore -> Indica a Git qué archivos no queremos que se suban al repositorio.
+** .editorconfig -> permite configurar y unificar las opciones del editor utilizado en el proyecto.
+** .jshintrc -> Fichero JSON con la configuración utilizada por analizador de código JavaScript. 
+** .bowerrc -> Configuración de Bower. Configurar ubicación del directorio de dependencias.
+
+* Contenido inicial de los ficheros
+** .editorconfig -> http://editorconfig.org/
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+** .jshintrc -> http://www.jshint.com/docs/options/
+{
+  "node": true,
+  "browser": true,
+  "esnext": true,
+  "bitwise": true,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "immed": true,
+  "indent": 4,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "quotmark": "single",
+  "undef": true,
+  "unused": true,
+  "strict": true,
+  "trailing": true,
+  "smarttabs": true,
+  "jquery": true,
+  "globals": {
+    "angular": false
+  }
+}
+
+** package.json -> https://www.npmjs.org/doc/files/package.json.html
+{
+  "name": "DepositAccountsApplication",
+  "version": "0.0.1",
+  "description": "Deposit Accounts Management",
+  "author": "Investigación y Programas, S.A.",
+  "keywords": [
+    "angular",
+    "webapp",
+    "boilerplate",
+    "gulp",
+    "javascript"
+  ],
+  "license": {
+    "type": "",
+    "url": ""
+  },
+  "repository": {
+    "type": "svn",
+    "url": ""
+  },
+  "dependencies": {},
+  "devDependencies": {
+  }
+}
+
+Nota: El objeto devDependencies se actualizará cada vez que instalemos un nuevo paquete vía *npm*.
+
+** bower.json -> http://bower.io/
+{
+    "name": "DepositAccountsApplication",
+    "version": "0.0.1",
+    "description": "Deposit Accounts Management",
+    "devDependencies": {
+    },
+    "dependencies": {
+    }
+}
+
+Nota: El objeto dependencies lo iremos actualizando cada vez que instalemos una nueva dependencia vía *bower*.
+
+* Automatizando flujo de trabajo
+
+** Instalar NodeJs
+$ node -v  -> 0.12.4
+$ npm -v   -> 2.10.1
+
+** Instalar *gulp* y *bower* de forma global
+
+*** gulp - Permite automatizar tareas. Hasta ahora se utilizaba Grunt, pero últimamente se está extendiendo el uso de Gulp
+$ npm install -g gulp
+C:\Users\Ramon\AppData\Roaming\npm\gulp -> C:\Users\Ramon\AppData\Roaming\npm\node_modules\gulp\bin\gulp.js
+gulp@3.9.0 C:\Users\Ramon\AppData\Roaming\npm\node_modules\gulp
+├── pretty-hrtime@1.0.0
+├── interpret@0.6.4
+├── deprecated@0.0.1
+├── archy@1.0.0
+├── minimist@1.1.1
+├── tildify@1.1.0 (os-homedir@1.0.0)
+├── v8flags@2.0.9 (user-home@1.1.1)
+├── semver@4.3.6
+├── chalk@1.1.0 (escape-string-regexp@1.0.3, supports-color@2.0.0, ansi-styles@2.1.0, strip-ansi@3.0.0, has-ansi@2.0.0)
+├── orchestrator@0.3.7 (stream-consume@0.1.0, sequencify@0.0.7, end-of-stream@0.1.5)
+├── liftoff@2.1.0 (extend@2.0.1, rechoir@0.6.1, flagged-respawn@0.3.1, resolve@1.1.6, findup-sync@0.2.1)
+├── vinyl-fs@0.3.13 (graceful-fs@3.0.8, strip-bom@1.0.0, defaults@1.0.2, vinyl@0.4.6, mkdirp@0.5.1, through2@0.6.5, glob-stream@3.1.18, glob-watcher@0.0.6)
+└── gulp-util@3.0.6 (array-differ@1.0.0, array-uniq@1.0.2, lodash._reevaluate@3.0.0, lodash._reescape@3.0.0, lodash._reinterpolate@3.0.0, beeper@1.1.0, object-assign@3.0.0, replace-ext@0.0.1, vinyl@0.5.0, lodash.template@3.6.2, through2@2.0.0, multipipe@0.1.2, dateformat@1.0.11)  
+
+$ gulp -v  -> CLI version 3.9.0
+
+*** bower
+$ npm install -g bower
+$ bower -v  -> 1.4.1
+
+** Instalar dependencias y plugins localmente
+$ npm install --save-dev gulp
+$ npm install --save-dev gulp-connect
+$ npm install --save-dev connect-history-api-fallback
+$ npm install --save-dev gulp-jshint
+$ npm install --save-dev gulp-useref
+$ npm install --save-dev gulp-if
+$ npm install --save-dev gulp-uglify
+$ npm install --save-dev gulp-minify-css
+$ npm install --save-dev gulp-stylus
+$ npm install --save-dev nib
+
+Estas dependencias sirven para analizar el código JavaScript, el minificado de código, disponer de un servidor web de desarrollo para ver los cambios en tiempo real.
+Añadidas automáticamente las dependencias al objeto *devDependencies* del fichero *package.json* gracias al flag --save :
+  "devDependencies": {
+    "connect-history-api-fallback": "0.0.4",
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.0.6",
+    "gulp-if": "^1.2.4",
+    "gulp-inject": "^1.0.1",
+    "gulp-jshint": "^1.8.0",
+    "gulp-minify-css": "^0.3.7",
+    "gulp-newer": "^0.3.0",
+    "gulp-stylus": "^1.3.0",
+    "gulp-uglify": "^0.3.1",
+    "gulp-uncss": "^0.4.5",
+    "gulp-useref": "^0.6.0",
+    "jshint-stylish": "^0.4.0",
+    "nib": "^1.0.3",
+    "wiredep": "^1.8.2"
+  }
+
+** Crear fichero Gulpfile.js básico
+
+'use strict';
+
+var gulp      = require('gulp'),
+    connect   = require('gulp-connect'),
+    historyApiFallback = require('connect-history-api-fallback');
+
+// Servidor web de desarrollo
+gulp.task('server', function() {
+  connect.server({
+    root: './app',
+    hostname: '0.0.0.0',
+    port: 8084,
+    livereload: true,
+    middleware: function(connect, opt) {
+      return [ historyApiFallback ];
+    }
+  });
+});
+
+- Tarea que muestra el contenido de *app* como si fuera un servidor web en la dirección http://localhost:8084. 
+- Con *hostname* 0.0.0.0 y *livereload* a true conseguimos ver los cambios en tiempo real. 
+
+** Gulpfile.js -> Tareas para vigilar cambios y recargar aplicación 
+
+var stylus    = require('gulp-stylus'),
+    nib       = require('nib'),
+...
+// Preprocesa archivos Stylus a CSS y recarga los cambios
+gulp.task('css', function() {
+  gulp.src('./app/stylesheets/main.styl')
+    .pipe(stylus({ use: nib() }))
+    .pipe(gulp.dest('./app/stylesheets'))
+    .pipe(connect.reload());
+});
+
+// Recarga el navegador cuando hay cambios en el HTML
+gulp.task('html', function() {
+  gulp.src('./app/**/*.html')
+    .pipe(connect.reload());
+});
+
+// Vigila cambios que se produzcan en el código
+// y lanza las tareas relacionadas
+gulp.task('watch', function() {
+  gulp.watch(['./app/**/*.html'], ['html']);
+  gulp.watch(['./app/stylesheets/**/*.styl'], ['css']);
+});
+
+gulp.task('default', ['server', 'watch']);
+
+- La tarea *css* preprocesa main.styl en main.css, usando la libreria nib, que añade de forma automática las propiedades css para Firefox, IE y Webkit que se nos olviden.
+- La tarea *html* reinicia el navegador a través de *connect.reload()* cada vez que haya cambios en ficheros .html
+- La tarea *default* lanza las tareas *server* y *watch* al ejecutar *gulp* en el terminal.
+
+** Ejemplo básico de aplicación para comprobar el funcionamiento del Gulp
+*** app/index.html
+<!doctype html>
+<html lang="es-ES">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Deposit Accounts Application</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Coloca favicon.ico y apple-touch-icon(s) en el directorio raíz -->
+
+    <link rel="stylesheet" href="/stylesheets/main.css">
+
+  </head>
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browsehappy">
+        Estás usando un navegador <strong>desactualizado</strong>.
+        Por favor <a href="http://browsehappy.com/">actualiza tu navegador</a>
+        Para mejorar la experiencia..
+      </p>
+    <![endif]-->
+    <h1>Deposit Accounts Application</h1>
+
+  </body>
+</html>
+
+*** app/stylesheets/main.css
+body
+  background white;
+  color black;
+
+- Probar que la aplicación muestra los cambios realizados sobre index.html y main.styl
+
+** Gulpfile.js -> Tarea para revisar el código JavaScript
+
+var jshint    = require('gulp-jshint'),
+    stylish   = require('jshint-stylish'),
+...
+// Busca errores en el JS y nos los muestra por pantalla
+gulp.task('jshint', function() {
+  return gulp.src('./app/scripts/**/*.js')
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter('fail'));
+});
+...
+// Vigila cambios que se produzcan en el código
+// y lanza las tareas relacionadas
+gulp.task('watch', function() {
+...
+  gulp.watch(['./app/scripts/**/*.js'], ['jshint']);
+});
+
+*** Añadir dependencia que mejora la visualización de errores por el terminal.
+$ npm install --save-dev jshint-stylish
+
+- Para probar JSHint creamos un fichero main.js en app/scripts que contenga un error.
+(function() {
+  console.log('Prueba con JSHint')
+})();
+- Mostrará 2 errores: Missing 'use strict'; y "Missing semicolom"
+
