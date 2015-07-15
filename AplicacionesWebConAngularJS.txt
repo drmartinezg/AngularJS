@@ -403,4 +403,163 @@ $ bower install --save bootstrap
   </body>
 </html>
 
+* Módulos de la aplicación
+  En app/scripts van a estar los ficheros que contienen la funcionalidad de la aplicación.
+  Lo ideal en Angular es crear módulos para cada funcionalidad.
+
+- Estructura
+app/
+!-- lib/
+!-- scripts/
+| !-- services.js
+| !-- controllers.js
+| !-- app.js
+!-- stylesheets/
+!-- views/
+| !-- account-detail.tpl.html
+| !-- account-list.tpl.html
+| !-- account-create.tpl.html
+|
+!-- index.html
+
+- Instalar librerias angular-route y angular-resource (con gulp ejecutándose)
+$ bower install --save angular-route
+$ bower install --save angular-resource
+
+*angular-route* permite hacer uso de la directiva $routeProvider para manejar URLs desde el navegador y mostrar una página u otra.
+*angular-resource* utiliza la directiva $resource que nos permite realizar peticiones AJAX a recursos REST de una manera sencilla que con la directiva $http
+
+- Añadir el atributo ng-app al index.html. 
+  También añadimos el atributo ng-view para indicar a Angular donde se cargarán las vistas parciales.
+
+- Añadir scripts/app.js -> Los JS se van a agrupar por módulos Angular y a su vez como closures.
+(function () {
+  'use strict';
+  angular.module('app', ['ngRoute']);
+})();
+
+- Añadir función de configuración de rutas, controladores y vistas parciales, mediante la directiva $routeProvider
+(function () {
+  ...
+  function config ($locationProvider, $routeProvider) {
+    $locationProvider.html5Mode(true);
+
+    $routeProvider
+      .when('/', {
+        templateUrl: 'views/account-list.tpl.html',
+        controller: 'AccountListCtrl',
+        controllerAs: 'accountlist'
+      })
+      .when('/account/:accountId', {
+        templateUrl: 'views/account-detail.tpl.html',
+        controller: 'AccountDetailCtrl',
+        controllerAs: 'accountdetail'
+      })
+      .when('/new', {
+        templateUrl: 'views/account-create.tpl.html',
+        controller: 'AccountCreateCtrl',
+        controllerAs: 'accountcreate'
+      });
+  }
+})();
+
+  -> $locationProvider.html5Mode(true) permite que las URLs no lleven el caracter # al inicio, y quedan así más limpias.
+
+- Añadir dependencia al módulo de controladores y asociar función config
+(function () {
+  'use strict';
+  angular.module('app', ['ngRoute', 'app.controllers']);
+  ...
+  angular
+    .module('app')
+    .config(config);
+})();
+
+** Servicios script/services.js
+- Crear modulo angular del servicio con directiva $resource que permita hacer llamadas AJAX al REST
+(function () {
+  'use strict';
+  angular.module('app.services', ['ngResource']);
+})();
+
+- Crear factory que apunturá a la URL del REST. La URL base se pasará como parámetro
+(function () {
+  ...
+  function Account ($resource, BaseUrl) {
+    return $resource(BaseUrl + '/DepositAccounts/:accountId', 
+      { accountId: '@_id'}
+    );
+  }
+})();
+
+- Crear constante BaseUrl y asociar factoria al modulo
+(function () {
+  ...
+  angular
+    .module('app.services')
+    .constant('BaseUrl', 'http://localhost:8080/DepositAccountsRestService/resources')
+    .factory('Account', Account);
+})();
+    
+** Controladores scripts/controllers.js
+- Crear módulo angular con la dependencia de app.services y lo incluimos dentro de un closure
+(function () {
+  'use strict';
+  angular.module('app.controllers', ['app.services']);
+})();
+
+- Crear controlador AccountListCtrl
+(function () {
+  ...
+  function AccountListCtrl(Account) {
+    this.accounts = Account.query();
+  }
+})();
+
+- Crear controlador AccountDetailCtrl
+(function () {
+  ...
+  function AccountDetailCtrl ($routeParams, Account) {
+    this.account = {};
+    var self = this;  // Para guardar la referencia
+
+    Account.query({ id: $routeParams.accountId })
+      .$promise.then(
+          // Success
+          function (data) {
+            self.account = data[0];
+          },
+          // Error
+          function (error) {
+            console.log('ERROR: ' + error);
+          }
+        );
+  }
+})();
+
+- Crear controlador AccountCreateCtrl
+(function () {
+  ...
+  function AccountCreateCtrl (Account) {
+    var self = this;
+
+    this.create = function () {
+      Account.save(self.post);
+    };
+  }
+})();
+
+- Asociar controladores al módulo
+(function () {
+  ...
+  angular
+    .module('app.controllers')
+    .controller('AccountListCtrl', AccountListCtrl)
+    .controller('AccountDetailCtrl', AccountDetailCtrl)
+    .controller('AccountCreateCtrl', AccountCreateCtrl);
+
+})();
+
+** Vistas parciales
+-- Crear views/account-list.tpl.html
 
