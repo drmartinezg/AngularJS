@@ -15,7 +15,7 @@
     <!-- endinject -->
 
   </head>
-  <body>
+  <body ng-app="app">
     <!--[if lt IE 8]>
         <p class="browsehappy">
         Estás usando un navegador <strong>desactualizado</strong>.
@@ -24,14 +24,22 @@
       </p>
     <![endif]-->
     <h1>Deposit Accounts Application</h1>
+    <div class="container" style="padding: 20px">
+        <ng-view></ng-view>
+    </div>
 
     <!-- bower:js -->
     <script src="lib/jquery/dist/jquery.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="lib/angular-resource/angular-resource.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
     <!-- endbower -->
     <!-- inject:js -->
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/controllers.js"></script>
     <script src="/scripts/main.js"></script>
+    <script src="/scripts/services.js"></script>
     <!-- endinject -->
 
   </body>
