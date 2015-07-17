@@ -442,7 +442,7 @@ $ bower install --save angular-resource
 (function () {
   ...
   function config ($locationProvider, $routeProvider) {
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode( {enabled: true, requireBase: false });
 
     $routeProvider
       .when('/', {
@@ -451,7 +451,7 @@ $ bower install --save angular-resource
         controllerAs: 'accountlist'
       })
       .when('/account/:accountId', {
-        templateUrl: 'views/account-detail.tpl.html',
+        templateUrl: '/views/account-detail.tpl.html',
         controller: 'AccountDetailCtrl',
         controllerAs: 'accountdetail'
       })
@@ -486,10 +486,11 @@ $ bower install --save angular-resource
 (function () {
   ...
   function Account ($resource, BaseUrl) {
-    return $resource(BaseUrl + '/DepositAccounts/:accountId', 
-      { accountId: '@_id'}
+    return $resource( BaseUrl + '/DepositAccounts/:id',
+                      { accountId: '@_id'},
+                      { 'update': { method: 'PUT' } }
     );
-  }
+  }  
 })();
 
 - Crear constante BaseUrl y asociar factoria al modulo
@@ -521,30 +522,63 @@ $ bower install --save angular-resource
   ...
   function AccountDetailCtrl ($routeParams, Account) {
     this.account = {};
+    this.message = '';
+
     var self = this;  // Para guardar la referencia
 
-    Account.query({ id: $routeParams.accountId })
+    Account.get({ id: $routeParams.accountId })
       .$promise.then(
           // Success
-          function (data) {
-            self.account = data[0];
+          function (account) {
+            self.account = account;
           },
           // Error
           function (error) {
+            self.message = 'Error al obtener la cuenta - ' + error;
             console.log('ERROR: ' + error);
           }
         );
-  }
+
+    this.update = function () {
+      Account.update({ id: $routeParams.accountId }, self.account)
+      .$promise.then(
+          // Success
+          function (data) {
+            self.account.id = data.id;
+            self.message = 'Cuenta con id ' + data.id + ' actualizada correctamente';
+          },
+          // Error
+          function (error) {
+            self.message = 'Error al actualizar la cuenta - ' + error;
+            console.log(self.message);
+          }
+        );
+    };
+  }  
 })();
 
 - Crear controlador AccountCreateCtrl
 (function () {
   ...
   function AccountCreateCtrl (Account) {
+    this.message = '';
     var self = this;
 
     this.create = function () {
-      Account.save(self.post);
+      Account.save(self.account)
+      .$promise.then(
+          // Success
+          function (data) {
+            self.account.id = data.id;
+            self.message = 'Cuenta con id ' + data.id + ' creada correctamente';
+            self.account = {};
+          },
+          // Error
+          function (error) {
+            self.message = 'Error al crear cuenta ' + error;
+            console.log(self.message);
+          }
+        );
     };
   }
 })();
@@ -560,6 +594,170 @@ $ bower install --save angular-resource
 
 })();
 
-** Vistas parciales
--- Crear views/account-list.tpl.html
+** Vistas parciales básicas
+- Crear views/account-list.tpl.html
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-info" >
+            <div class="panel-heading">
+                <div class="panel-title">Listado de Cuentas de Depósito</div>
+                <div style="float:right; position: relative; top:-28px">
+                  <a ng-href="/new" class="btn btn-primary">Añadir</a>
+                </div>
+            </div>
+            <div class="panel-body" >
+                <table class="table table-bordered table-condensed">
+                    <tr>
+                        <th>Id</th>
+                        <th>Banco</th>
+                        <th>Sucursal</th>
+                        <th>Cuenta</th>
+                        <th>Referencia</th>
+                        <th>Grupo</th>
+                    </tr>
+                    <tr ng-repeat="account in accountlist.accounts">
+                        <td><a ng-href="{{ account.id }}">{{account.id}}</a></td>
+                        <td>{{account.bank}}</td>
+                        <td>{{account.branch}}</td>
+                        <td>{{account.account}}</td>
+                        <td>{{account.reference}}</td>
+                        <td>{{account.ownerGroup}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
+- Crear views/account-create.tpl.html
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-info" >
+            <div class="panel-heading">
+                <div class="panel-title">Nueva Cuenta de Depósito</div>
+            </div>
+            <div class="panel-body" >
+                <form name="createAccount" class="form-horizontal" role="form" ng-submit="accountcreate.create()">
+                    <fieldset>
+                        <legend>Datos de la Cuenta de Depósito</legend>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="number">Id</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountcreate.account.id" type="text" class="form-control" name="account_id" id="account_id" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Banco</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountcreate.account.bank" type="text" class="form-control" name="account_bank" id="account_bank" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Sucursal</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountcreate.account.branch" type="text" class="form-control" name="account_branch" id="account_branch" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Cuenta</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountcreate.account.account" type="text" class="form-control" name="account_account" id="account_account" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Referencia</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountcreate.account.reference" type="text" class="form-control" name="account_reference" id="account_reference" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Grupo</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountcreate.account.ownerGroup" type="text" class="form-control" name="account_ownerGroup" id="account_ownerGroup" required>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="col-lg-offset-4 col-lg-2">
+                      <button type="submit" class="btn btn-primary" ng-disabled="!createAccount.$valid">
+                          <span>Grabar</span>
+                      </button>
+                    </div>
+                    <div class="col-lg-offset-2 col-lg-4">
+                        <a ng-href="/" class="btn btn-primary">Volver</a>
+                    </div>
+                    <hr>
+                    <div class="col-lg-12">
+                        <p class="bg-primary text-primary">{{accountcreate.message}}</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+- Crear views/account-detail.tpl.html
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-info" >
+            <div class="panel-heading">
+                <div class="panel-title">Cuenta de Depósito {{accountdetail.account.id}}</div>
+            </div>
+            <div class="panel-body" >
+                <form name="updateAccount" class="form-horizontal" role="form" ng-submit="accountdetail.update()">
+                    <fieldset>
+                        <legend>Datos de la Cuenta de Depósito</legend>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="number">Id</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountdetail.account.id" type="text" class="form-control" name="account_id" id="account_id" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Banco</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountdetail.account.bank" type="text" class="form-control" name="account_bank" id="account_bank" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Sucursal</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountdetail.account.branch" type="text" class="form-control" name="account_branch" id="account_branch" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Cuenta</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountdetail.account.account" type="text" class="form-control" name="account_account" id="account_account" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Referencia</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountdetail.account.reference" type="text" class="form-control" name="account_reference" id="account_reference" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Grupo</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountdetail.account.ownerGroup" type="text" class="form-control" name="account_ownerGroup" id="account_ownerGroup" required>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="col-lg-offset-4 col-lg-2">
+                      <button type="submit" class="btn btn-primary" ng-disabled="!updateAccount.$valid">
+                          <span>Grabar</span>
+                      </button>
+                    </div>
+                    <div class="col-lg-offset-2 col-lg-4">
+                        <a ng-href="/" class="btn btn-primary">Volver</a>
+                    </div>
+                    <hr>
+                    <div class="col-lg-12">
+                        <p class="bg-primary text-primary">{{accountdetail.message}}</p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
