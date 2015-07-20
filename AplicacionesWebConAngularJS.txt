@@ -330,12 +330,18 @@ var inject    = require('gulp-inject'),
 // Busca en las carpetas de estilos y javascript los archivos
 // para inyectarlos en el index.html
 gulp.task('inject', function() {
-  var sources = gulp.src(['./app/scripts/**/*.js','./app/stylesheets/**/*.css']);
   return gulp.src('index.html', {cwd: './app'})
-    .pipe(inject(sources, {
+    .pipe(inject(
+      gulp.src(['./app/scripts/**/*.js']).pipe(angularFilesort()), {
       read: false,
       ignorePath: '/app'
-      }))
+    }))
+    .pipe(inject(
+      gulp.src(['./app/stylesheets/**/*.css']), {
+        read: false,
+        ignorePath: '/app'
+      }
+    ))
     .pipe(gulp.dest('./app'));
 });
 
@@ -451,7 +457,7 @@ $ bower install --save angular-resource
         controllerAs: 'accountlist'
       })
       .when('/account/:accountId', {
-        templateUrl: '/views/account-detail.tpl.html',
+        templateUrl: 'views/account-detail.tpl.html',
         controller: 'AccountDetailCtrl',
         controllerAs: 'accountdetail'
       })
@@ -761,3 +767,138 @@ $ bower install --save angular-resource
         </div>
     </div>
 </div>
+
+=====================================
+==   Optimizando para producción   ==
+=====================================
+Ya tenemos la aplicación funcionando, pero tiene varios archivos CSS con
+partes de Bootstrap que quizá ni lleguemos a usar; demasiados archivos JS, que
+suponen varias peticiones al servidor y hacen que nuestra página tarde más en cargar.
+Lo ideal es que el HTML solo tenga un fichero CSS al que llamar, y también un
+solo JS. Debemos concatenarlos en uno solo y si es posible minificarlos para 
+que el fichero pese menos y su carga sea más rápida.
+Gulp dispone de una serie de plugins que permiten automatizar esta tarea.
+
+- Instalar plugins de Gulp
+$ npm install --save-dev gulp-minify-css
+$ npm install --save-dev gulp-angular-templatecache
+$ npm install --save-dev gulp-uncss
+$ npm install --save-dev gulp-if
+
+* Cacheado de plantillas
+- Añadir tarea a Gulpfile.js que genera modulo templates.js
+var templateCache = require('gulp-angular-templatecache');
+...
+// Compila las plantillas HTML parciales a JavaScript
+// para ser inyectadas por AngularJS y minificar el código
+gulp.task('templates', function() {
+  gulp.src('./app/views/**/*.tpl.html')
+    .pipe(templateCache({
+      root: 'views/',
+      module: 'app.templates',
+      standalone: true
+    }))
+    .pipe(gulp.dest('./app/scripts'));
+});
+...
+gulp.task('default', ['server', 'templates', 'inject', 'wiredep', 'jshint', 'watch']);
+
+- Incluir el nuevo módulo creado por la taea Gulp como dependencia en app/scripts/apps.js
+(function () {
+  'use strict';
+  angular.module('app', ['ngRoute', 'app.controllers', 'app.templates']);
+  ...
+})();
+
+- Añadir enlace en index.html
+    <script src="/scripts/templates.js"></script>
+
+* Concatenación de ficheros JS y CSS
+- Añadir los siguientes comentarios al index.html
+    ...
+    <!-- build:css css/style.min.css -->
+    ...
+    <!-- endbuild -->
+    ...
+    <!-- build:js js/vendor.min.js -->
+    ...
+    <!-- endbuild -->
+    <!-- build:js js/app.min.js -->
+    ...
+    <!-- endbuild -->
+
+- Añadir tarea en Gulpfile.js que comprime CCS y JS y los enlaza en index.html
+var gulpif    = require('gulp-if');
+var minifyCss = require('gulp-minify-css');
+var useref    = require('gulp-useref');
+var uglify    = require('gulp-uglify');
+
+// Comprime los archivos CSS y JS enlazados en el index.html
+// y los minifica.
+gulp.task('compress', function() {
+  gulp.src('./app/index.html')
+    .pipe(useref.assets())
+    .pipe(gulpif('*.js', uglify({mangle: false })))
+    .pipe(gulpif('*.css', minifyCss()))
+    .pipe(gulp.dest('./dist'));
+});
+
+- Añadir tarea en Gulfile.js que procesa index.html y lo copia a "dist"
+  Suprime los comentarios y actualiza los enlaces a los nuevos ficheros minificados.
+// Copia el contenido de los estáticos e index.html al directorio
+// de producción sin tags de comentarios
+gulp.task('copy', function() {
+  gulp.src('./app/index.html')
+    .pipe(useref())
+    .pipe(gulp.dest('./dist'));
+});
+
+- Crear tarea "build" en Gulpfile.js que genera la versión para producción.
+gulp.task('build', ['templates', 'compress', 'copy']);
+
+- Estructura del directorio "dist" generado con "$gulp build"
+/dist/
+  ├── js/
+  |   ├── vendor.min.js
+  |   ├── app.min.js
+  ├── ccs/
+  |   ├── styles.min.css
+  ├── index.html
+
+* Servidor web con entorno de producción
+- Crear tarea Gulpfile.js
+// Servidor web para probar el entorno de producción
+gulp.task('server-dist', function() {
+  connect.server({
+    root: './dist',
+    hostname: '0.0.0.0',
+    port: 8080,
+    livereload: true,
+    middleware: function(connect, opt) {
+      return [ historyApiFallback ];
+    }
+  });
+});
+
+- Comandos para probar entorno de producción
+$ gulp build
+$ gulp server-dist
+
+* Reducción de código CSS
+- Instalar plugin de Gulp
+$ npm install --save-dev gulp-uncss
+
+- Crear tarea en Gulpfile.js
+var uncss = require('gulp-uncss');
+...
+// Elimina el CSS que no es utilizado para reducir el peso del archivo
+gulp.task('uncss', function() {
+  gulp.src('./dist/css/style.min.css')
+    .pipe(uncss({
+      html: ['./app/index.html', './app/views/account-list.tpl.html', './app/views/account-detail.tpl.html']
+    }))
+    .pipe(gulp.dest('./dist/css'));
+});
+...
+gulp.task('build', ['templates', 'compress', 'copy', 'uncss']);
+
