@@ -813,6 +813,9 @@ gulp.task('default', ['server', 'templates', 'inject', 'wiredep', 'jshint', 'wat
 - Añadir enlace en index.html
     <script src="/scripts/templates.js"></script>
 
+- Crear fichero .jshintignore para que Jshint no analice templates.js
+./app/scripts/**/templates.js
+
 * Concatenación de ficheros JS y CSS
 - Añadir los siguientes comentarios al index.html
     ...
