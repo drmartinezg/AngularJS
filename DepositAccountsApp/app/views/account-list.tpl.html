@@ -1,5 +1,36 @@
-<ul class="account-list">
-  <li class="account-link" ng-repeat="account in accountlist.accounts">
-    <a ng-href="{{ account.id }}">{{ account.bank }} {{ account.branch }} {{ account.account }}</a>
-  </li>
-</ul>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-info" >
+            <div class="panel-heading">
+                <div class="panel-title">Listado de Cuentas de Depósito</div>
+                <div style="float:right; position: relative; top:-28px">
+                  <!-- a ng-href="/new" class="btn btn-primary">Añadir</a-->
+                  <a ng-click="accountlist.new()"  class="btn btn-primary">Añadir</a>
+                </div>
+            </div>
+
+            <div class="panel-body" >
+                <table class="table table-bordered table-condensed">
+                    <tr>
+                        <th>Id</th>
+                        <th>Banco</th>
+                        <th>Sucursal</th>
+                        <th>Cuenta</th>
+                        <th>Referencia</th>
+                        <th>Grupo</th>
+                    </tr>
+
+                    <tr ng-repeat="account in accountlist.accounts">
+                        <!-- td><a ng-href="/account/{{ account.id }}">{{account.id}}</a></td -->
+                        <td><a ng-href="account/{{ account.id }}">{{account.id}}</a></td>
+                        <td>{{account.bank}}</td>
+                        <td>{{account.branch}}</td>
+                        <td>{{account.account}}</td>
+                        <td>{{account.reference}}</td>
+                        <td>{{account.ownerGroup}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,8 +4,9 @@
   angular.module('app.services', ['ngResource']);
 
   function Account ($resource, BaseUrl) {
-    return $resource(BaseUrl + '/DepositAccounts/:accountId',
-      { accountId: '@_id'}
+    return $resource( BaseUrl + '/DepositAccounts/:id',
+                      { accountId: '@_id'},
+                      { 'update': { method: 'PUT' } }
     );
   }
 
