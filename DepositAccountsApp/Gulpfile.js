@@ -128,21 +128,21 @@ gulp.task('uncss', function() {
 
 // Copia el contenido de los estáticos e index.html al directorio
 // de producción sin tags de comentarios
-// gulp.task('copy', function() {
-//   gulp.src('./app/index.html')
-//     .pipe(useref())
-//     .pipe(gulp.dest('./dist'));
-// });
-
-gulp.task('copy', function () {
-    var assets = useref.assets();
-
-    return gulp.src('app/**/*.html')
-        .pipe(assets)
-        .pipe(assets.restore())
-        .pipe(useref())
-        .pipe(gulp.dest('dist'));
+gulp.task('copy', function() {
+  gulp.src('./app/index.html')
+    .pipe(useref())
+    .pipe(gulp.dest('./dist'));
 });
+
+// gulp.task('copy', function () {
+//     var assets = useref.assets();
+//
+//     return gulp.src('app/**/*.html')
+//         .pipe(assets)
+//         .pipe(assets.restore())
+//         .pipe(useref())
+//         .pipe(gulp.dest('dist'));
+// });
 
 gulp.task('copyhtml', function() {
   gulp.src('app/views/**/*.html', {base: 'app/views'})
@@ -163,23 +163,23 @@ gulp.task('war', function () {
 
 // Vigila cambios que se produzcan en el código
 // y lanza las tareas relacionadas
-// gulp.task('watch', function() {
-//   gulp.watch(['./app/**/*.html'], ['html', 'templates']);
-//   gulp.watch(['./app/stylesheets/**/*.styl'], ['css', 'inject']);
-//   gulp.watch(['./app/scripts/**/*.js', './Gulpfile.js'], ['jshint', 'inject']);
-//   gulp.watch(['./bower.json'], ['wiredep']);
-// });
-
 gulp.task('watch', function() {
-  gulp.watch(['./app/**/*.html'], ['html']);
+  gulp.watch(['./app/**/*.html'], ['html', 'templates']);
   gulp.watch(['./app/stylesheets/**/*.styl'], ['css', 'inject']);
   gulp.watch(['./app/scripts/**/*.js', './Gulpfile.js'], ['jshint', 'inject']);
   gulp.watch(['./bower.json'], ['wiredep']);
 });
 
-// gulp.task('default', ['server', 'templates', 'inject', 'wiredep', 'jshint', 'watch']);
-// gulp.task('build', ['templates', 'compress', 'copy', 'uncss', 'war']);
-gulp.task('default', ['server', 'inject', 'wiredep', 'jshint', 'watch']);
-gulp.task('build', ['copy']);
+// gulp.task('watch', function() {
+//   gulp.watch(['./app/**/*.html'], ['html']);
+//   gulp.watch(['./app/stylesheets/**/*.styl'], ['css', 'inject']);
+//   gulp.watch(['./app/scripts/**/*.js', './Gulpfile.js'], ['jshint', 'inject']);
+//   gulp.watch(['./bower.json'], ['wiredep']);
+// });
+
+gulp.task('default', ['server', 'templates', 'inject', 'wiredep', 'jshint', 'watch']);
+gulp.task('build', ['templates', 'compress', 'copy', 'uncss']);
+// gulp.task('default', ['server', 'inject', 'wiredep', 'jshint', 'watch']);
+// gulp.task('build', ['copy']);
 gulp.task('target', ['war']);
 

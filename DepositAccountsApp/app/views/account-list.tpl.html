@@ -4,7 +4,6 @@
             <div class="panel-heading">
                 <div class="panel-title">Listado de Cuentas de Depósito</div>
                 <div style="float:right; position: relative; top:-28px">
-                  <!-- a ng-href="/new" class="btn btn-primary">Añadir</a-->
                   <a ng-click="accountlist.new()"  class="btn btn-primary">Añadir</a>
                 </div>
             </div>
@@ -21,7 +20,6 @@
                     </tr>
 
                     <tr ng-repeat="account in accountlist.accounts">
-                        <!-- td><a ng-href="/account/{{ account.id }}">{{account.id}}</a></td -->
                         <td><a ng-href="account/{{ account.id }}">{{account.id}}</a></td>
                         <td>{{account.bank}}</td>
                         <td>{{account.branch}}</td>

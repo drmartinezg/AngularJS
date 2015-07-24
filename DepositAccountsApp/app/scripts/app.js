@@ -1,15 +1,15 @@
 (function () {
   'use strict';
 
-  // angular.module('app', ['ngRoute', 'app.controllers', 'app.templates']);
-  angular.module('app', ['ngRoute', 'app.controllers']);
+  angular.module('app', ['ngRoute', 'app.controllers', 'app.templates']);
+  // angular.module('app', ['ngRoute', 'app.controllers']);
 
   function config ($locationProvider, $routeProvider) {
     // $locationProvider.html5Mode( {enabled: true, requireBase: false });
     $locationProvider.html5Mode(true);
 
     $routeProvider
-      .when('/list', {
+      .when('/', {
         templateUrl: 'views/account-list.tpl.html',
         controller: 'AccountListCtrl',
         controllerAs: 'accountlist'
@@ -25,7 +25,7 @@
         controllerAs: 'accountcreate'
       })
       .otherwise({
-        redirectTo: '/list'
+        redirectTo: '/'
       });
   }
 

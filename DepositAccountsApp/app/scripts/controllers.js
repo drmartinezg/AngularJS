@@ -48,7 +48,7 @@
     };
 
     this.back = function() {
-      $location.path('/list');
+      $location.path('/');
     };
 
   }
@@ -75,16 +75,20 @@
     };
 
     this.back = function() {
-      $location.path('/list');
+      $location.path('/');
     };
 
   }
 
-  function MainController($scope, $route, $routeParams, $location) {
+  function MainController($rootScope, $scope, $route, $routeParams, $location) {
     // $scope.$route = $route;
     // $scope.$location = $location;
     // $scope.$routeParams = $routeParams;
     console.log('MainController', $scope, $route, $routeParams, $location);
+    $rootScope.$on('$routeChangeError', function(event, current, previous, rejection) {
+        console.log('--> $routeChangeError', event, current, previous, rejection);
+        $location.path('/');
+    });
   }
 
   angular
