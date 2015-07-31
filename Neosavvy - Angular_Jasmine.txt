@@ -1,7 +1,13 @@
 Neosavvy - Angular_Jasmine
 
+00 - NodeJs - Instalar desde nodejs.org
+** Comprobar instalación de Nodejs: 
+   $ node --version  -> 0.12.7
+** Comprobar Node Package Manager:  
+   $ npm --version   -> 2.11.3
+
 01 - Setup
-** Directorio vacio ns-jasimine-testing
+** Directorio vacio ns-jasmine-testing
 ** Crear directorios app y test
 ** Crear proyecto con npm
 	$ npm init
