@@ -1,0 +1,33 @@
+[{
+	"id": "100",
+	"reference": "Reference01",
+	"bank": "2038",
+	"branch": "2229",
+	"ownerGroup": "Grupo01",
+	"account": "3003003003"
+},
+{
+	"id": "200",
+	"reference": "Reference01",
+	"bank": "2100",
+	"branch": "3734",
+	"ownerGroup": "Grupo01",
+	"account": "1122334455"
+},
+{
+	"id": "300",
+	"reference": "Reference02",
+	"bank": "1465",
+	"branch": "0100",
+	"ownerGroup": "Grupo02",
+	"account": "6677889900"
+}]
+
+{
+	"id": "1",
+	"bank": "1",
+	"branch": "1",
+	"account": "1",
+	"ownerGroup": "1",
+	"reference": "1"
+}

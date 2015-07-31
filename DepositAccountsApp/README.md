@@ -32,6 +32,11 @@ $ gulp build
 $ gulp server-dist
 ```
 
+### Generate war distribution
+```
+$ gulp target
+```
+
 ## License
 
 **License**

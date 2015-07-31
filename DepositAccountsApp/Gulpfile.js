@@ -16,6 +16,10 @@ var gulp      = require('gulp'),
     uncss     = require('gulp-uncss'),
     war       = require('gulp-war'),
     zip       = require('gulp-zip'),
+    jasmine   = require('gulp-jasmine'),
+    // karma     = require('gulp-karma'),
+    // karma     = require('karma').server,
+    Server    = require('karma').Server,
     angularFilesort = require('gulp-angular-filesort'),
     templateCache = require('gulp-angular-templatecache'),
     historyApiFallback = require('connect-history-api-fallback');
@@ -149,9 +153,15 @@ gulp.task('copyhtml', function() {
     .pipe(gulp.dest('dist'));
 });
 
+// Copia el directorio con las fuentes utilizadas por Bootstrap al directorio de producción.
+gulp.task('copyfonts', function() {
+  gulp.src('app/fonts/*.*', {base: 'app/fonts'})
+    .pipe(gulp.dest('dist/fonts'));
+});
+
 // Genera un Java WAR para poder desplegar en un Servidor de Aplicaciones
 gulp.task('war', function () {
-    gulp.src(['./dist/**/*.js', './dist/**/*.css', './dist/**/*.html'])
+    gulp.src(['./dist/**/*.js', './dist/**/*.css', './dist/**/*.html', './dist/**/fonts/*.*'])
         .pipe(war({
             welcome: 'index.html',
             displayName: 'Deposit Accounts Management WAR',
@@ -161,6 +171,42 @@ gulp.task('war', function () {
 
 });
 
+// Ejecuta los test unitarios con karma
+gulp.task('test-old', function() {
+    var testFiles = [
+        './test/unit/*.js'
+    ];
+
+    return gulp.src(testFiles)
+        .pipe(karma({
+            configFile: 'karma.conf.js',
+            action: 'run'
+        }))
+        .on('error', function(err) {
+            console.log('karma tests failed: ' + err);
+            throw err;
+        });
+});
+
+gulp.task('test', function (done) {
+  // karma.start({
+  //   configFile: __dirname + '/karma.conf.js',
+  //   singleRun: true
+  // }, done);
+
+  var config = {
+      // configFile: path.join(__dirname, '/karma.conf.js'),
+      // singleRun: singleRun,
+      // autoWatch: !singleRun
+      configFile: __dirname + '/karma.conf.js',
+      browsers: ['PhantomJS'],
+      singleRun: true
+    };
+
+  var server = new Server(config, done)
+  server.start();
+});
+
 // Vigila cambios que se produzcan en el código
 // y lanza las tareas relacionadas
 gulp.task('watch', function() {
@@ -168,6 +214,7 @@ gulp.task('watch', function() {
   gulp.watch(['./app/stylesheets/**/*.styl'], ['css', 'inject']);
   gulp.watch(['./app/scripts/**/*.js', './Gulpfile.js'], ['jshint', 'inject']);
   gulp.watch(['./bower.json'], ['wiredep']);
+  gulp.watch(['./test/**/*.js'], ['test']);
 });
 
 // gulp.task('watch', function() {
@@ -177,8 +224,8 @@ gulp.task('watch', function() {
 //   gulp.watch(['./bower.json'], ['wiredep']);
 // });
 
-gulp.task('default', ['server', 'templates', 'inject', 'wiredep', 'jshint', 'watch']);
-gulp.task('build', ['templates', 'compress', 'copy', 'uncss']);
+gulp.task('default', ['server', 'templates', 'inject', 'wiredep', 'jshint', 'watch', 'test']);
+gulp.task('build', ['templates', 'compress', 'copy', 'uncss', 'copyfonts']);
 // gulp.task('default', ['server', 'inject', 'wiredep', 'jshint', 'watch']);
 // gulp.task('build', ['copy']);
 gulp.task('target', ['war']);

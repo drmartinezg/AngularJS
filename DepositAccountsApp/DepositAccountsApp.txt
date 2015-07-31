@@ -1,0 +1,25 @@
+DepositAccountsApp
+==================
+* Tareas para incluir test
+** Instalar karma local o global (recomendado)
+	$ npm install karma --save-dev  -> local
+	$ npm install -g karma -> global
+** Instalar Jasmine
+	$ npm install karma-jasmine --save-dev
+	$ npm install karma-chrome-launcher --save-dev
+** Configurar karma   
+	$ karma init
+	Testing framework > jasmine
+	Require.js > no
+	Browser > Chrome
+	Sources > app/scripts/**/*.js
+	Test > test/**/*.js
+	Karma watch all files > yes
+
+** Instalar plugins de jasmin y karma para gulp
+	$ npm install --save-dev gulp-jasmine
+	$ npm install --save-dev gulp-karma
+
+** Instalar plugin phantomjs para karma	
+    $ npm install karma-phantomjs-launcher --save-dev	
+	

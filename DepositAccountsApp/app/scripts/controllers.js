@@ -4,7 +4,23 @@
   angular.module('app.controllers', ['app.services']);
 
   function AccountListCtrl($location, Account) {
-    this.accounts = Account.query();
+    this.accounts = [];
+    this.error = '';
+
+    var self = this;  // Para guardar la referencia
+
+    Account.query()
+      .$promise.then(
+          // Success
+          function (accounts) {
+            self.accounts = accounts;
+          },
+          // Error
+          function (error) {
+            self.error = 'Error al obtener las cuentas de depósito - ' + error.statusText;
+            console.log('ERROR: ' + error);
+          }
+        );
 
     this.new = function() {
       $location.path('/new');
@@ -84,7 +100,7 @@
     // $scope.$route = $route;
     // $scope.$location = $location;
     // $scope.$routeParams = $routeParams;
-    console.log('MainController', $scope, $route, $routeParams, $location);
+    // console.log('MainController', $scope, $route, $routeParams, $location);
     $rootScope.$on('$routeChangeError', function(event, current, previous, rejection) {
         console.log('--> $routeChangeError', event, current, previous, rejection);
         $location.path('/');

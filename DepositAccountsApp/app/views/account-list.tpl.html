@@ -29,6 +29,13 @@
                     </tr>
                 </table>
             </div>
+            <div class="panel-footer" ng-hide="accountlist.error===''">
+              <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {{accountlist.error}}
+              </div>
+            </div>
         </div>
     </div>
 </div>
