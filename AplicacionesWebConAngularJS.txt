@@ -905,3 +905,59 @@ gulp.task('uncss', function() {
 ...
 gulp.task('build', ['templates', 'compress', 'copy', 'uncss']);
 
+===================================
+==   Internaciolización (i18n)   ==
+===================================
+
+- Con Gulp ejecutandose, instalamos la dependencia a angular-translate con Bower desde otra ventana de terminal.
+$ bower install --save angular-translate
+
+- Añadir dependencia en nuestro modulo app de angular
+angular.module('app', ['ngRoute', 'app.controllers', 'app.templates', 'pascalprecht.translate']);
+
+- Añadir el proveedor de traducciones (translateProvider) al método de configuración de nuestro módulo app de angular.
+  function config ($locationProvider, $routeProvider, $translateProvider) {
+  ...
+  }
+  config.$inject=['$locationProvider', '$routeProvider', '$translateProvider'];
+
+- Añadir traduciones y establecer el idioma por defecto
+  function config ($locationProvider, $routeProvider, $translateProvider) {
+  ...
+      $translateProvider.translations('es', ´{
+        'APP_TITLE': 'Cuentas de Depósito'
+      });
+
+      $translateProvider.translations('en', ´{
+        'APP_TITLE': 'Deposit Accounts Application'
+      });
+
+      $translateProvider.preferredLanguage('es');  
+  }
+
+- Cambiar el idioma mediante el método use() del filtro $translate.
+    this.changeLocale = function(locale) {
+      $translate.use(locale);
+    };
+
+- Incluir filtro 'translate' en literares usados en las páginas html
+  <h1>{{'APP_TITLE' | translate}}</h1>
+
+- Aplicar filtro $translate en constantes utilizadas en controladores de la aplicación.
+  function AccountListCtrl($location, $translate, Account) {
+  ...
+    this.delete = function(index, account) {
+      if (!window.confirm($translate.instant('DELETE_WARNING'))) {
+        return;
+      }
+  ...
+  }
+  AccountListCtrl.$inject=['$location', '$translate', 'Account'];
+
+- Añadir la dependencia al fichero de configuración karma.conf.js
+    files: [
+    ...
+      'app/lib/angular-translate/angular-translate.js',
+    ...
+    ],
+

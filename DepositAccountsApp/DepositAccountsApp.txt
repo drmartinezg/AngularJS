@@ -22,4 +22,6 @@ DepositAccountsApp
 
 ** Instalar plugin phantomjs para karma	
     $ npm install karma-phantomjs-launcher --save-dev	
-	
+
+** Instalar ng-table via bower
+	$ bower install --save ng-table

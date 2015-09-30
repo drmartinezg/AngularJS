@@ -2,7 +2,7 @@
 function AlumnosController($scope) {
 	$scope.alumnos = [
 		{nombre: "JUAN Blanco", telefono: "1234567890",	curso: "Segundo ESO"},
-		{nombre: "roSa Luxemburgo", telefono: "0987654321", curso: "Primero ESO"},
+		{nombre: "rOsA Luxemburgo", telefono: "0987654321", curso: "Primero ESO"},
 		{nombre: "Alberto Herrera", telefono: "1122334455", curso: "Segundo ESO"},
 		{nombre: "Ana MariÑo", telefono: "6677889900", curso: "Tercero ESO"}
 	];

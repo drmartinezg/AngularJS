@@ -76,7 +76,7 @@ Infraestructura:
 02 - Configuration and Basic Test
 
 * Configuration file - Contenido del conf.js
-	// An example configuration file.
+	// Protractor configuration file.
 	exports.config = {
 	  // Using ChromeDriver directly (new)
 	  directConnect: true,
@@ -105,7 +105,7 @@ Infraestructura:
 * Basic Test - Contenido de zoo_spec.js
 	describe('Test zoo site for input field on home page', function() {
 		it('should test input field and check text output', function() {
-			browser.get("http://www.thetestroom.com/jswebapp/")
+			browser.get("http://localhost/thetestroom/")
 			element(by.model("person.name")).sendKeys("I will subscribe to this channel");
 			element(by.binding("person.name")).getText().then(function(text) {
 				console.log(text);
@@ -120,7 +120,7 @@ Infraestructura:
 	describe('Adopt an animal on the zoo test site', function() {
 
 		it('should able to adopt an animal', function() {
-			browser.get("http://www.thetestroom.com/jswebapp/")
+			browser.get("http://localhost/thetestroom/")
 			element(by.model("person.name")).sendKeys("Manuel");
 			element(by.binding("person.name")).getText().then(function(text) {
 				console.log(text);
@@ -140,13 +140,13 @@ Infraestructura:
 	describe('Adopt an animal on the zoo test site', function() {
 
 		it('should able on correct page', function() {
-			browser.get("http://www.thetestroom.com/jswebapp/");
+			browser.get("http://localhost/thetestroom/");
 			expect(browser.getCurrentUrl()).toContain("jswebapp");
-			expect(browser.getCurrentUrl()).toEqual("http://www.thetestroom.com/jswebapp/");
+			expect(browser.getCurrentUrl()).toEqual("http://localhost/thetestroom/");
 		});	
 
 		it('should generate correct text', function() {
-			browser.get("http://www.thetestroom.com/jswebapp/");
+			browser.get("http://localhost/thetestroom/");
 			var textMessage = "Manuel es el nombre de la persona";
 
 			element(by.model("person.name")).sendKeys(textMessage);
@@ -156,7 +156,7 @@ Infraestructura:
 		});	
 
 		it('should check the correct number of items in drop down', function() {
-			browser.get("http://www.thetestroom.com/jswebapp/");
+			browser.get("http://localhost/thetestroom/");
 			element(by.buttonText("CONTINUE")).click();
 			element(by.model("animal")).$('[value="1"]').click();
 
@@ -167,7 +167,7 @@ Infraestructura:
 		});	
 
 		it('should check user is on the thank you page', function() {
-			browser.get("http://www.thetestroom.com/jswebapp/");
+			browser.get("http://localhost/thetestroom/");
 			element(by.buttonText("CONTINUE")).click();
 			element(by.buttonText("CONTINUE")).click();
 			expect(browser.getCurrentUrl()).toContain("confirm");
@@ -183,7 +183,7 @@ Infraestructura:
 	describe('Adopt an animal on the zoo test site', function() {
 
 		beforeEach(function() {
-			browser.get("http://www.thetestroom.com/jswebapp/");
+			browser.get("http://localhost/thetestroom/");
 		});
 
 		afterEach(function() {
@@ -191,7 +191,7 @@ Infraestructura:
 		});
 
 		it('should able on correct page', function() {
-			expect(browser.getCurrentUrl()).toEqual("http://www.thetestroom.com/jswebapp/");
+			expect(browser.getCurrentUrl()).toEqual("http://localhost/thetestroom/");
 		});	
 
 		describe('should generate correct text', function() {
@@ -242,7 +242,7 @@ Infraestructura:
 	describe('Testing the JavaScript zoo site', function() {
 		
 		beforeEach(function() {
-			browser.get("http://www.thetestroom.com/jswebapp/index.html");
+			browser.get("http://localhost/thetestroom/index.html");
 		});
 
 		it('should test by using CSS expressions', function() {
@@ -279,7 +279,7 @@ Infraestructura:
 	describe('To test the animal adoption flow', function() {
 
 		beforeEach(function() {
-			browser.get("http://www.thetestroom.com/jswebapp/");
+			browser.get("http://localhost/thetestroom/");
 		});
 
 		it('should be to adopt an animal', function() {
@@ -329,7 +329,7 @@ Infraestructura:
 	describe('To test the animal adoption flow', function() {
 
 		beforeEach(function() {
-			browser.get("http://www.thetestroom.com/jswebapp/");
+			browser.get("http://localhost/thetestroom/");
 		});
 
 		var home_page = require('../page/home_page.js');

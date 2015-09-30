@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="app">
 <head>
 	<meta charset="utf-8">
 	<title>Cuaderno Alumnos</title>
@@ -9,8 +9,8 @@
 	<h1>Cuaderno Alumnos</h1>
 	<div class="wrapper">
 		<div class="contact-item" ng-repeat="alumno in alumnos | orderBy:'nombre'">
-			<div class="nombre"> {{alumno.nombre}} - {{alumno.telefono}} </div>
-			<span class="curso">{{alumno.curso}}</span>
+			<div class="nombre"> {{alumno.nombre | titleCase}} - {{alumno.telefono}} </div>
+			<span class="curso">{{alumno.curso | titleCase}}</span>
 		</div>
 	</div>
 	<br/>
