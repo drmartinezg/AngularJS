@@ -1,9 +1,9 @@
 (function () {
   'use strict';
 
-  angular.module('app.controllers', ['app.services']);
+  angular.module('app.controllers', ['ngMessages', 'app.services']);
 
-  function UserController($location) {
+  function UserController() {
     this.user = {};
     this.error = '';
 
@@ -15,11 +15,12 @@
 
     this.reset = function (form) {
       self.user = {};
+      console.log(self.user);
       if (form) {
         form.$setPristine();
         form.$setUntouched();
-      };
-    }
+      }
+    };
 
     self.reset();
 

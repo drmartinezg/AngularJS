@@ -19,6 +19,7 @@ module.exports = function(config) {
       'app/lib/angular-mocks/angular-mocks.js',
       'app/lib/angular-resource/angular-resource.js',
       'app/lib/angular-route/angular-route.js',
+      'app/lib/angular-messages/angular-messages.js',
       'app/scripts/**/*.js',
       'test/**/*.js'
     ],

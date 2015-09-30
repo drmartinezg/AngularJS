@@ -14,7 +14,7 @@
                             <div class="col-sm-6">
                                 <input name="name" type="text" class="form-control" ng-model="userctrl.user.name" ng-model-options="{ updateOn: 'blur' }" required>
                             </div>
-                            <span class="col-sm-3" class="messages" ng-show="userForm.$submited || userForm.name.$touched">
+                            <span class="col-sm-3 messages" ng-show="userForm.$submited || userForm.name.$touched">
                                 <span ng-show="userForm.name.$error.required">El campo es obligatorio</span>
                             </span>
                         </div>
@@ -24,9 +24,20 @@
                             <div class="col-sm-6">
                                 <input name="email" type="email" class="form-control" ng-model="userctrl.user.email" ng-model-options="{ updateOn: 'blur' }" required>
                             </div>
-                            <span class="col-sm-3" class="messages" ng-show="userForm.$submited || userForm.name.$touched">
+                            <span class="col-sm-3 messages" ng-show="userForm.$submited || userForm.email.$touched">
                                 <span ng-show="userForm.email.$error.required">El campo es obligatorio</span>
                                 <span ng-show="userForm.email.$error.email">Formato de mail incorrecto</span>
+                            </span>
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="age">Edad</label>
+                            <div class="col-sm-6">
+                                <input name="age" type="number" class="form-control" ng-model="userctrl.user.age" ng-model-options="{ updateOn: 'blur' }" min="0" max="150">
+                            </div>
+                            <span class="col-sm-3 messages" ng-show="userForm.$submited || userForm.age.$touched">
+                                <span ng-show="userForm.age.$error.max">La edad no puede exceder de 150</span>
+                                <span ng-show="userForm.age.$error.min">La edad no puede ser negativa</span>
                             </span>
                         </div>
                     </fieldset>

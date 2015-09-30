@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('app', ['ngRoute', 'app.controllers', 'app.templates']);
+  angular.module('app', ['ngRoute', 'ngMessages', 'app.controllers', 'app.templates']);
 
   function config ($locationProvider, $routeProvider) {
     $locationProvider.html5Mode(true);
@@ -12,8 +12,8 @@
         controller: 'UserController',
         controllerAs: 'userctrl'
       })
-      .when('/form1', {
-        templateUrl: 'views/user-form.tpl.html',
+      .when('/form2', {
+        templateUrl: 'views/user-form2.tpl.html',
         controller: 'UserController',
         controllerAs: 'userctrl'
       })
