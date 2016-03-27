@@ -8,7 +8,7 @@
 	<form ng-controller="uploader">
 		<input type="file"
 			file-input="files"
-			/>
+			multiple/>
 		<button ng-click="upload()">Upload</button>
 		<li ng-repeat="file in files">{{file.name}}</li>
 	</form>
@@ -39,13 +39,13 @@
 					
 					var fd = new FormData();
 					angular.forEach( $scope.files, function(file) {
-						fd.append('file', file);
+						fd.append('files', file);
 					});
 
 					$http.post('upload.php', fd, 
 					{
 						transformRequest:angular.identity,
-						headers:{'Content-Type': 'multipart/form-data'}
+						headers:{'Content-Type': undefined}
 					})
 					.success(function (d) {
 						console.log(d);
