@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>angular file upload</title>
+</head>
+<body>
+	<form ng-controller="uploader">
+		<input type="file"
+			ng-model="files"
+			multiple />
+		<button ng-click="upload()">Upload</button>
+		<li ng-repeat="file in files">{{file.name}}</li>
+	</form>
+	<script type="text/javascript" src="lib/angularjs/angular.min.js"></script>
+	<script>
+		angular.module('app', []).
+		controller('uploader', ['$scope', '$http', 
+			function($scope, $http) {
+				$http.post('upload.php', $scope.files, 
+				{
+					headers:{'Content.Type': 'multipart/form-data'}
+				})
+				.success(function (d) {
+					console.log(d);
+				})
+			}
+		]);
+	</script>
+</body>
+</html>
