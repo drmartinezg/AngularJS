@@ -7,14 +7,26 @@
 <body>
 	<form ng-controller="uploader">
 		<input type="file"
-			onchange="angular.element(this).scope().filesChanged(this)" 
-			multiple />
+			file-input="files"
+			/>
 		<button ng-click="upload()">Upload</button>
 		<li ng-repeat="file in files">{{file.name}}</li>
 	</form>
 	<script type="text/javascript" src="lib/angularjs/angular.min.js"></script>
 	<script>
 		angular.module('app', []).
+		directive('fileInput', ['$parse', function($parse){
+			return {
+				restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+				link: function($scope, iElm, iAttrs, controller) {
+					iElm.bind('change', function () {
+						$parse(iAttrs.fileInput)
+						.assign($scope, iElm[0].files);
+					$scope.$apply();
+					})
+				}
+			};
+		}]).
 		controller('uploader', ['$scope', '$http', 
 			function($scope, $http) {
 
@@ -24,8 +36,15 @@
 				}
 
 				$scope.upload = function() {
-					$http.post('upload.php', $scope.files, 
+					
+					var fd = new FormData();
+					angular.forEach( $scope.files, function(file) {
+						fd.append('file', file);
+					});
+
+					$http.post('upload.php', fd, 
 					{
+						transformRequest:angular.identity,
 						headers:{'Content-Type': 'multipart/form-data'}
 					})
 					.success(function (d) {
