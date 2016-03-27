@@ -72,3 +72,21 @@ Spies• spyOn : so⇥
 • spy.calls.reset : cr⇥
 • createSpy : cs⇥
 • createSpyObj : cso⇥
+
+* Instalar Plugin Emmet
+** Preference -> PackageControl -> Install Package -> Emmet
+https://packagecontrol.io/packages/Emmet
+http://www.hongkiat.com/blog/html-css-faster-emmet/
+** html:5 and press Ctrl + E
+
+* Instalar Plugin Git
+** Preference -> PackageControl -> Install Package -> Git
+https://packagecontrol.io/packages/Git
+** git config --global core.editor 'subl.exe -w'
+
+* Instalar Plugin GitGutter
+** Preference -> PackageControl -> Install Package -> GitGutter
+https://packagecontrol.io/packages/GitGutter
+https://github.com/jisaacks/GitGutter
+
+
