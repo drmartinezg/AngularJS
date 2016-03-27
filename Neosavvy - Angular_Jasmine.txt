@@ -1,0 +1,692 @@
+Neosavvy - Angular_Jasmine
+
+00 - NodeJs - Instalar desde nodejs.org
+** Comprobar instalación de Nodejs: 
+   $ node --version  -> 0.12.7
+** Comprobar Node Package Manager:  
+   $ npm --version   -> 2.11.3
+
+01 - Setup
+** Directorio vacio ns-jasmine-testing
+** Crear directorios app y test
+** Crear proyecto con npm
+	$ npm init
+	Opciones por defecto
+	Crea package.json
+	Crea node_modules donde se instalan los modulos propios del proyecto
+** Instalar karma local o global (recomendado)
+	$ npm install karma --save-dev  -> local
+	$ npm install -g karma -> global
+** Instalar Jasmine
+	$ npm install karma-jasmine --save-dev
+	$ npm install karma-chrome-launcher --save-dev
+** Configurar karma   
+	$ karma init
+	Testing framework > jasmine
+	Require.js > no
+	Browser > Chrome
+	Sources > app/**/*.js
+	Test > test/**/*.js
+	Karma watch all files > yes
+** Crear test en carpeta test: test.js
+	describe("true", function() {
+		it("Should be true", function() {
+			expect(true).toBeTruthy();
+		});
+	});
+** Ejecutar test
+	$ karma start karma.conf.js
+
+02 - Bower
+** Instalar Gestor de Dependencias bower
+	$ npm install bower -g
+** Añadir dependencias al proyecto
+	$ bower install angular
+	$ bower install angular-mocks
+	$ bower install angular-resource
+** Buscar dependencias con bower
+	$ bower search angular
+** Añadir dependencias a karma. En karma.conf.js
+	files: [
+		'bower_components/angular/angular.js',
+		'bower_components/angular-mocks/angular-mocks.js',
+		'bower_components/angular-resource/angular-resource.js',
+		'app/**/*.js',
+		'test/**/*.js'
+	],
+
+03 - Controller Testing
+** app/controllers/pie-controller.js
+	angular.module('pie', []).controller('PieController', 
+		['$scope',
+			function($scope) {
+
+				$scope.eatSlice = function() {
+					if ($scope.slices) {
+						$scope.slices--;
+					}
+				};
+
+				$scope.slices = 8;
+		}]);      
+
+** test/controllers/pie-controller-spec.js
+	describe('PieController', function() {
+		var $rootScope,
+		    $scope,
+		    controller;
+
+		beforeEach(function() {
+		    	module('pie');
+
+		    	inject(function($injector) {
+		    		$rootScope = $injector.get('$rootScope');
+		    		$scope = $rootScope.$new();
+		    		controller = $injector.get('$controller')('PieController', {$scope: $scope});
+		    	});
+		    });
+
+		describe('Action Handlers', function() {
+			
+			describe('eatSlice', function() {
+				it('Should decrement the number of slices', function() {
+					expect($scope.slices).toEqual(8);
+					$scope.eatSlice();
+					expect($scope.slices).toEqual(7);
+				});
+
+				it('Should do nothing when slices is 0', function() {
+					$scope.slices = 0;
+					$scope.eatSlice();
+					expect($scope.slices).toEqual(0);
+				});
+			});
+			
+		});
+
+	    describe('Initialization', function() {
+	    	it('Should instantiate slices to 8', function() {
+	    		expect($scope.slices).toEqual(8);
+	    	});
+	    });    
+
+	});
+
+04 - Controller Testing ('this' methods)
+** app/controllers/pie-controller.js
+	angular.module('pie', []).controller('PieController', 
+		['$scope',
+			...
+				this.requestFlavor = function(flavor) {
+					$scope.lastRequestedFlavor = flavor;
+				};
+
+				$scope.lastRequestedFlavor;
+				$scope.slices = 8;
+		}]);
+
+** test/controllers/pie-controller-spec.js
+	describe('PieController', function() {
+	...
+	    describe('Initialization', function() {
+	    ...
+	    	it('Should instantiate $scope.lastRequestedFlavor', function() {
+	    		expect($scope.lastRequestedFlavor).toBeUndefined();
+	    	});
+	    });    
+	});
+
+** test/controllers/pie-controller-spec.js
+	describe('PieController', function() {
+	...
+		describe('requestFlavor', function() {
+			
+			it('Should set $scope.lastRequestedFlavor to the passed in argument', function() {
+				controller.requestFlavor("Cherry");
+				expect($scope.lastRequestedFlavor).toEqual("Cherry");
+			});
+		});
+	...
+	});
+
+05 - Factory Testing
+** app/managers/dessert-manager.js
+angular.module('desserts', []).value('DessertValues', {
+	pies: [
+		{flavor: "Cherry", score: 6},
+		{flavor: "Apple", score: 7.5},
+		{flavor: "Peach", score: 4}
+	]
+});
+
+angular.module('desserts').factory('DessertManager', 
+	[ 'DessertValues', 
+		function (dessertValues) {
+			return {
+				pieFlavors: function() {
+					return dessertValues.pies.map(function(pie) {
+						return pie.flavor;
+					});
+				}
+			}
+		}
+	]);
+
+** app/managers/dessert-manager-spec.js
+describe('DessertManager', function() {
+	var values, factory;
+
+	beforeEach(function () {
+		module('desserts');
+
+		inject(function ($injector) {
+			values = $injector.get('DessertValues');
+			factory = $injector.get('DessertManager');
+		});
+	});
+
+});
+
+*** Testing values
+describe('DessertManager', function() {
+...
+	describe('DessertValues', function() {
+		
+		it('Should instantiate with 3 pie flavors', function() {
+			expect(values.pies).toEqual([
+				{flavor: "Cherry", score: 6},
+				{flavor: "Apple", score: 7.5},
+				{flavor: "Peach", score: 4}
+			]);
+		});
+
+	});
+});
+
+*** Testing factory
+describe('DessertManager', function() {
+...
+	describe('DessertManager', function() {
+		
+		describe('pieFlavors', function() {
+			
+			it('Should return the 3 pie flavor strings', function() {
+				
+				var flavors = factory.pieFlavors();
+				expect(flavors.length).toEqual(3);
+				expect(flavors[0]).toEqual("Cherry");
+				expect(flavors[1]).toEqual("Apple");
+				expect(flavors[2]).toEqual("Peach");
+			});
+
+			it('Should throw an error if there are no pies', function() {
+				
+				values.pies = null;
+
+				expect(function() {
+					factory.pieFlavors();
+				}).toThrow();
+
+				values.pies = [
+					{flavor: "Cherry", score: 6},
+					{flavor: "Apple", score: 7.5},
+					{flavor: "Peach", score: 4}
+				];
+			});
+		});
+	});
+
+});
+
+06 - Filter Testing
+** app/filters/text/title-case.js
+angular.module('filters', []).filter('titleCase', function() {
+	return function(val) {
+		return val ? val.replace(/\w\S*/g, function(txt) {
+			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		}) : val;
+	};
+});
+
+** test/title-case-spec.js
+describe('titleCase', function() {
+	var $filter, filter;
+
+	beforeEach(function() {
+		module('filters');
+		inject(function($injector) {
+			$filter = $injector.get('$filter');
+			filter = $filter('titleCase');
+		});
+	});
+
+	it('Should return undefined when undefined is passed in', function() {
+		expect(filter(undefined)).toBeUndefined();
+	});
+
+	it('Should return null when null is passed in', function() {
+		expect(filter(null)).toBeNull();
+	});
+
+	it('Should return a blank string when a blank string is passed in', function() {
+		expect(filter("")).toEqual("");
+	});
+
+	it('Should change the casing of lower cased word', function() {
+		expect(filter("george harrison")).toEqual("George Harrison");
+	});
+
+	it('Should change the casing if an upper case word', function() {
+		expect(filter("GEORGE HARRISON")).toEqual("George Harrison");
+	});
+
+	it('Should change the casing of random', function() {
+		expect(filter("the QUiCk BrOwN foX")).toEqual("The Quick Brown Fox");
+	});
+
+	it('Should play nice with a normal phrase', function() {
+		expect(filter("This Is A Control")).toEqual("This Is A Control");
+	});
+
+});
+
+07 - Directive Testing
+** Añadir jQuery como dependencia al proyecto
+	$ bower install jquery
+** Añadir dependencia jquery a karma. En karma.conf.js
+	files: [
+        'bower_components/jquery/dist/jquery.js',
+		...
+	],
+
+** app/directives/stateful.js 
+angular.module('directives', []).directive('nsStateful',
+	function(){
+		return {
+			restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+			scope: false, // {} = isolate, true = child, false/undefined = no change
+			link: function($scope, element, attrs) {
+				if (!attrs.nsStateful) {
+					throw "You must provide a class name in order to use the nsStateful directive.";
+				}
+
+				element.bind('click', function(e) {
+					scope.$apply(function() {
+						if (!element.hasClass(attrs.nsStateful)) {
+							element.addClass(attrs.nsStateful);
+						} else {
+							element.removeClass(attrs.nsStateful);
+						}
+					});
+				});
+			}
+		}
+	});
+
+** test/directives/stateful-spec.js 
+describe('nsStateful', function() {
+	var $rootScope,
+ 		$scope,
+ 		$compile,
+ 		el,
+ 		body = $('body'),
+ 		simpleHtml = '<button ns-stateful="red"></button>';
+
+	beforeEach(function() {
+		module('directives');
+
+		inject(function($injector) {
+			$rootScope = $injector.get('$rootScope');
+			$scope = $rootScope.$new();
+			$compile = $injector.get('$compile');
+			el = $compile(angular.element(simpleHtml))($scope);
+		});
+
+		$body.append(el);
+		$rootScope.$digest();
+	});
+
+	it('Should be able to toggle the class based on clicks', function() {
+		expect(el.hasClass('red')).toBeFalsy();
+		el.click();
+		$scope.$digest();
+		expect(el.hasClass('red')).toBeTruthy();
+		el.click();
+		$scope.$digest();
+		expect(el.hasClass('red')).toBeFalsy();
+		el.click();
+		$scope.$digest();
+		expect(el.hasClass('red')).toBeTruthy();
+	});
+
+	it('Should throw an error when compiled with an empty name', function() {
+		expect(function() {
+			$compile(angular.element('<a ns-stateful></a>'))($scope);
+		}).toThrow();
+	});
+});
+
+08 - Testing Directives with External Templates  -> DA ERROR
+** Instalar karma-ng-html2js-preprocessor
+	$ npm install karma-ng-html2js-preprocessor --save-dev
+** Incluir en configuración de karma.conf.js
+    files: [
+      ...
+      'app/**/*.html',
+    ],
+
+    preprocessors: {
+        'app/**/*.html': ['ng-html2js']
+    },
+
+    ngHtml2JsPreprocessor: {
+        moduleName: 'templates'
+    },
+** app/directives/text-and-sub.js
+angular.module('directives').directive('nsTextAndSub', 
+	function(){
+		return {
+			restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+			templateUrl: 'app/directives/text-and-sub.html',
+			scope: {
+				text: "@",
+				sub: "@"
+			},
+			link: function(scope, element, attrs) {
+			}
+		};
+	});
+** app/directives/text-and-sub.html
+<span class="text-and-sub">
+	<h3 ng-bind="text"></h3>
+	<h5 ng-bind="sub"
+		ng-show="sub"></h5>
+</span>
+** test/directives/text-and-sub-spec.js
+describe('nsTextAndSub', function() {
+	var $rootScope,
+		$scope,
+		$compile,
+		el,
+		$el,
+		$body = $('body'),
+		simpleHtml = '<ns-text-and-sub text="{{scopeText}}" sub="{{scopeSub}}"></ns-text-and-sub>';
+/*
+	beforeEach(function() {
+		module('templates', 'directives');
+
+		inject(function($injector) {
+			$rootScope = $injector.get('$rootScope');
+			$compile = $injector.get('$compile');
+			$scope = $rootScope.$new();
+			el = $compile(angular.element(simpleHtml))($scope);
+		});
+
+		$body.append(el);
+		$rootScope.$digest();
+
+		// Grabs from the body, confirms it was compiled out
+		$el = $('.text-and-sub');
+	});
+
+	afterEach(function() {
+		$body.empty();
+	});
+
+	it('Should render the directive out in the dom', function() {
+		expect($el.length).toEqual(1);
+	});
+
+	it('Should render out the text when given in scope', function() {
+		$scope.scopeText = "Jungle Land";
+		$scope.$digest();
+		expect($el.find('h3').text()).toEqual("Jungle Land");		
+	});
+
+	it('Should render out the sub when given in scope', function() {
+		$scope.scopeSub = "Little Stevie";
+		$scope.$digest();
+		expect($el.find('h5').text()).toEqual("Little Stevie");		
+	});
+
+	it('Should hide the sub text when it is not defined', function() {
+		expect($el.find('h5').is(":visible")).toBeFalsy();
+	});
+
+	it('Should show the sub text when it is defined', function() {
+		$scope.scopeSub = "Little Stevie";
+		$scope.$digest();
+		expect($el.find('h5').is(":visible")).toBeTruthy();
+	});
+*/
+});
+
+09 - Testing Watchers
+** app/controllers/pie-controller.js
+angular.module('pie', []).controller('PieController', 
+	['$scope',
+		function($scope) {
+
+			// Watchers
+			function compareAndWarn(newVal, oldVal) {
+				var props = [];
+				if (newVal && oldVal) {
+					for (var key in newVal) {
+						if (newVal[key] > oldVal[key]) {
+							props.push(key.charAt(0).toUpperCase() + key.slice(1));
+						}
+					}
+				}
+				return props;
+			}
+
+			$scope.$watch('nutritionalValue', function(newVal, oldVal) {
+				var props = compareAndWarn(newVal, oldVal);
+				if (props && props.length) {
+					$scope.warning = props.join(", ") + " have gone up!";
+				} else {
+					$scope.warning = null;
+				};
+			}, true);
+
+			// Action Handlers
+			...
+
+			$scope.lastRequestedFlavor;
+			$scope.nutritionalValue = {calories: 500, fat: 200, carbs: 100};
+			$scope.warning =null;
+			$scope.slices = 8;
+	}]);
+
+** test/controllers/pie-controller-spec.js
+describe('PieController', function() {
+	...
+
+	describe('Watchers', function() {
+		beforeEach(function() {
+			$scope.$digest();
+		});
+
+		describe('nutritionalValue', function() {
+			it('Should set the warning that carbs have gone up, when only carbs go up', function() {
+				$scope.nutritionalValue.carbs++;
+				$scope.$digest();
+				expect($scope.warning).toEqual('Carbs have gone up!');
+			});
+
+			it('Should set the warning that fat have gone up, when only fat go up', function() {
+				$scope.nutritionalValue.fat++;
+				$scope.$digest();
+				expect($scope.warning).toEqual('Fat have gone up!');
+			});
+
+			it('Should set the warning that calories have gone up, when only calories go up', function() {
+				$scope.nutritionalValue.calories++;
+				$scope.$digest();
+				expect($scope.warning).toEqual('Calories have gone up!');				
+			});
+
+			it('Should set the warning that a combination has gone up, when only carbs go up', function() {
+				$scope.nutritionalValue.carbs++;
+				$scope.nutritionalValue.calories++;
+				$scope.nutritionalValue.fat++;
+				$scope.$digest();
+				expect($scope.warning).toEqual('Calories, Fat, Carbs have gone up!');				
+			});
+
+			it('Should set the warning to null if nothing goes up', function() {
+				expect($scope.warning).toBeNull();
+			});
+
+			it('Should set the warning to null if nothing has gone up, even if some things has gone down', function() {
+				$scope.nutritionalValue.carbs--;
+				$scope.nutritionalValue.calories--;
+				$scope.nutritionalValue.fat--;
+				$scope.$digest();
+				expect($scope.warning).toBeNull();
+			});
+		});
+	});
+
+    describe('Initialization', function() {
+    	it('Should instantiate nutritionalValue to its default', function() {
+    		expect($scope.nutritionalValue).toEqual({calories: 500, fat: 200, carbs: 100});	
+    	});
+
+    	it('Should instantiate warning to null', function() {
+    		expect($scope.warning).toBeNull();	
+    	});
+    	...
+    });    
+
+});
+
+10 - Testing Event Listeners
+** app/controllers/pie-controller.js
+angular.module('pie', []).controller('PieController', 
+	['$scope',
+		function($scope) {
+
+			// Listeners
+			$scope.$on('pieHasBeenDepleted', function() {
+				$scope.warning = "RED ALERT!";
+				$scope.slices = 0;
+			});
+...
+});
+
+** test/controllers/pie-controller-spec.js
+describe('PieController', function() {
+	...
+	beforeEach(function() {
+		...
+		$scope.$digest();
+    });
+
+    describe('Listeners', function() {
+
+    	describe('pieHasBeenDepleted', function() {
+    		
+    		it('Should set the warning to RED ALERT!', function() {
+    			$rootScope.$broadcast('pieHasBeenDepleted');
+    			$scope.$digest();
+    			expect($scope.warning).toEqual("RED ALERT!");
+    		});
+
+    		it('Should set slices to 0', function() {
+    			$rootScope.$broadcast('pieHasBeenDepleted');
+    			$scope.$digest();
+    			expect($scope.slices).toEqual(0);
+    		});
+    	});
+    	
+    });
+});
+
+11 - Spying on Factories
+
+** app/controllers/pie-controller.js
+angular.module('pie', []).controller('PieController', 
+	['$scope', 'DessertManager',
+		function($scope, dessertManager) {
+	...
+			$scope.toggleMode = function() {
+				if (dessertManager.mode() === 'pie') {
+					dessertManager.mode("cake");
+				} else {
+					dessertManager.mode("pie");
+				};
+
+			};
+	...
+}]);	
+
+** test/controllers/pie-controller-spec.js
+describe('PieController', function() {
+	var $rootScope,
+	    $scope,
+	    dessertManager,
+	    controller;
+
+	beforeEach(function() {
+    	module('pie', 'desserts');
+
+    	inject(function($injector) {
+    		$rootScope = $injector.get('$rootScope');
+    		$scope = $rootScope.$new();
+    		dessertManager = $injector.get('DessertManager');
+    		controller = $injector.get('$controller')('PieController', {$scope: $scope});
+    	});
+
+		$scope.$digest();
+    });
+    ...
+	describe('toggleMode', function() {
+		var modeSpy;
+
+		beforeEach(function() {
+			modeSpy = spyOn(dessertManager, 'mode').and.returnValue("pie");
+		});
+
+		it('Should switch the mode to cake whenever the mode is equal to pie', function() {
+			$scope.toggleMode();
+			expect(modeSpy).toHaveBeenCalledWith("cake");
+		});
+
+		it('Should switch the mode to pie if the mode is anything other than pie', function() {
+			modeSpy = modeSpy.and.returnValue("cupcake");
+			$scope.toggleMode();
+			expect(modeSpy).toHaveBeenCalledWith("pie");
+		});
+
+	});
+});
+
+12 - Re-Tooling Configurations
+
+** app/dessert.js
+var Dessert = Dessert || {};
+Dessert.Controllers = angular.module('dessert.controllers', []);
+Dessert.Directives = angular.module('dessert.directives', []);
+Dessert.Filters = angular.module('dessert.filters', []);
+Dessert.Managers = angular.module('dessert.managers', []);
+Dessert.Services = angular.module('dessert.services', []);
+
+Dessert.Dependencies = ['dessert.controllers', 'dessert.directives', 'dessert.filters', 'dessert.managers'];
+
+** test/controllers/pie-controller-spec.js
+describe('PieController', function() {
+...
+	beforeEach(function() {
+	    module.apply(this, Dessert.Dependencies);   // DA ERROR.
+...
+});
+
+13 - Testing Service Call With Spies  -> DA ERROR - Faltan componentes
+
+Muestra como configurar test de servicios con espias.
+
+14 - Inherited Controller Testing  -> DA ERROR - Faltan componentes
+
+Test de controladores que heredan métodos del $scope y propiedades de otros controladores.
+

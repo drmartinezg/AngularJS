@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="appCtrl as vm">
+<head>
+	<meta charset="UTF-8">
+	<title>Hola mundo en Angular</title>
+</head>
+<body>
+	<input type="text" ng-model="vm.campotexto">
+	<br/>
+	Input : {{ vm.campotexto }} - Combo : {{ vm.camposelect }}
+	<br/>
+	<select ng-model="vm.camposelect">
+		<option value="uno">1</option>
+		<option value="dos">2</option>
+	</select>
+	<br/>
+	<input type="button" ng-click="vm.cambiarTexto()" value="Inicializar input">
+	<input type="button" ng-click="vm.camposelect='uno'" value="Inicializar combo">
+
+	<script src="../js/angular.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var app = angular.module("app", []);
+		app.controller("appCtrl", function() {
+			var vm = this;
+			vm.camposelect = "uno";
+			vm.campotexto = "Inicializar";
+			vm.cambiarTexto = function() {
+				vm.campotexto='Valor inicial'
+			};
+		});
+	</script>
+</body>
+</html>

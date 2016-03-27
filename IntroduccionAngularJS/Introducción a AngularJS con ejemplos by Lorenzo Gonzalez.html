@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html class="sl-root decks show mz-applicationcache mz-history mz-localstorage mz-svg mz-opacity mz-rgba mz-backgroundsize mz-cssanimations mz-csstransforms mz-csstransforms3d mz-csstransitions mz-flexbox mz-flexboxlegacy mz-fullscreen loaded ua-linux reveal-is-ready wf-montserrat-n4-active wf-active fonts-are-ready" data-account="free"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<script async="" src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/cbgapi.loaded_1"></script><script async="" src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/cbgapi.loaded_0"></script><script src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/4fd2e9786b" type="text/javascript"></script><script gapi_processed="true" src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/plusone.js" async="" type="text/javascript"></script><script src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/widgets.js" id="twitter-wjs"></script><script src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/all.js" id="facebook-jssdk"></script><script src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/track.js" defer="defer" async="" type="application/javascript"></script><script src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/nr-632.js"></script><script src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/f7sH7NavrjjvuGxByaw.js" async="" type="text/javascript"></script><script src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/analytics.js" async=""></script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"4fd2e9786b","applicationID":"1563900","transactionName":"cApZREQKWl9XFxZQVlAORB9FDVlE","queueTime":0,"applicationTime":56,"agent":"js-agent.newrelic.com/nr-632.min.js"}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o?o:n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({QJf3ax:[function(e,n){function t(e){function n(n,t,a){e&&e(n,t,a),a||(a={});for(var u=c(n),f=u.length,s=i(a,o,r),p=0;f>p;p++)u[p].apply(s,t);return s}function a(e,n){f[e]=c(e).concat(n)}function c(e){return f[e]||[]}function u(){return t(n)}var f={};return{on:a,emit:n,create:u,listeners:c,_events:f}}function r(){return{}}var o="nr@context",i=e("gos");n.exports=t()},{gos:"7eSDFh"}],ee:[function(e,n){n.exports=e("QJf3ax")},{}],3:[function(e,n){function t(e){return function(){r(e,[(new Date).getTime()].concat(i(arguments)))}}var r=e("handle"),o=e(1),i=e(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit","noticeError"];o(a,function(e,n){window.NREUM[n]=t("api-"+n)}),n.exports=window.NREUM},{1:12,2:13,handle:"D5DuLP"}],"7eSDFh":[function(e,n){function t(e,n,t){if(r.call(e,n))return e[n];var o=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return e[n]=o,o}var r=Object.prototype.hasOwnProperty;n.exports=t},{}],gos:[function(e,n){n.exports=e("7eSDFh")},{}],handle:[function(e,n){n.exports=e("D5DuLP")},{}],D5DuLP:[function(e,n){function t(e,n,t){return r.listeners(e).length?r.emit(e,n,t):(o[e]||(o[e]=[]),void o[e].push(n))}var r=e("ee").create(),o={};n.exports=t,t.ee=r,r.q=o},{ee:"QJf3ax"}],id:[function(e,n){n.exports=e("XL7HBI")},{}],XL7HBI:[function(e,n){function t(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:i(e,o,function(){return r++})}var r=1,o="nr@id",i=e("gos");n.exports=t},{gos:"7eSDFh"}],G9z0Bl:[function(e,n){function t(){var e=d.info=NREUM.info,n=f.getElementsByTagName("script")[0];if(e&&e.licenseKey&&e.applicationID&&n){c(p,function(n,t){n in e||(e[n]=t)});var t="https"===s.split(":")[0]||e.sslForHttp;d.proto=t?"https://":"http://",a("mark",["onload",i()]);var r=f.createElement("script");r.src=d.proto+e.agent,n.parentNode.insertBefore(r,n)}}function r(){"complete"===f.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=e("handle"),c=e(1),u=(e(2),window),f=u.document,s=(""+location).split("?")[0],p={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-632.min.js"},d=n.exports={offset:i(),origin:s,features:{}};f.addEventListener?(f.addEventListener("DOMContentLoaded",o,!1),u.addEventListener("load",t,!1)):(f.attachEvent("onreadystatechange",r),u.attachEvent("onload",t)),a("mark",["firstbyte",i()])},{1:12,2:3,handle:"D5DuLP"}],loader:[function(e,n){n.exports=e("G9z0Bl")},{}],12:[function(e,n){function t(e,n){var t=[],o="",i=0;for(o in e)r.call(e,o)&&(t[i]=n(o,e[o]),i+=1);return t}var r=Object.prototype.hasOwnProperty;n.exports=t},{}],13:[function(e,n){function t(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(0>o?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=t},{}]},{},["G9z0Bl"]);</script>
+
+    <title>Introducción a AngularJS con ejemplos by Lorenzo Gonzalez</title>
+    <meta name="description" content="Introducción a AngularJS con ejemplos">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta property="og:title" content="Introducción a AngularJS con ejemplos by Lorenzo Gonzalez">
+    <meta property="og:site_name" content="Slides">
+    <meta property="og:image" content="https://s3.amazonaws.com/media-p.slid.es/thumbnails/secure/dfe6a2/decks.jpg">
+    <meta property="og:type" content="presentation">
+    <meta property="og:url" content="http://slides.com/logongas/introduccion-angularjs-ejemplos-decharlas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <link href="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/css.css" rel="stylesheet" type="text/css" data-application-font="opensans">
+
+    <link href="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/slides-0c1388bc8e6e9cabec475ce55e102391.css" media="all" rel="stylesheet">
+    <link href="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/application-9448ded63c1a58640fd7f262152895c9.css" media="all" rel="stylesheet">
+    	<link href="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/deck-v2-acdc209c6344f19ea7a94d786b4bbf71.css" media="all" rel="stylesheet">
+
+
+<style id="user-css-output" type="text/css"></style>
+
+    <meta content="authenticity_token" name="csrf-param">
+<meta content="52hn8mnEQg7ZFHB+j/wLW6vamsrvsL4qUkKgXZ63ObY=" name="csrf-token">
+    <script type="text/javascript">
+  if( !/dnt=1/.test( window.location.search ) ) {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-39670045-1', 'auto');
+    ga('send', 'pageview');
+
+  }
+</script>
+    <!--[if lt IE 9]>
+    <script src="//assets.slid.es/assets/html5shiv-b51d49ab0e89834a02ffce4a59905afb.js"></script>
+<![endif]-->
+    	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@SlidesApp">
+	<meta name="twitter:title" content="Introducción a AngularJS con ejemplos">
+	<meta name="twitter:description" content="Introducción a AngularJS con ejemplos">
+	<meta name="twitter:image" content="https://s3.amazonaws.com/media-p.slid.es/thumbnails/secure/dfe6a2/decks.jpg">
+
+  <style type="text/css"></style><link href="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/montserrat.css" rel="stylesheet"><style media="screen" type="text/css">.uv-icon{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:inline-block;cursor:pointer;position:relative;-webkit-transition:all 300ms;-moz-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms;width:39px;height:39px;position:fixed;z-index:100002;opacity:0.8;-webkit-transition:opacity 100ms;-moz-transition:opacity 100ms;-o-transition:opacity 100ms;transition:opacity 100ms}.uv-icon.uv-bottom-right{bottom:10px;right:12px}.uv-icon.uv-top-right{top:10px;right:12px}.uv-icon.uv-bottom-left{bottom:10px;left:12px}.uv-icon.uv-top-left{top:10px;left:12px}.uv-icon.uv-is-selected{opacity:1}.uv-icon svg{width:39px;height:39px}.uv-popover{font-family:sans-serif;font-weight:100;font-size:13px;color:black;position:fixed;z-index:100001}.uv-popover-content{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px;background:white;position:relative;width:325px;height:325px;-webkit-transition:background 200ms;-moz-transition:background 200ms;-o-transition:background 200ms;transition:background 200ms}.uv-bottom .uv-popover-content{-webkit-box-shadow:rgba(0,0,0,0.3) 0 -10px 60px,rgba(0,0,0,0.1) 0 0 20px;-moz-box-shadow:rgba(0,0,0,0.3) 0 -10px 60px,rgba(0,0,0,0.1) 0 0 20px;box-shadow:rgba(0,0,0,0.3) 0 -10px 60px,rgba(0,0,0,0.1) 0 0 20px}.uv-top .uv-popover-content{-webkit-box-shadow:rgba(0,0,0,0.3) 0 10px 60px,rgba(0,0,0,0.1) 0 0 20px;-moz-box-shadow:rgba(0,0,0,0.3) 0 10px 60px,rgba(0,0,0,0.1) 0 0 20px;box-shadow:rgba(0,0,0,0.3) 0 10px 60px,rgba(0,0,0,0.1) 0 0 20px}.uv-left .uv-popover-content{-webkit-box-shadow:rgba(0,0,0,0.3) 10px 0 60px,rgba(0,0,0,0.1) 0 0 20px;-moz-box-shadow:rgba(0,0,0,0.3) 10px 0 60px,rgba(0,0,0,0.1) 0 0 20px;box-shadow:rgba(0,0,0,0.3) 10px 0 60px,rgba(0,0,0,0.1) 0 0 20px}.uv-right .uv-popover-content{-webkit-box-shadow:rgba(0,0,0,0.3) -10px 0 60px,rgba(0,0,0,0.1) 0 0 20px;-moz-box-shadow:rgba(0,0,0,0.3) -10px 0 60px,rgba(0,0,0,0.1) 0 0 20px;box-shadow:rgba(0,0,0,0.3) -10px 0 60px,rgba(0,0,0,0.1) 0 0 20px}.uv-ie8 .uv-popover-content{position:relative}.uv-ie8 .uv-popover-content .uv-popover-content-shadow{display:block;background:black;content:'';position:absolute;left:-15px;top:-15px;width:100%;height:100%;filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius=15,MakeShadow=true,ShadowOpacity=0.30);z-index:-1}.uv-popover-tail{border:9px solid transparent;width:0;z-index:10;position:absolute;-webkit-transition:border-top-color 200ms;-moz-transition:border-top-color 200ms;-o-transition:border-top-color 200ms;transition:border-top-color 200ms}.uv-top .uv-popover-tail{bottom:-20px;border-top:11px solid white}.uv-bottom .uv-popover-tail{top:-20px;border-bottom:11px solid white}.uv-left .uv-popover-tail{right:-20px;border-left:11px solid white}.uv-right .uv-popover-tail{left:-20px;border-right:11px solid white}.uv-popover-loading{background:white;-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px;position:absolute;width:100%;height:100%;left:0;top:0}.uv-popover-loading-text{position:absolute;top:50%;margin-top:-0.5em;width:100%;text-align:center}.uv-popover-iframe-container{height:100%}.uv-popover-iframe{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px;overflow:hidden}.uv-is-hidden{display:none}.uv-is-invisible{display:block !important;visibility:hidden !important}.uv-is-transitioning{display:block !important}.uv-no-transition{-moz-transition:none !important;-webkit-transition:none !important;-o-transition:color 0 ease-in !important;transition:none !important}.uv-fade{opacity:1;-webkit-transition:opacity 200ms ease-out;-moz-transition:opacity 200ms ease-out;-o-transition:opacity 200ms ease-out;transition:opacity 200ms ease-out}.uv-fade.uv-is-hidden{opacity:0}.uv-scale-top,.uv-scale-top-left,.uv-scale-top-right,.uv-scale-bottom,.uv-scale-bottom-left,.uv-scale-bottom-right,.uv-scale-right,.uv-scale-right-top,.uv-scale-right-bottom,.uv-scale-left,.uv-scale-left-top,.uv-scale-left-bottom,.uv-slide-top,.uv-slide-bottom,.uv-slide-left,.uv-slide-right{opacity:1;-webkit-transition:all 80ms ease-out;-moz-transition:all 80ms ease-out;-o-transition:all 80ms ease-out;transition:all 80ms ease-out}.uv-scale-top.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateY(-15%);-moz-transform:scale(0.8) translateY(-15%);-ms-transform:scale(0.8) translateY(-15%);-o-transform:scale(0.8) translateY(-15%);transform:scale(0.8) translateY(-15%)}.uv-scale-top-left.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateY(-15%) translateX(-10%);-moz-transform:scale(0.8) translateY(-15%) translateX(-10%);-ms-transform:scale(0.8) translateY(-15%) translateX(-10%);-o-transform:scale(0.8) translateY(-15%) translateX(-10%);transform:scale(0.8) translateY(-15%) translateX(-10%)}.uv-scale-top-right.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateY(-15%) translateX(10%);-moz-transform:scale(0.8) translateY(-15%) translateX(10%);-ms-transform:scale(0.8) translateY(-15%) translateX(10%);-o-transform:scale(0.8) translateY(-15%) translateX(10%);transform:scale(0.8) translateY(-15%) translateX(10%)}.uv-scale-bottom.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateY(15%);-moz-transform:scale(0.8) translateY(15%);-ms-transform:scale(0.8) translateY(15%);-o-transform:scale(0.8) translateY(15%);transform:scale(0.8) translateY(15%)}.uv-scale-bottom-left.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateY(15%) translateX(-10%);-moz-transform:scale(0.8) translateY(15%) translateX(-10%);-ms-transform:scale(0.8) translateY(15%) translateX(-10%);-o-transform:scale(0.8) translateY(15%) translateX(-10%);transform:scale(0.8) translateY(15%) translateX(-10%)}.uv-scale-bottom-right.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateY(15%) translateX(10%);-moz-transform:scale(0.8) translateY(15%) translateX(10%);-ms-transform:scale(0.8) translateY(15%) translateX(10%);-o-transform:scale(0.8) translateY(15%) translateX(10%);transform:scale(0.8) translateY(15%) translateX(10%)}.uv-scale-right.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateX(15%);-moz-transform:scale(0.8) translateX(15%);-ms-transform:scale(0.8) translateX(15%);-o-transform:scale(0.8) translateX(15%);transform:scale(0.8) translateX(15%)}.uv-scale-right-top.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateX(15%) translateY(-10%);-moz-transform:scale(0.8) translateX(15%) translateY(-10%);-ms-transform:scale(0.8) translateX(15%) translateY(-10%);-o-transform:scale(0.8) translateX(15%) translateY(-10%);transform:scale(0.8) translateX(15%) translateY(-10%)}.uv-scale-right-bottom.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateX(15%) translateY(10%);-moz-transform:scale(0.8) translateX(15%) translateY(10%);-ms-transform:scale(0.8) translateX(15%) translateY(10%);-o-transform:scale(0.8) translateX(15%) translateY(10%);transform:scale(0.8) translateX(15%) translateY(10%)}.uv-scale-left.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateX(-15%);-moz-transform:scale(0.8) translateX(-15%);-ms-transform:scale(0.8) translateX(-15%);-o-transform:scale(0.8) translateX(-15%);transform:scale(0.8) translateX(-15%)}.uv-scale-left-top.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateX(-15%) translateY(-10%);-moz-transform:scale(0.8) translateX(-15%) translateY(-10%);-ms-transform:scale(0.8) translateX(-15%) translateY(-10%);-o-transform:scale(0.8) translateX(-15%) translateY(-10%);transform:scale(0.8) translateX(-15%) translateY(-10%)}.uv-scale-left-bottom.uv-is-hidden{opacity:0;-webkit-transform:scale(0.8) translateX(-15%) translateY(10%);-moz-transform:scale(0.8) translateX(-15%) translateY(10%);-ms-transform:scale(0.8) translateX(-15%) translateY(10%);-o-transform:scale(0.8) translateX(-15%) translateY(10%);transform:scale(0.8) translateX(-15%) translateY(10%)}.uv-slide-top.uv-is-hidden{-webkit-transform:translateY(-100%);-moz-transform:translateY(-100%);-ms-transform:translateY(-100%);-o-transform:translateY(-100%);transform:translateY(-100%)}.uv-slide-bottom.uv-is-hidden{-webkit-transform:translateY(100%);-moz-transform:translateY(100%);-ms-transform:translateY(100%);-o-transform:translateY(100%);transform:translateY(100%)}.uv-slide-left.uv-is-hidden{-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-ms-transform:translateX(-100%);-o-transform:translateX(-100%);transform:translateX(-100%)}.uv-slide-right.uv-is-hidden{-webkit-transform:translateX(100%);-moz-transform:translateX(100%);-ms-transform:translateX(100%);-o-transform:translateX(100%);transform:translateX(100%)}
+</style><style>a, button, .sl-select, .sl-checkbox label, .radio label { outline: none !important; }</style><script src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/embed.js" async="" type="text/javascript"></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+  <body data-twttr-rendered="true">
+    
+    <div id="container" class="container">
+      <header class="global-header show-on-scroll extra-wide show">
+  <div class="wrapper">
+    <h1 class="logo-animation open">
+      <a class="symbol" href="http://slides.com/">
+        <div class="box-1"></div>
+        <div class="box-2"></div>
+        <div class="box-3"></div>
+      </a>
+      <a class="word" href="http://slides.com/"></a>
+    </h1>
+    <ul class="nav">
+        <li class="nav-item" data-page-id="home/explore">
+          <a class="nav-item-anchor" href="http://slides.com/explore"><span class="nav-item-label">Explore</span></a>
+        </li>
+        <li class="nav-item" data-page-id="static/features">
+          <a class="nav-item-anchor" href="http://slides.com/features"><span class="nav-item-label">Features</span></a>
+        </li>
+        <li class="nav-item" data-page-id="static/pricing">
+          <a class="nav-item-anchor" href="http://slides.com/pricing"><span class="nav-item-label">Pricing</span></a>
+        </li>
+        <li class="nav-item" data-page-id="sessions/new">
+          <a class="nav-item-anchor" href="http://slides.com/users/sign_in"><span class="nav-item-label">Sign in</span></a>
+        </li>
+    </ul>
+  </div>
+</header>
+      
+      <div id="main" class="main" role="main">
+        
+
+
+
+
+<div class="marquee">
+
+	<div class="reveal-frame">
+		<div class="reveal-viewport theme-font-montserrat theme-color-white-blue">
+			<div data-background-transition="slide" data-transition-speed="default" role="application" class="reveal slide">
+				<div style="width: 960px; height: 700px;" class="slides">
+					<section style="display: block;" class="present" data-id="6e170d0f358d46f78cfec027c6d69b8e"><div class="sl-block" data-block-type="text" data-block-id="c62782c879795395986f14b11b4f9975" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 112px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+<h1>Introducción a AngularJS</h1>
+
+<h1>con ejemplos</h1>
+
+<p>&nbsp;</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="6e92c61a59aa5ff61233fa575babb315" style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 590px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h3>5 de Marzo de 2015</h3>
+
+<h3>UJI-Castellón</h3>
+</div></div>
+<div class="sl-block" data-block-type="image" data-block-id="d452efbb555baac5f7c3ea3ff409a619" style="min-width: 30px; min-height: 30px; width: 360px; height: 93.8571428571429px; left: 300px; top: 396px;"><div class="sl-block-content" style="z-index: 13;"><img src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/logo.png" style="visibility: visible;" data-natural-width="280" data-natural-height="73"></div></div></section><section aria-hidden="true" style="display: block;" class="future" data-id="508f9125f8ed8282395ee7018ac244f7" hidden="">
+<div class="sl-block" data-block-type="text" data-block-id="a5f01c0fa3977a3586ceedea7692ff0a" style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 568px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+        <p>
+            <a target="_blank" href="https://twitter.com/logongas">@logongas</a>
+        </p>
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="7cd8bcb1eaaa2e88a0aaa02bf216f46a" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 630px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+        <p>
+            <a target="_blank" href="http://cursoangular.es/">http://cursoangular.es</a>
+        </p>
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="59f709727acac1ce99ff6f036d228598" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 66px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<h2>Lorenzo González</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="8ada0e43fc0f4e4b4d17f9ba4b92fbe6" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 185px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<h3>Profesor de Formación Profesional</h3>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="70c8ba906ac0a4110cc55c83eb588081" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 180px; top: 451px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;">
+<p>en el CIPFP Mislata (Valencia)</p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-block-id="2fba71d0b55b2eeadf475316a94aab4a" style="min-width: 30px; min-height: 30px; width: 180.163120567376px; height: 133px; left: 390px; top: 280px;"><div class="sl-block-content" style="z-index: 16;"><img src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/logo-instituto3d.jpg" data-natural-width="191" data-natural-height="141" style="visibility: visible;"></div></div></section><section aria-hidden="true" style="display: block;" class="future" data-id="4c11b100cf36d2d2a1a66faac23f1980" hidden=""><div class="sl-block" data-block-type="text" data-block-id="d514efd436aac6062887b48a160e540c" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 70px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+<h2>¿Qué es AngularJS?</h2>
+
+<div><img src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/angularjs.png" style="width: 306.836px; height: 327px; max-height: none; max-width: none;"></div>
+
+<h3>Un framework JavaScript</h3>
+</div>
+</div></section><section aria-hidden="true" style="display: none;" class="future" data-id="78a89fad2328c7ea6653456c4d6494d7" hidden=""><div class="sl-block" data-block-type="text" data-block-id="e4ed9e9f8c6e868e92d950992b524fb8" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 0px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+        <h2>Alternativas</h2>
+        <div>
+            <br>
+&nbsp;
+        
+        </div>
+        <div style="text-align: left;">
+            <ul>
+                <li>Backbone: Bajo nivel. Pasó su tiempo</li>
+                <br>
+                <li>Knockout: Se queda corto</li>
+                <br>
+                <li>Ember: Hace unos años parecía la alternativa a AngularJS</li>
+                <br>
+                <li>React: Es lo que ahora es más "cool" pero no es tan completo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="37db231b4a45aca1ca65e79c2c58f6e0" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 490px;">
+    <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" data-fragment-index="0">
+<p>¿Por qué no aparece JQuery?</p>
+</div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="e7830183d242a58446bd789bafd446d1" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 560px;">
+    <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;" data-fragment-index="1">
+        <p>JQuery no es un framework es una librería para manejar el DOM</p>
+        <p>y vamos a seguir usándola pero desde AngularJS</p>
+    </div>
+</div></section><section aria-hidden="true" style="display: none;" class="future" hidden=""><div class="sl-block" data-block-type="text" data-block-id="aac59d97d4bccfaa589cb151930d6ee4" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>¿Para qué&nbsp;usar AngularJS?</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="a64b2bee3876407536284088ea27872e" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 140px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h3>Para aplicaciones CRUD, es decir, de entrada y&nbsp;procesamiento de datos.</h3>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="11289fff0eb25e044a40af6268c0c6e3" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 280px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p>En AngujarJs lo importante es el modelo</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="e63b37631a65d761c38c22540ce68158" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 490px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<h3>Cuando queremos que el diseñador pueda&nbsp;modificar el HTML</h3>
+</div></div></section><section aria-hidden="true" style="display: none;" class="future" hidden=""><div class="sl-block" data-block-type="image" data-block-id="c561108a79be1e6be452e7f2777a6fda" style="min-width: 30px; min-height: 30px; width: 280px; height: 280px; left: 340px; top: 0px;"><div class="sl-block-content" style="z-index: 11;"><img src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/aviso.png" data-natural-width="128" data-natural-height="128" style="visibility: visible;"></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="e7f6209ef363ba584e272eb7d1cce4df" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 296px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h2>Por muy fácil que parezca AngularJS,</h2>
+
+<h2>como cualquier otro framework</h2>
+
+<h2>es necesario</h2>
+
+<h2>conocerlo en profundidad</h2>
+</div></div></section><section aria-hidden="true" style="display: none;" class="future" hidden=""><div class="sl-block" data-block-type="image" style="width: 280px; height: 280px; left: 340px; top: 0px;" data-block-id="4a0e7f7f081bf5b1c8d7f0246cad7c7c"><div class="sl-block-content" style="z-index: 11;"><img src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/aviso.png" data-natural-width="128" data-natural-height="128" style="visibility: visible;"></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 960px; left: 0px; top: 296px;" data-block-id="9aee85e721ba4c728544624b1d1bf4ed"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h2>AngularJS 2.0 va a cambiarlo todo radicalmente rompiendo la compatibilidad</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="0ea4508894a0330e4a13001ee4d3e8b3" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 566px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<h3>Mi opinión es que es un cambio para</h3>
+
+<h3>mejor y necesario</h3>
+</div></div></section><section aria-hidden="true" style="display: none;" class="future" data-id="4976ea483df0a34c5d26e3091c153e0b" hidden=""><div class="sl-block" data-block-type="text" data-block-id="16710c8c1ddfecdf979bd0d1d899d7b8" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+        <h1>Empecemos</h1>
+        <div>
+            <img src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/anakin.png" style="width: 647.576px; height: 514px; max-height: none; max-width: none;">
+        </div>
+    </div></div></section><section aria-hidden="true" style="display: none;" class="future" data-id="7d9541d15275161d7b578b79542d905a" hidden=""><div class="sl-block" data-block-type="text" data-block-id="6e8111fac43b4abb71bb719d4e77b662" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+        <h2>Estructura de Angular</h2>
+        <div>
+            <img src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/ClassDiagram1.jpg" style="width: 251.613px; height: 537px; max-height: none; max-width: none;">
+        </div>
+    </div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="1e52efcdee9a1c956aec4833edaebd03" hidden=""><div class="sl-block" data-block-type="code" data-block-id="b14a7e10ce398926a19e66389b55efba" style="min-width: 30px; min-height: 30px; width: 800px; height: 167px; left: 80px; top: 166px;"><div class="sl-block-content" style="z-index: 11;"><pre><code class=" hljs php"><span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">'app'</span>, []);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MainCtrl</span><span class="hljs-params">(<span class="hljs-variable">$scope</span>)</span> </span>{
+  <span class="hljs-variable">$scope</span>.nombre=<span class="hljs-string">"Lorenzo"</span>;
+}
+
+app.controller(<span class="hljs-string">'MainCtrl'</span>, MainCtrl); </code></pre></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="7418c274e700bc1a50039661f698ec79" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h2>Mi primera aplicación</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="2db685975f415e0c86980c509dd09d92" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 80px; top: 120px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p style="text-align:left">app.js</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="67855938b21cef7818aa98ffa8782d45" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 80px; top: 350px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<p style="text-align:left">index.html</p>
+</div></div>
+<div class="sl-block" data-block-type="code" data-block-id="8eb39274fa56f9d1125c1440d2249025" style="min-width: 30px; min-height: 30px; width: 800px; height: 283px; left: 80px; top: 389px;"><div class="sl-block-content" style="z-index: 15;"><pre><code class=" hljs handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">ng-app</span>=<span class="hljs-value">"app"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"angular.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"app.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">"MainCtrl"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+       Mi nombre es:</span><span class="hljs-expression">{{<span class="hljs-variable">nombre</span>}}</span><span class="xml">
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</span></code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="7c65d48907fbd03012053e8614fb33c5" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>El $scope</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="21289510c576f444874037d4ae4af5ce" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 140px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<ul>
+	<li>Es donde guardamos nuestros datos a presentar: <strong>ViewModel</strong>
+</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="17443de7c9b2b5703d31810329cc9d62" style="height: auto; min-width: 30px; min-height: 30px; width: 760px; left: 80px; top: 280px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<ul>
+	<li>Nunca se guardan&nbsp;valores directamente en el $scope sino que guardamos objetos en propiedades del $scope</li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-type="code" data-block-id="f31a56daa78ee1c8595569b62b8f7a36" style="min-width: 30px; min-height: 30px; width: 640px; height: 107px; left: 160px; top: 446px;"><div class="sl-block-content" style="z-index: 14;"><pre class="javascript"><code class=" hljs ">$scope.miModelo={
+   prop1:<span class="hljs-string">'valor1'</span>,
+   prop2:<span class="hljs-string">'valor2'</span>
+}</code></pre></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="037a969c3488e44f6cbf2a56bf85ba1e" style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 560px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;">
+<p style="text-align: left;">Siempre debería haber un "." en el HTML al acceder al $scope</p>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="7f404edbbf3aefad9ff367463234c4a5" hidden=""><div class="sl-block" data-block-type="image" data-block-id="9bdb7f2a128bf144814f06daf306c6f1" style="min-width: 30px; min-height: 30px; width: 480px; height: 446.927374301676px; left: 240px; top: 253px;"><div class="sl-block-content" style="z-index: 11;"><img style="visibility: visible;" data-natural-width="537" data-natural-height="500" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/1120337/esquema2.png"></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="fcf5cad66fa9a897a303dab94587e276" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 31px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h2>AngularJS sincroniza</h2>
+
+<h2><strong>el $scope y el HTML</strong></h2>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="image" data-block-id="eb4be474cff5be4bc719487fbcab6460" style="min-width: 30px; min-height: 30px; width: 800px; height: 500px; left: 80px; top: 200px;"><div class="sl-block-content" style="z-index: 11;"><img style="visibility: visible;" data-natural-width="720" data-natural-height="450" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/1120344/data-binding-one2.png"></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="04c0228a13bf0c90757da99edf71fb6d" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h2>Al actualizar el $scope se actualiza el HTML</h2>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden="">
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 0px;" data-block-id="a240abda50c96f1d667247affd777b12"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h2>Añadir un &lt;input&gt;</h2>
+</div></div>
+
+<div class="sl-block" data-block-type="text" style="height: auto; width: 600px; left: 80px; top: 168px;" data-block-id="66069ab2144b50570f90ae9e029566ae"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<p style="text-align:left">index.html</p>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 800px; height: 353px; left: 80px; top: 207px;" data-block-id="76c53bf9723efd887629ae5bf7d18bd8"><div class="sl-block-content" style="z-index: 15;"><pre><code class=" hljs handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">ng-app</span>=<span class="hljs-value">"app"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"angular.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"app.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">"MainCtrl"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">"nombre"</span> &gt;</span>
+      Mi nombre es:</span><span class="hljs-expression">{{<span class="hljs-variable">nombre</span>}}</span><span class="xml">
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</span></code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="7f7289b1491e6ff778c5ab8093190894" hidden=""><div class="sl-block" data-block-type="image" data-block-id="1bccf08e9e34ea2e8cefbc0c6d8ffd09" style="min-width: 30px; min-height: 30px; width: 800px; height: 500px; left: 80px; top: 200px;"><div class="sl-block-content" style="z-index: 11;"><img style="visibility: visible;" data-natural-width="720" data-natural-height="450" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/1120346/data-binding2.png"></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="23e3ef48fc6a72882ad934c6e8a76c66" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h2>Al modificar el HTML se actualiza el $scope lo que a su vez actualiza el HTML</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="95d902e850ae596edbed7b7cfa9b5c85" style="height: auto; min-width: 30px; min-height: 30px; width: 340px; left: 43px; top: 241px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p>"<em>Two-way data binding</em>"</p>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="4e55676ab8343bae565300e684105221" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 62px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>¿Cómo realiza AngularJS el&nbsp; <em>Two-way data binding?</em>
+</h2>
+</div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="19782a5d7fce84d915f4e2545583c6b0" style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 350px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h2>dirty-checking</h2>
+</div>
+</div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="318eeda91a2e90631032051c3c02d710" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 311px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>¿Lo mejor del</h2>
+
+<h2><em>"Two-way data binding" mediante</em></h2>
+
+<h2>"dirty-checking"?</h2>
+</div></div>
+<div class="sl-block" data-block-type="image" data-block-id="6fe8397f4b6d237cfe3c5a74ad803038" style="min-width: 30px; min-height: 30px; width: 360px; height: 360px; left: 300px; top: 0px;"><div class="sl-block-content" style="z-index: 12;"><img data-natural-width="512" data-natural-height="512" style="visibility: visible;" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/1120486/award.png"></div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" style="height: auto; width: 960px; left: 0px; top: 70px;" data-block-id="66174c8dbe46e1d4d32a30b33b1efdbc"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>Mi modelo JavaScript es&nbsp;un</h2>
+
+<h2><strong>POJSO</strong></h2>
+
+<h2>(Plain-Old JavaScript Object)</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" data-block-id="8b1e91220ae1bce3855542b95632567a" style="min-width: 30px; min-height: 30px; width: 800px; height: 241px; left: 80px; top: 420px;"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs groovy">var modelo={
+<span class="hljs-label">  nombre:</span><span class="hljs-string">"Lorenzo"</span>,
+<span class="hljs-label">  apellidos:</span><span class="hljs-string">"Diaz Ortega"</span>,
+<span class="hljs-label">  direccion:</span> {
+<span class="hljs-label">    localidad:</span><span class="hljs-string">"Valencia"</span>,
+<span class="hljs-label">    calle:</span><span class="hljs-string">"Las barcas"</span>
+<span class="hljs-label">    numero:</span><span class="hljs-number">4</span>
+  }
+
+}</code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="4aa77e629854d3e1744c91e4f1d24ffe" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>Se pueden lanzar&nbsp;eventos ante cambios del modelo</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" style="min-width: 30px; min-height: 30px; width: 800px; height: 382px; left: 80px; top: 210px;" data-block-id="03161a74cde3f76e52b9c4be77608994"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs php">
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MainCtrl</span><span class="hljs-params">(<span class="hljs-variable">$scope</span>)</span> </span>{
+  <span class="hljs-variable">$scope</span>.nombre=<span class="hljs-string">"Lorenzo"</span>;
+
+  <span class="hljs-variable">$scope</span>.<span class="hljs-variable">$watch</span>(<span class="hljs-string">"nombre"</span>,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(newNombre,oldNombre)</span> </span>{
+
+      alert(<span class="hljs-string">"El nuevo nombre es:"</span> + newNombre);
+
+  });
+
+
+  <span class="hljs-variable">$scope</span>.cambiarNombre=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+     <span class="hljs-variable">$scope</span>.nombre=<span class="hljs-string">"Juan"</span>;
+  } 
+
+
+}
+</code></pre></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="a62fbc5c190ebaccfcd97654c54633fd" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 171px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p style="text-align: left;">El método <strong>$watch </strong>avisa de cambios en el modelo</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="263924f9e7e4c4f2b0f32a8b21aea6fa" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 592px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<p style="text-align:left">La función "cambiarNombre" no tiene que <em>avisar </em>de lo que cambia.</p>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 51px;" data-block-id="e0164078cc65961be39c7b667548ab7b"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>¿Y cuál es el precio?</h2>
+</div></div>
+<div class="sl-block" data-block-type="image" data-block-id="6b55410f993d8e84e55327fb5234285b" style="min-width: 30px; min-height: 30px; width: 480px; height: 480px; left: 240px; top: 180px;"><div class="sl-block-content" style="z-index: 12;"><img style="visibility: visible;" data-natural-width="256" data-natural-height="256" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/1120504/precio.png"></div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="2a8b488a7d886c031b19d9dc8345e5f2" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 70px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>No se puede modificar nada fuera de los eventos que ofrece AngularJS</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" data-block-id="d7f2a1b185d7435b56844d9a4ed68d8b" style="min-width: 30px; min-height: 30px; width: 800px; height: 210px; left: 80px; top: 350px;"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs javascript">$(<span class="hljs-string">"#menu"</span>).on(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    $scope.nombre=<span class="hljs-string">"Juan"</span>
+});</code></pre></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="fc408fe01aef446749b857cc7e2931d6" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 571px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p style="text-align: left;">Este código no funciona a menos que avises a AngularJS&nbsp;</p>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="a65a6b7889669a23695b8bcd9bcb092e" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>El rendimiento</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="45517b5e48f6fe1cadd4df36f426c783" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 140px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<p>Es un problema con páginas con muchísimos datos a mostrar: Scrolls Infinitos</p>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 800px; height: 321px; left: 80px; top: 309px;" data-block-id="8612d6d1864c84e6a8d0f6680999f48e"><div class="sl-block-content" style="z-index: 13;"><pre><code class=" hljs handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">ng-app</span>=<span class="hljs-value">"app"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"angular.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"app.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">"MainCtrl"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">"nombre"</span> &gt;</span>
+      Mi nombre es </span><span class="hljs-expression">{{::<span class="hljs-variable">nombre</span>}}</span><span class="xml">
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</span></code></pre></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="1f8a07a3ca9dfaa92faf24de1f9b4429" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 270px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<p style="text-align: left;">Solución con Angular 1.3:&nbsp;One-way data&nbsp;binding</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="6c81b5e73be1f896c1ad956be0eb7abf" style="height: auto; min-width: 30px; min-height: 30px; width: 880px; left: 80px; top: 630px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;">
+<p>El campo "nombre" ya no se actualiza si hay nuevos cambios</p>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="064f845f1c9e22dc9550c2cecb79595d" hidden=""><div class="sl-block" data-block-type="text" data-block-id="8a6d0d7d09c61ddece8e0621495809b7" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 51px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+        <h1>
+    Directivas
+</h1>
+        <div>
+            <img style="width: 669px; height: 482.102px; max-height: none; max-width: none;" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/116778/directivas.png">
+            <br>
+        </div>
+    </div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="2ea50e4bf15791deeb80bd80072498c7" hidden=""><div class="sl-block" data-block-type="text" data-block-id="94eb6e9e2236ae2a35a68bc217db8427" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 70px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+<h2>Directivas</h2>
+
+<div>
+<br>
+&nbsp;</div>
+
+<div style="text-align: left;">
+<ul>
+	<li>Son tag o atributos HTML específicos de AngularJS</li>
+	<br>
+	<li>Modifican el DOM</li>
+	<br>
+	<li>Lo mejor: te puedes crear tus propias directivas</li>
+	<br>
+	<br>
+	&nbsp;
+</ul>
+</div>
+</div>
+</div></section><section style="display: none;" class="future" aria-hidden="true" data-id="7569a416f3d53a608d8acba0c9669404" hidden=""><div class="sl-block" data-block-type="text" data-block-id="787441a8717e54c6451e91185620dbb6" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 70px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+        <h2>Algunas</h2>
+        <h2>Directivas estándar</h2>
+        <div>&nbsp;</div>
+        <div style="text-align: left;">
+            <ul>
+                <li>ng-click: Llamar a una función del $scope</li>
+                <br>
+                <li>ng-show: Mostrar un elemento</li>
+<br>
+                <li>ng-hide: Ocultar un elemento</li>
+<br>
+                <li>ng-disabled: Deshabilitar un elemento</li>
+<br>
+            </ul>
+        </div>
+        <div>&nbsp;</div>
+    </div>
+</div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="code" style="min-width: 30px; min-height: 30px; width: 800px; height: 210px; left: 80px; top: 105px;" data-block-id="42841e3193a26c50bc0c69094cd4f48f"><div class="sl-block-content" style="z-index: 11;"><pre><code class=" hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MainCtrl</span><span class="hljs-params">(<span class="hljs-variable">$scope</span>)</span> </span>{
+  <span class="hljs-variable">$scope</span>.nombre=<span class="hljs-string">"Lorenzo"</span>;
+
+  <span class="hljs-variable">$scope</span>.cambiarNombre=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+     <span class="hljs-variable">$scope</span>.nombre=<span class="hljs-string">"Juan"</span>;
+  } 
+
+}
+</code></pre></div></div>
+<div class="sl-block" data-block-type="code" style="width: 800px; height: 251px; left: 80px; top: 379px;" data-block-id="e1823a5e7fa573ec8bf250d7547352b4"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs handlebars"><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">"MainCtrl"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">"nombre"</span> &gt;</span>
+      Mi nombre es </span><span class="hljs-expression">{{<span class="hljs-variable">nombre</span>}}</span><span class="xml">
+
+      <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"cambiarNombre()"</span>&gt;</span>Cambiar Nombre<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+</span></code></pre></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="5c34e57193622eb4011ea0a62da875aa" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<h2>Directiva ng-click</h2>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="code" style="width: 800px; height: 210px; left: 80px; top: 105px;" data-block-id="e40d14fa29d977792a493bf8d050405d"><div class="sl-block-content" style="z-index: 11;"><pre><code class=" hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MainCtrl</span><span class="hljs-params">(<span class="hljs-variable">$scope</span>)</span> </span>{
+  <span class="hljs-variable">$scope</span>.nombre=<span class="hljs-string">"Lorenzo"</span>;
+
+  <span class="hljs-variable">$scope</span>.cambiarNombre=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+     <span class="hljs-variable">$scope</span>.nombre=<span class="hljs-string">"Juan"</span>;
+  } 
+
+}
+</code></pre></div></div>
+<div class="sl-block" data-block-type="code" style="width: 800px; height: 251px; left: 80px; top: 379px;" data-block-id="ea43b699ed0fe1f67daeced9cae38afd"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs handlebars"><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">"MainCtrl"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">"nombre"</span> &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-show</span>=<span class="hljs-value">"nombre=='Juan'"</span>&gt;</span>Mi nombre es </span><span class="hljs-expression">{{<span class="hljs-variable">nombre</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"cambiarNombre()"</span>&gt;</span>Cambiar Nombre<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+</span></code></pre></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 0px;" data-block-id="77b733bd77aa9f4a36e8dcfa6f7536b0"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<h2>Directiva ng-show</h2>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="code" style="width: 800px; height: 210px; left: 80px; top: 105px;" data-block-id="c21cd1da77c50f213697252ccb7a7265"><div class="sl-block-content" style="z-index: 11;"><pre><code class=" hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MainCtrl</span><span class="hljs-params">(<span class="hljs-variable">$scope</span>)</span> </span>{
+  <span class="hljs-variable">$scope</span>.nombre=<span class="hljs-string">"Lorenzo"</span>;
+
+  <span class="hljs-variable">$scope</span>.cambiarNombre=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+     <span class="hljs-variable">$scope</span>.nombre=<span class="hljs-string">"Juan"</span>;
+  } 
+
+}
+</code></pre></div></div>
+<div class="sl-block" data-block-type="code" style="width: 800px; height: 251px; left: 80px; top: 379px;" data-block-id="5fab16d1b2b8677c520ef65c02efece3"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs handlebars"><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">"MainCtrl"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">"nombre"</span> &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-hide</span>=<span class="hljs-value">"nombre=='Juan'"</span>&gt;</span>Mi nombre es </span><span class="hljs-expression">{{<span class="hljs-variable">nombre</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"cambiarNombre()"</span>&gt;</span>Cambiar Nombre<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+</span></code></pre></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 0px;" data-block-id="668275228e2dfacc7e1b6c848d60113b"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<h2>Directiva ng-hide</h2>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="code" style="width: 800px; height: 210px; left: 80px; top: 105px;" data-block-id="aefa21ab272f975cdbd94327930c527e"><div class="sl-block-content" style="z-index: 11;"><pre><code class=" hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MainCtrl</span><span class="hljs-params">(<span class="hljs-variable">$scope</span>)</span> </span>{
+  <span class="hljs-variable">$scope</span>.nombre=<span class="hljs-string">"Lorenzo"</span>;
+
+  <span class="hljs-variable">$scope</span>.cambiarNombre=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+     <span class="hljs-variable">$scope</span>.nombre=<span class="hljs-string">"Juan"</span>;
+  } 
+
+}
+</code></pre></div></div>
+<div class="sl-block" data-block-type="code" style="width: 800px; height: 251px; left: 80px; top: 379px;" data-block-id="4f280ad5a6fc411b354dd3bf54fbb5ed"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs handlebars"><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">"MainCtrl"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">"nombre"</span>  <span class="hljs-attribute">ng-disabled</span>=<span class="hljs-value">"nombre=='Juan'"</span> &gt;</span>
+      Mi nombre es </span><span class="hljs-expression">{{<span class="hljs-variable">nombre</span>}}</span><span class="xml">
+
+      <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"cambiarNombre()"</span>&gt;</span>Cambiar Nombre<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+</span></code></pre></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 0px;" data-block-id="d3d271976dd8b5b6fb08ce1b36d7f1f5"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<h2>Directiva ng-disabled</h2>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="d1e4005c6f2ed0e8a8dc112e1c7dcc3e" hidden=""><div class="sl-block" data-block-type="text" data-block-id="98d042eb17d5752fc1e5e81be3e7a0b2" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 76px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+<h2>Directivas sobre Arrays</h2>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div style="text-align: left;">
+<ul>
+	<li>ng-repeat: Repetir tags</li>
+	<br>
+	<li>ng-options: Rellenar un &lt;select&gt;</li>
+</ul>
+</div>
+</div>
+</div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="code" style="width: 800px; height: 575px; left: 80px; top: 105px;" data-block-id="d4b2bd47fcff9b95003b7b3bb4ce48c2"><div class="sl-block-content" style="z-index: 11;"><pre><code class=" hljs groovy">function MainCtrl($scope) {
+
+  $scope.usuarios = [
+    {
+<span class="hljs-label">      idUsuario:</span><span class="hljs-number">34</span>,
+<span class="hljs-label">      nombre:</span><span class="hljs-string">"Juan"</span>,
+<span class="hljs-label">      ape1:</span><span class="hljs-string">"Gonzalez"</span>
+    },
+    {
+<span class="hljs-label">      idUsuario:</span><span class="hljs-number">46</span>,
+<span class="hljs-label">      nombre:</span><span class="hljs-string">"Ana"</span>,
+<span class="hljs-label">      ape1:</span><span class="hljs-string">"Morales"</span>
+    },
+    {
+<span class="hljs-label">      idUsuario:</span><span class="hljs-number">62</span>,
+<span class="hljs-label">      nombre:</span><span class="hljs-string">"Sara"</span>,
+<span class="hljs-label">      ape1:</span><span class="hljs-string">"Diaz"</span>
+    },
+    {
+<span class="hljs-label">      idUsuario:</span><span class="hljs-number">18</span>,
+<span class="hljs-label">      nombre:</span><span class="hljs-string">"Marcos"</span>,
+<span class="hljs-label">      ape1:</span><span class="hljs-string">"Ortega"</span>
+    } 
+  ]
+
+}
+</code></pre></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 0px;" data-block-id="cb7fe161c6aa60526075b27e60bcf1fa"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<h2>Directiva ng-repeat</h2>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="code" style="width: 800px; height: 490px; left: 80px; top: 140px;" data-block-id="4bbfd781ff2db44d968fd74813c583d5"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs handlebars"><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">"MainCtrl"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">table</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>Nombre<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>Apellido<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-title">tr</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">"usuario in usuarios"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">usuario.nombre</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">usuario.ape</span>1}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">table</span>&gt;</span>
+    
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span></span></code></pre></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 0px;" data-block-id="2d66e2790498d95c1399c937385bf9c7"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<h2>Directiva ng-repeat</h2>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="code" style="width: 800px; height: 575px; left: 80px; top: 105px;" data-block-id="983aa74b776d34e192f58f5fc516046c"><div class="sl-block-content" style="z-index: 11;"><pre><code class=" hljs groovy">function MainCtrl($scope) {
+
+  $scope.usuarios = [
+    {
+<span class="hljs-label">      idUsuario:</span><span class="hljs-number">34</span>,
+<span class="hljs-label">      nombre:</span><span class="hljs-string">"Juan"</span>,
+<span class="hljs-label">      ape1:</span><span class="hljs-string">"Gonzalez"</span>
+    },
+    {
+<span class="hljs-label">      idUsuario:</span><span class="hljs-number">46</span>,
+<span class="hljs-label">      nombre:</span><span class="hljs-string">"Ana"</span>,
+<span class="hljs-label">      ape1:</span><span class="hljs-string">"Morales"</span>
+    },
+    {
+<span class="hljs-label">      idUsuario:</span><span class="hljs-number">62</span>,
+<span class="hljs-label">      nombre:</span><span class="hljs-string">"Sara"</span>,
+<span class="hljs-label">      ape1:</span><span class="hljs-string">"Diaz"</span>
+    },
+    {
+<span class="hljs-label">      idUsuario:</span><span class="hljs-number">18</span>,
+<span class="hljs-label">      nombre:</span><span class="hljs-string">"Marcos"</span>,
+<span class="hljs-label">      ape1:</span><span class="hljs-string">"Ortega"</span>
+    } 
+  ]
+
+  $scope.usuarioSeleccionado=<span class="hljs-literal">null</span>;
+
+}
+</code></pre></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 0px;" data-block-id="9953b646c2b3a29b3e07e60c0e54a6e1"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<h2>Directiva ng-select</h2>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="code" style="width: 800px; height: 490px; left: 80px; top: 140px;" data-block-id="87ced1a57ec0bb5304982b867973f0dc"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs handlebars"><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">"MainCtrl"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+      Selecciona un usuario:
+      <span class="hljs-tag">&lt;<span class="hljs-title">select</span> 
+          <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">"usuarioSeleccionado"</span> 
+          <span class="hljs-attribute">ng-options</span>=<span class="hljs-value">"usuario as usuario.nombre for usuario in usuarios"</span> 
+       &gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">option</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">""</span>&gt;</span>-- Selecciona un usuario --<span class="hljs-tag">&lt;/<span class="hljs-title">option</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">select</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+      El usuario seleccionado es: 
+      </span><span class="hljs-expression">{{<span class="hljs-variable">usuarioSeleccionado.nombre</span>}}</span><span class="xml"> </span><span class="hljs-expression">{{<span class="hljs-variable">usuarioSeleccionado.ape</span>1}}</span><span class="xml">
+    <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span></span></code></pre></div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 0px;" data-block-id="55461cad310a16837a37d15283cb6d88"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<h2>Directiva ng-select</h2>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="0d5c236537e35ea6b81f5bc70269b211" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+        <h2>Resumen Directivas</h2>
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="b5f370278ef0a5ff2ab057063f474617" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 140px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<ul>
+	<li>
+	<h3>Las directivas modifican el DOM;&nbsp;los controladores NO lo modifican</h3>
+	</li>
+	<li>
+	<h3>Las directivas son declarativas&nbsp;</h3>
+	</li>
+	<li>
+	<h3>Debes crearte nuevas directivas</h3>
+	</li>
+	<li>
+	<h3>Es complejo crear nuevas directivas</h3>
+	</li>
+</ul>
+</div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="7c74e425eed1459ae901e7fdba2452db" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 591px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+        <p>
+            <em>JQuery lo puedes seguir usando dentro de tus directivas</em>
+        </p>
+    </div>
+</div></section><section style="display: none;" class="future" aria-hidden="true" data-id="123ca705fe3905dc61ddd2a47666262a" hidden=""><div class="sl-block" data-block-type="text" data-block-id="eafb97a215fe5283a25d43e6af91da3a" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 70px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+<h1>Servicios</h1>
+
+<p>&nbsp;</p>
+
+<div><img style="width: 503px; height: 365.352px; max-height: none; max-width: none;" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/116782/creacion_servicios.png"></div>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="4d5c0d88d3b654d84450bdfd818efb06" hidden=""><div class="sl-block" data-block-type="text" data-block-id="3a6b355826304d35bea3a3b3f44e33cb" style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 0px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+        <h2>Servicios</h2>
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="d3ff84e34360374d949ae4d0f82e1ebb" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 140px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+        <ul>
+            <li>Son funcionalidades de la aplicación no relacionadas con el interfaz gráfico*</li>
+            <br>
+            <li>Nunca acceden a la página (DOM)*</li>
+            <br>
+            <li>Siempre son Singletons</li>
+            <br>
+            <li>Se obtienen mediante 
+                <strong>inyección de dependencias</strong>
+            </li>
+            <br>
+	&nbsp;
+
+        </ul>
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="d1643d532d99dba74f78b501cb6f1b44" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 622px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p style="text-align: left;">*: A veces pueden modificar el DOM para ventanas modales, notificaciones, etc.&nbsp; &nbsp;&nbsp;</p>
+</div>
+</div></section><section style="display: none;" class="future" aria-hidden="true" data-id="77ad4269bfbb5e317e07c63eaba336c7" hidden=""><div class="sl-block" data-block-type="text" data-block-id="3bfddc2b43946b9e95da3fae298d4b29" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+        <h2>Tipos de servicios</h2>
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="20dde3b583942e3676dd0d4eec330e05" style="height: auto; min-width: 30px; min-height: 30px; width: 240px; left: 80px; top: 521px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+        <ul>
+            <li><p>constant</p></li>
+        </ul>
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="95b35b1fa2c201fea4059d56d370542c" style="height: auto; min-width: 30px; min-height: 30px; width: 212px; left: 80px; top: 140px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+        <ul>
+            <li><p>value</p></li>
+            <p><br></p>
+<li><p>factory</p></li>
+            <p><br></p>
+<li><p>service</p></li>
+        </ul>
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="c029e39874803f310f25937c0583dfce" style="height: auto; min-width: 30px; min-height: 30px; width: 240px; left: 80px; top: 579px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<ul>
+	<li><p>provider</p></li>
+</ul>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="5f7b099a20eddc4804f871eb9920bfcf" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>Ejemplo "service"</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" data-block-id="4131d6ef572a5e5ba39f38b518d09a31" style="min-width: 30px; min-height: 30px; width: 800px; height: 490px; left: 80px; top: 140px;"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs haxe"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Login</span><span class="hljs-params">()</span> </span>{
+
+   <span class="hljs-keyword">var</span> logged=<span class="hljs-literal">false</span>;
+
+   <span class="hljs-keyword">this</span>.login=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(user,password)</span> </span>{
+      <span class="hljs-keyword">if</span> ((user===<span class="hljs-string">"foo"</span>) &amp;&amp; (password===<span class="hljs-string">"bar"</span>)) {
+         logged=<span class="hljs-literal">true</span>;
+      }
+
+     <span class="hljs-keyword">return</span> logged;
+   }
+   
+   <span class="hljs-keyword">this</span>.isLogged=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+     <span class="hljs-keyword">return</span> logged;
+   }
+
+
+}
+
+
+app.service(<span class="hljs-string">"login"</span>,Login);</code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 0px;" data-block-id="835a0c11532731503c6302c684f49187"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>"service" vs "value" vs "factory"</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 800px; height: 280px; left: 80px; top: 210px;" data-block-id="f4468fbbe2d71f3211412d7bae3882a5"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs http">
+
+<span class="cs">app.service(<span class="hljs-string">"login"</span>,Login);         <span class="hljs-comment">//Es la clase del Singleton</span>
+
+
+
+app.<span class="hljs-keyword">value</span>(<span class="hljs-string">"login"</span>,<span class="hljs-keyword">new</span> Login());    <span class="hljs-comment">//Es el objeto Singleton</span>
+
+
+app.factory(<span class="hljs-string">"login"</span>,function() {   <span class="hljs-comment">//Es una función que crea el Singleton</span>
+    <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">Login</span><span class="hljs-params">()</span>
+})</span>;</span></code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="33afc1f276bb38d0727efb685185f6ff" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>¿Cómo inyectamos dependencias?</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" style="min-width: 30px; min-height: 30px; width: 800px; height: 420px; left: 80px; top: 210px;" data-block-id="0d4379e00699f38a7beecbed4a86d38e"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs haxe"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Login</span><span class="hljs-params">()</span> </span>{
+
+   <span class="hljs-keyword">var</span> logged=<span class="hljs-literal">false</span>;
+
+   <span class="hljs-keyword">this</span>.login=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(user,password)</span> </span>{
+      <span class="hljs-keyword">if</span> ((user===<span class="hljs-string">"foo"</span>) &amp;&amp; (password===<span class="hljs-string">"bar"</span>)) {
+         logged=<span class="hljs-literal">true</span>;
+      }
+
+     <span class="hljs-keyword">return</span> logged;
+   }
+   
+   <span class="hljs-keyword">this</span>.isLogged=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+     <span class="hljs-keyword">return</span> logged;
+   }
+
+
+}
+
+
+app.service(<span class="hljs-string">"login"</span>,Login);</code></pre></div></div>
+<div class="sl-block" data-block-type="code" style="min-width: 30px; min-height: 30px; width: 800px; height: 455px; left: 80px; top: 175px;" data-block-id="8fd43869b5b60e53744a9fe9be5a594c"><div class="sl-block-content" style="z-index: 13;"><pre><code class=" hljs haxe">app.value(<span class="hljs-string">"defaultUserPassword"</span>,{
+  user:<span class="hljs-string">"foo"</span>,
+  password:<span class="hljs-string">"bar"</span>
+});
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Login</span><span class="hljs-params">(defaultUserPassword)</span> </span>{
+
+   <span class="hljs-keyword">var</span> logged=<span class="hljs-literal">false</span>;
+
+   <span class="hljs-keyword">this</span>.login=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(user,password)</span> </span>{
+      <span class="hljs-keyword">if</span> ((defaultUserPassword.user===user) &amp;&amp; 
+         (defaultUserPassword.password===password)) {
+         logged=<span class="hljs-literal">true</span>;
+      }
+
+     <span class="hljs-keyword">return</span> logged;
+   }
+   
+   <span class="hljs-keyword">this</span>.isLogged=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+     <span class="hljs-keyword">return</span> logged;
+   }
+}</code></pre></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="978a6b7e20a8802073feb7738e234da3" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 630px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<p style="text-align: left;">Las dependencias son parámetros del constructor</p>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="9674c610ef044b0f82e677b5d8052ae5" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>¿Y qué&nbsp;pasa si minimizamos el código?</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="3f95729e7b2e4a82f9bc8aaeb5f58088" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 210px;"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" data-fragment-index="0">
+<h3>¡La inyección dejará de funcionar!</h3>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="1521aad47b075ce3dde3dde5679c8d4d" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 180px; top: 331px;"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;" data-fragment-index="1">
+<h2>Solución</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" style="min-width: 30px; min-height: 30px; width: 800px; height: 187px; left: 80px; top: 420px;" data-block-id="0eb314a26c063ea3d80870ba38133293"><div class="sl-block-content fragment" style="z-index: 14;" data-fragment-index="1"><pre><code class=" hljs php">Login.<span class="hljs-variable">$inject</span>=[<span class="hljs-string">'defaultUserPassword'</span>];
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Login</span><span class="hljs-params">(defaultUserPassword)</span> </span>{
+
+
+}
+
+app.service(<span class="hljs-string">"login"</span>,Login);</code></pre></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="13d77b536fde7ec153bf1e0a8d17e9e8" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 630px;"><div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;" data-fragment-index="1">
+<p><strong>$inject</strong> es un array con los nombres de los servicios a inyectar</p>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="15d656ad6361722c7fad937ca16219b2" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>Providers</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="9601c45712be5fda1892b449782466e7" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 210px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<ul>
+	<li><p>Un provider es una factoría de un servicio</p></li>
+	<li><p>Se ejecuta antes de "iniciarse" la aplicación por lo que NO existe aun ningún servicio creado, solo otros Providers</p></li>
+	<li><p>Permite configurase y consecuentemente configurar al servicio que creará</p></li>
+	<li><p>Permite configurarse mediante otros Providers o Constantes</p></li>
+	<li><p>Obligatoriamente tiene un método "$get" que es el que crea el servicio</p></li>
+</ul>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="eda998afd39b453730fbf6b0d627faff" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>¿Cuándo usar un Provider?</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="2bc975e293665cc89e44603a55608a19" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 140px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h3>Cuando para inicializar el servicio se debe ejecutar código debido a la complejidad del servicio</h3>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="d47beb6b4aeb41d27c8821f2de2e9a71" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 350px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p>AngularJS tiene unos bloques&nbsp;llamados "config" que permiten ejecutar código que define los Providers</p>
+</div></div>
+<div class="sl-block" data-block-type="code" data-block-id="ab9e8eb126af99c1687afad6f07055cb" style="min-width: 30px; min-height: 30px; width: 800px; height: 140px; left: 80px; top: 447px;"><div class="sl-block-content" style="z-index: 14;"><pre><code class=" hljs haxe">app.config(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+
+<span class="hljs-comment">//Este código se ejecuta para inicializar los providers</span>
+
+});</code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="code" data-block-id="4e4b4154eca2e4a4fffd969bfcfc65b8" style="min-width: 30px; min-height: 30px; width: 800px; height: 700px; left: 80px; top: 0px;"><div class="sl-block-content" style="z-index: 11;"><pre><code class=" hljs actionscript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Login</span><span class="hljs-params">(defaultUserPassword)</span> </span>{
+   <span class="hljs-keyword">var</span> logged=<span class="hljs-literal">false</span>;
+   <span class="hljs-keyword">this</span>.login=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(user,password)</span> </span>{
+      <span class="hljs-keyword">if</span> ((defaultUserPassword.user===user) &amp;&amp; 
+         (defaultUserPassword.password===password)) {
+         logged=<span class="hljs-literal">true</span>;
+      }
+
+     <span class="hljs-keyword">return</span> logged;
+   }
+   <span class="hljs-keyword">this</span>.isLogged=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+     <span class="hljs-keyword">return</span> logged;
+   }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">LoginProvider</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">var</span> defaultUserPassword={
+    user:<span class="hljs-literal">undefined</span>,
+    password:<span class="hljs-literal">undefined</span>
+  }
+  
+  <span class="hljs-keyword">this</span>.setUser=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(user)</span> </span>{
+    defaultUserPassword.user=user;
+  }
+  <span class="hljs-keyword">this</span>.setPassword=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(password)</span> </span>{
+    defaultUserPassword.password=password;
+  }  
+  <span class="hljs-keyword">this</span>.$<span class="hljs-keyword">get</span>=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Login(defaultUserPassword);
+  }
+}
+
+app.provider(<span class="hljs-string">"login"</span>,LoginProvider);</code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="code" data-block-id="512e74ed3a7fa690605f8f64ec914094" style="min-width: 30px; min-height: 30px; width: 800px; height: 202px; left: 80px; top: 288px;"><div class="sl-block-content" style="z-index: 11;"><pre><code class=" hljs haxe">app.config(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(loginProvider)</span> </span>{
+
+  loginProvider.setUser(<span class="hljs-string">"foo"</span>);
+  loginProvider.setPassword(<span class="hljs-string">"bar"</span>);
+
+});</code></pre></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="c60e1584963dd28f13803c080371f28a" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h2>Configurando el provider</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="394d3b30c621559e6925cbe900fbea4f" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 210px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p style="text-align: left;">Configuramos el provider "programaticamente", lo que nos da mucha versatilidad</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="9157574e1057e66823174d127f2f943b" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 560px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<p style="text-align:left">IMPORTANTE: No injectamos el servicio sino el provider.&nbsp;Por éso se llama "<strong>loginProvider</strong>"</p>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="d32833a3b11dedfb66d27dd41d13850e" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>¿Y si queremos configurar el propio Provider con valores iniciales?</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="8300d3994b691595e2446757f2e996a0" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 280px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<p>No podemos usar un "value" ya que es un servicio y por lo tanto no está inicializado.</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="eca23ff2a246c95218e012c1b061ffcf" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 420px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p>AngularJS se inventa un nuevo servicio llamado "constant" que puede inyectarse en un Provider y en un &nbsp;bloque "config"</p>
+</div></div>
+<div class="sl-block" data-block-type="code" data-block-id="730263a5a2dc0ad6a076be2b9282cb33" style="min-width: 30px; min-height: 30px; width: 800px; height: 140px; left: 80px; top: 560px;"><div class="sl-block-content" style="z-index: 14;"><pre class="javascript"><code class=" hljs ">app.constant(<span class="hljs-string">"initialUserPassword"</span>,{
+  user:<span class="hljs-string">"foo"</span>,
+  password:<span class="hljs-string">"bar"</span>
+});</code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="code" data-block-id="5670442b1a046047b880471dac53e78e" style="min-width: 30px; min-height: 30px; width: 800px; height: 630px; left: 80px; top: 70px;"><div class="sl-block-content" style="z-index: 11;"><pre class="javascript"><code class=" hljs ">app.constant(<span class="hljs-string">"initialUserPassword"</span>,{
+  user:<span class="hljs-string">"foo"</span>,
+  password:<span class="hljs-string">"bar"</span>
+});
+
+
+
+$inject=[<span class="hljs-string">'initialUserPassword'</span>]
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">LoginProvider</span><span class="hljs-params">(initialUserPassword)</span> </span>{
+  <span class="hljs-keyword">var</span> defaultUserPassword={
+  }
+  angular.extend(defaultUserPassword,initialUserPassword);
+  
+  <span class="hljs-keyword">this</span>.setUser=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(user)</span> </span>{
+    defaultUserPassword.user=user;
+  }
+  <span class="hljs-keyword">this</span>.setPassword=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(password)</span> </span>{
+    defaultUserPassword.password=password;
+  }  
+  <span class="hljs-keyword">this</span>.$get=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Login(defaultUserPassword);
+  }
+}
+
+app.provider(<span class="hljs-string">"login"</span>,LoginProvider);
+
+app.config(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(loginProvider)</span> </span>{
+  <span class="hljs-comment">//loginProvider.setUser("foo2");</span>
+  <span class="hljs-comment">//loginProvider.setPassword("bar2");</span>
+});</code></pre></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="0ba8055662e99b34edf28d3cc6a51c7a" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<p>Usando "constant" en el Provider</p>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="image" data-block-id="c937768e62c446396062132662370a06" style="min-width: 30px; min-height: 30px; width: 960px; height: 436.25px; left: 0px; top: 177.375px;"><div class="sl-block-content" style="z-index: 11;"><img style="visibility: visible;" data-natural-width="768" data-natural-height="349" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/1136820/img.png"></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="1d47292f82032b323b2f028b25fd0dfc" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h2>Secuencia de inicialización de los servicios</h2>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="9452cd28e84338e3bb63b3aa1477dd20" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>No usar "new" para crear un objeto</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="fc41018f06677480dc1407661387e1a7" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 272px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h3>Hacer que AngularJS cree el objeto para permitir inyecciones de la clase</h3>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="225cbdf551b14b6ad6e48aa3e7a5a043" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 490px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p>Se usa el servicio "$inject" con el método "instantiate".</p>
+</div></div>
+<div class="sl-block" data-block-type="code" data-block-id="6d4a293e3678477bc0c49e0d241c0746" style="min-width: 30px; min-height: 30px; width: 800px; height: 140px; left: 80px; top: 560px;"><div class="sl-block-content" style="z-index: 14;"><pre><code class=" hljs php">    <span class="hljs-keyword">var</span> locals = {
+        defaultUserPassword: defaultUserPassword
+    };
+    <span class="hljs-keyword">var</span> login = <span class="hljs-variable">$injector</span>.instantiate(Login,locals);    
+    </code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="code" style="width: 800px; height: 700px; left: 80px; top: 0px;" data-block-id="df6b8898d65e54a799901e7c6bdfb61b"><div class="sl-block-content" style="z-index: 13;"><pre><code class=" hljs php">Login.<span class="hljs-variable">$inject</span>=[<span class="hljs-string">'defaultUserPassword'</span>];
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Login</span><span class="hljs-params">(defaultUserPassword)</span> </span>{
+
+   <span class="hljs-comment">//Aqui vael código pero no lo hemos puesto para ahorrar espacio</span>
+
+}
+
+
+<span class="hljs-variable">$inject</span>=[<span class="hljs-string">'initialUserPassword'</span>]
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">LoginProvider</span><span class="hljs-params">(initialUserPassword)</span> </span>{
+  <span class="hljs-keyword">var</span> defaultUserPassword={
+  }
+  angular.extend(defaultUserPassword,initialUserPassword);
+  
+  this.setUser=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(user)</span> </span>{
+    defaultUserPassword.user=user;
+  }
+  this.setPassword=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(password)</span> </span>{
+    defaultUserPassword.password=password;
+  }  
+  this.<span class="hljs-variable">$get</span>=<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> locals = {
+        defaultUserPassword: defaultUserPassword
+    };
+    <span class="hljs-keyword">var</span> login = <span class="hljs-variable">$injector</span>.instantiate(Login,locals);    
+    
+    <span class="hljs-keyword">return</span> login;
+  }
+}
+
+app.provider(<span class="hljs-string">"login"</span>,LoginProvider);</code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 0px;" data-block-id="45f14a077942ab9d3e59d5fee59daad7">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+        <h2>Servicios predefinidos</h2>
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 240px; left: 80px; top: 140px;" data-block-id="b7f4e6e11dd6cbd467857aa0295e97e3">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+        <ul>
+            <li>
+                <h3>$http</h3>
+            </li>
+            <p><br></p>
+<li>
+                <h3>$timeout</h3>
+            </li>
+            <p><br></p>
+<li>
+                <h3>$q</h3>
+            </li>
+            <p><br></p>
+<li>
+                <h3>$window</h3>
+            </li>
+            <p><br></p>
+<li>
+                <h3>$document</h3>
+            </li>
+        </ul>
+    </div>
+</div>
+</section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="2e73a7052dc753cb5d7a22822d3f008e" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>Ejemplo del servicio $http</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" data-block-id="3250dbce3871590dda7e661ac146bdf0" style="min-width: 30px; min-height: 30px; width: 800px; height: 490px; left: 80px; top: 140px;"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs php"><span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">'app'</span>, []);
+
+MainCtrl.<span class="hljs-variable">$inject</span>=[<span class="hljs-string">'$scope'</span>,<span class="hljs-string">'$http'</span>];
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MainCtrl</span><span class="hljs-params">(<span class="hljs-variable">$scope</span>,<span class="hljs-variable">$http</span>)</span> </span>{
+
+  <span class="hljs-keyword">var</span> config={
+    method:<span class="hljs-string">"GET"</span>,
+    url:<span class="hljs-string">"https://api.github.com/repos/angular/angular.js/issues?state=open"</span>
+  }
+   
+  <span class="hljs-keyword">var</span> promise=<span class="hljs-variable">$http</span>(config);
+
+  promise.then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(response)</span></span>{
+      <span class="hljs-variable">$scope</span>.issues=response.data;
+  },<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(response)</span> </span>{
+      alert(<span class="hljs-string">"Fallo la petición:"</span> + response.status);
+  })
+
+}
+
+app.controller(<span class="hljs-string">'MainCtrl'</span>,MainCtrl);</code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 0px;" data-block-id="3fe46ad48c32c6592445edda62adc12d"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>Ejemplo del servicio $http</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 800px; height: 490px; left: 80px; top: 140px;" data-block-id="8c4c4196749bb9e223e5e3fa3fd23920"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs handlebars"><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-title">table</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-title">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>Numero<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>Titulo<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>Usuario<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-title">tr</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">"issue in issues"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">issue.number</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">issue.title</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">issue.user.login</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-title">table</span>&gt;</span> </span></code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="0441249dacdbb37fe8bfa005e223a3eb" hidden=""><div class="sl-block" data-block-type="text" data-block-id="c1bbfe327a9a9233c38bacf4ada76497" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 52px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+        <h1>Filtros</h1>
+        <div>
+            <img style="width: 726px; height: 481.815px; max-height: none; max-width: none;" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/116764/filtros.png">
+            <br>
+        </div>
+    </div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="f18f1f4cf6d3f0e16ecb7ffc6c2c76eb" hidden=""><div class="sl-block" data-block-type="text" data-block-id="2687c68e9b101c2e06beb2d067ff98fb" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+        <h2>Filtros</h2>
+    </div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="8ee01de38c4065be55578f6a49f4f287" style="height: auto; min-width: 30px; min-height: 30px; width: 838px; left: 80px; top: 120px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<p>&nbsp;</p>
+
+<ul>
+	<li>
+	<h3>Permiten modificar cómo se presentan los datos</h3>
+	</li>
+	<br>
+	<li>
+	<h3>Se pueden aplicar tanto al HTML como al JavaScript</h3>
+	</li>
+	<br>
+	<li>
+	<h3>Cada uno se puede crear sus propios filtros</h3>
+	</li>
+</ul>
+</div>
+</div></section><section style="display: none;" class="future" aria-hidden="true" data-id="795903d6a5ce2c872b2a15afe19a4ec4" hidden=""><div class="sl-block" data-block-type="text" data-block-id="1f1bf8f6fb4d2c923955e7dae2952f15" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+<h2>Tipos de Filtros</h2>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<div style="text-align: left;">
+<ul>
+	<li>
+<p>Escalares</p>
+<ul>
+		<li><p>lowercase / uppercase</p></li>
+		<li><p>number</p></li>
+		<li><p>date</p></li>
+		<li><p>currency</p></li>
+	</ul>
+	</li>
+	<li>
+<p>Arrays</p>
+<ul>
+		<li><p>orderBy</p></li>
+		<li><p>limitTo</p></li>
+		<li><p>filter</p></li>
+	</ul>
+	</li>
+</ul>
+</div>
+
+<div>&nbsp;</div>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="code" data-block-id="7057d7c3fde1358562ba943a8aed1f35" style="min-width: 30px; min-height: 30px; width: 800px; height: 178px; left: 80px; top: 102px;"><div class="sl-block-content" style="z-index: 11;"><pre><code class=" hljs php">MainCtrl.<span class="hljs-variable">$inject</span>=[<span class="hljs-string">'$scope'</span>];
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MainCtrl</span><span class="hljs-params">(<span class="hljs-variable">$scope</span>)</span> </span>{
+  <span class="hljs-variable">$scope</span>.texto = <span class="hljs-string">"HOLA mundo"</span>;
+  <span class="hljs-variable">$scope</span>.numero = <span class="hljs-number">1.14159</span>;
+  <span class="hljs-variable">$scope</span>.precio = <span class="hljs-number">99.9</span>;
+  <span class="hljs-variable">$scope</span>.fecha = <span class="hljs-keyword">new</span> Date();
+});</code></pre></div></div>
+<div class="sl-block" data-block-type="code" data-block-id="20b7ad3aaf5c81a1c4a476e91ea2dd6a" style="min-width: 30px; min-height: 30px; width: 800px; height: 300px; left: 80px; top: 305px;"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs handlebars"><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">"MainCtrl"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Texto: </span><span class="hljs-expression">{{<span class="hljs-variable">texto</span>  | <span class="hljs-variable">uppercase</span> }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Texto: </span><span class="hljs-expression">{{<span class="hljs-variable">texto</span>  | <span class="hljs-variable">lowercase</span> }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Numero:</span><span class="hljs-expression">{{<span class="hljs-variable">numero</span> | <span class="hljs-variable">number</span>:4  }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Precio:</span><span class="hljs-expression">{{<span class="hljs-variable">precio</span> | <span class="hljs-variable">currency</span>  }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Fecha:            </span><span class="hljs-expression">{{<span class="hljs-variable">fecha</span> | <span class="hljs-variable">date</span>:'<span class="hljs-variable">dd</span><span class="hljs-end-block">/MM</span><span class="hljs-end-block">/yyyy</span>' }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Fecha (short):    </span><span class="hljs-expression">{{<span class="hljs-variable">fecha</span> | <span class="hljs-variable">date</span>:'<span class="hljs-variable">short</span>' }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Fecha (shortDate):</span><span class="hljs-expression">{{<span class="hljs-variable">fecha</span> | <span class="hljs-variable">date</span>:'<span class="hljs-variable">shortDate</span>' }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span></span></code></pre></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="4dd93c95c38b2c0b93a5ec62d5c27843" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 622px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p style="text-align:left">NOTA: Cuidado al usar formatos de fecha predefinidos.&nbsp;&nbsp;Pueden cambiar entre versiones</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="1a672cc346dca58be346b01614080bed" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<h2>Ejemplo de filtros de escalares</h2>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="code" style="width: 800px; height: 561px; left: 80px; top: 106px;" data-block-id="5f6c0883724a8f4d11c456e43de4e9f9"><div class="sl-block-content" style="z-index: 11;"><pre><code class=" hljs groovy">MainCtrl.$inject=[<span class="hljs-string">'$scope'</span>];
+function MainCtrl($scope) {
+
+  $scope.usuarios = [
+    {
+<span class="hljs-label">      idUsuario:</span><span class="hljs-number">34</span>,
+<span class="hljs-label">      nombre:</span><span class="hljs-string">"Juan"</span>,
+<span class="hljs-label">      ape1:</span><span class="hljs-string">"Gonzalez"</span>
+    },
+    {
+<span class="hljs-label">      idUsuario:</span><span class="hljs-number">46</span>,
+<span class="hljs-label">      nombre:</span><span class="hljs-string">"Ana"</span>,
+<span class="hljs-label">      ape1:</span><span class="hljs-string">"Morales"</span>
+    },
+    {
+<span class="hljs-label">      idUsuario:</span><span class="hljs-number">62</span>,
+<span class="hljs-label">      nombre:</span><span class="hljs-string">"Sara"</span>,
+<span class="hljs-label">      ape1:</span><span class="hljs-string">"Diaz"</span>
+    },
+    {
+<span class="hljs-label">      idUsuario:</span><span class="hljs-number">18</span>,
+<span class="hljs-label">      nombre:</span><span class="hljs-string">"Marcos"</span>,
+<span class="hljs-label">      ape1:</span><span class="hljs-string">"Ortega"</span>
+    } 
+  ]
+
+}
+</code></pre></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="8aaa8e51cf3a25c8426f3ffc9c84813c" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<h2>Ejemplo de filtro "orderBy"</h2>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" style="height: auto; width: 960px; left: 0px; top: 0px;" data-block-id="acc92c83b642680fa1dd9962d90490c4"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>Ejemplo de filtro "orderBy"</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" style="width: 800px; height: 490px; left: 80px; top: 140px;" data-block-id="baa6707377ea295afa25b1b55b1bd001"><div class="sl-block-content" style="z-index: 13;"><pre><code class=" hljs handlebars"><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">"MainCtrl"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">table</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>Nombre<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>Apellido<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-title">tr</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">"usuario in usuarios | orderBy:['nombre','ape1']"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">usuario.nombre</span>}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span></span><span class="hljs-expression">{{<span class="hljs-variable">usuario.ape</span>1}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">table</span>&gt;</span>
+    
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span></span></code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="c70129b0c3dc7ba1a7d93d4eae68fd20" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 140px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>¿Necesitas más filtros?</h2>
+</div>
+</div>
+<div class="sl-block" data-block-type="text" data-block-id="f08ede22395e87c72b25c6d14cd7fad0" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 331px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+        <h3 style="text-align:left">
+                <a target="_blank" href="https://github.com/a8m/angular-filter">https://github.com/a8m/angular-filter</a>
+        </h3>
+    </div>
+</div></section><section style="display: none;" class="future" aria-hidden="true" data-id="f418c5d8263b1db8cc72f77fd2fe14e4" hidden=""><div class="sl-block" data-block-type="text" data-block-id="5811da4b0df229529ac39052dd6ba73c" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 51px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+        <h1>
+    Módulos
+</h1>
+        <div>
+            <img style="width: 702px; height: 482.236px; max-height: none; max-width: none;" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/116779/modulos.png">
+            <br>
+        </div>
+    </div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="3da096239e9e72a977ca4a33e233f0ab" hidden=""><div class="sl-block" data-block-type="text" data-block-id="d8f843a10eedc2b472b6f3c0d5c8cda3" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 106px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+<h2>Módulos</h2>
+
+<div>
+<h3>&nbsp;</h3>
+
+<h3>&nbsp;</h3>
+
+<h3>Agrupan funcionalidades&nbsp;</h3>
+
+<h3>para posteriormente&nbsp;</h3>
+
+<h3>añadirlas a la aplicación</h3>
+</div>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="60736258ca446c944dabda220c46ea84" hidden=""><div class="sl-block" data-block-type="text" data-block-id="b854439f73918009387c375877826ffb" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 83px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+<p>&nbsp;</p>
+
+<div style="text-align: left;">
+<ul>
+	<li>
+<p>Definen nuevos:</p>
+<ul>
+		<li><p>Controladores</p></li>
+		<li><p>Directivas</p></li>
+		<li><p>Filtros</p></li>
+		<li><p>Servicios</p></li>
+	</ul>
+	</li>
+</ul>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<ul>
+	<li>
+<p>Ejecutan código al cargar el módulo:</p>
+<ul>
+		<li><p>config: Código de configuración</p></li>
+		<li><p>run: Código "Main"</p></li>
+	</ul>
+	</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sl-block" data-block-type="image" data-block-id="c3058f3613035575db78c74989e9df8f" style="min-width: 30px; min-height: 30px; width: 641.636942675159px; height: 369px; left: 301.363057324841px; top: 142px;"><div class="sl-block-content" style="z-index: 12;"><img style="visibility: visible;" data-natural-width="546" data-natural-height="314" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/1121154/ClassDiagram2.jpg"></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="16bab4fddcd3bea073098ff7ba515e34" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<h2>Contenido de un módulo</h2>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="4bae41cef9d7c7dc80409fb578816501" hidden=""><div class="sl-block" data-block-type="text" data-block-id="8cf5a3ca969d95c716a55f1c3493b98a" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 0px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+<h2>Directiva ng-app</h2>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div style="text-align: left;">
+<p>&nbsp;</p>
+
+<ul>
+	<li>
+	<p>Indica el nombre del módulo inicial a cargar</p>
+	</li>
+	<li>
+	<p>El resto de módulos se cargan como dependencias de este primer módulo</p>
+	</li>
+</ul>
+</div>
+
+<div>&nbsp;</div>
+</div>
+</div>
+<div class="sl-block" data-block-type="code" data-block-id="36a6a07fc9880569a846d8b361363756" style="min-width: 30px; min-height: 30px; width: 800px; height: 300px; left: 80px; top: 364px;"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">ng-app</span>=<span class="hljs-value">"app"</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"angular.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"app.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">"MainCtrl"</span>&gt;</span>   
+  
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="25034abeb4f504d6e5d46fa250fdf0af" hidden=""><div class="sl-block" data-block-type="text" data-block-id="050209253b9cdbeb17974440fb829268" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10;">
+<h2>Ejemplo de módulos</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" data-block-id="d8e23c7729b071c6d7cd847e5fbac8f2" style="min-width: 30px; min-height: 30px; width: 800px; height: 80px; left: 80px; top: 200px;"><div class="sl-block-content" style="z-index: 11;"><pre><code class=" hljs ruby">angular.<span class="hljs-keyword">module</span>(<span class="hljs-string">"nombre"</span>,[<span class="hljs-string">'ui.router'</span>]);</code></pre></div></div>
+<div class="sl-block" data-block-type="code" style="min-width: 30px; min-height: 30px; width: 800px; height: 80px; left: 80px; top: 382px;" data-block-id="41b14a5eca14918bdfe7d610591f9f0b"><div class="sl-block-content" style="z-index: 12;"><pre><code class=" hljs coffeescript"><span class="hljs-reserved">var</span> modulo=angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">"nombre"</span>);</code></pre></div></div>
+<div class="sl-block" data-block-type="code" style="min-width: 30px; min-height: 30px; width: 800px; height: 80px; left: 80px; top: 576px;" data-block-id="e0f41096d20e6d66aa11908c7069cb8f"><div class="sl-block-content" style="z-index: 13;"><pre><code class=" hljs bash">modulo.controller(<span class="hljs-string">"MainCrtl"</span>,MainCrtl);</code></pre></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="6cef3ffbd2d8e0940df7211516174d61" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 161px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;" dir="ui">
+<p style="text-align:left">Creando un módulo con dependencia de 'ui.router':</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 80px; top: 343px;" data-block-id="07741fcf564a74cb91f33f748199c526"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15;">
+<p style="text-align:left">Obteniendo un módulo:</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 537px;" data-block-id="83e9ef41c296f3b14d8a36086c40cad5"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17;">
+<p style="text-align:left">Usando el módulo para definir un controlador:</p>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="eb11de19c6ff3eba03b4f272f29ee513" hidden=""><div class="sl-block" data-block-type="text" data-block-id="c55d0f4a58d432686c09b0592f17cb7e" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 52px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;">
+        <h1>Para acabar</h1>
+        <div>
+            <img style="width: 617px; height: 481.815px; max-height: none; max-width: none;" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/120793/muerte1.png">
+        </div>
+    </div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="90eda17a1b6f9b70c019a9509ac54c43" hidden=""><div class="sl-block" data-block-type="text" data-block-id="8eb700bdf822838065807229eb57fa10" style="height: auto; min-width: 30px; min-height: 30px; width: 176px; left: 668px; top: 262px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p>Broccoli</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="c673dbdef41882f50c1253fcf0eac44d" style="height: auto; min-width: 30px; min-height: 30px; width: 240px; left: 61px; top: 570px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<p><span>Protractor</span></p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="dce8a27e00131ec75754219dc4de65ac" style="height: auto; min-width: 30px; min-height: 30px; width: 133px; left: 27px; top: 260px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+<p>Bower</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="4b17fc10adfc421b374720b9c41012dc" style="height: auto; min-width: 30px; min-height: 30px; width: 122px; left: 800px; top: 645px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<p>Gulp</p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-block-id="237fced91187ea371959a5886c53c912" style="min-width: 30px; min-height: 30px; width: 138px; height: 138px; left: 27px; top: 121px;"><div class="sl-block-content" style="z-index: 15;"><img style="visibility: visible;" data-natural-width="512" data-natural-height="512" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/1124771/bower_logo.png"></div></div>
+<div class="sl-block" data-block-type="image" data-block-id="b4451c1c17cc83c3b55565d2c2c25313" style="min-width: 30px; min-height: 30px; width: 128px; height: 128px; left: 685px; top: 123px;"><div class="sl-block-content" style="z-index: 16;"><img data-natural-width="550" data-natural-height="550" style="visibility: visible;" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/1124772/broccoli-logo-small.generated.png"></div></div>
+<div class="sl-block" data-block-type="image" data-block-id="1fed64898c4a6f7119b415a5e69c7bbf" style="min-width: 30px; min-height: 30px; width: 88.5176470588235px; height: 198px; left: 823px; top: 440px;"><div class="sl-block-content" style="z-index: 17;"><img style="visibility: visible;" data-natural-width="228" data-natural-height="510" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/1124784/gulp-2x.png"></div></div>
+<div class="sl-block" data-block-type="image" data-block-id="593c09238e3d6d9c184374b20b5d48c0" style="min-width: 30px; min-height: 30px; width: 180.074074074074px; height: 156px; left: 438px; top: 440px;"><div class="sl-block-content" style="z-index: 18;"><img data-natural-width="374" data-natural-height="324" style="visibility: visible;" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/1124788/yeoman-logo.png"></div></div>
+<div class="sl-block" data-block-type="image" data-block-id="a658b4d5d09acabb1a2e674c84928c57" style="min-width: 30px; min-height: 30px; width: 144.847058823529px; height: 171px; left: 349px; top: 175px;"><div class="sl-block-content" style="z-index: 19;"><img style="visibility: visible;" data-natural-width="288" data-natural-height="340" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/1124801/grunt.png"></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="0c4625d841718a8e37b51728ae15e7ea" style="height: auto; min-width: 30px; min-height: 30px; width: 133.5px; left: 349px; top: 346px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 20;">
+<p>Grunt</p>
+</div></div>
+<div class="sl-block" data-block-type="image" data-block-id="939c8207a9e96728eaf130c3378f2dfc" style="min-width: 30px; min-height: 30px; width: 166.5px; height: 166.5px; left: 89px; top: 400px;"><div class="sl-block-content" style="z-index: 21;"><img style="visibility: visible;" data-natural-width="282" data-natural-height="282" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/logongas/images/1124811/protractor-logo.png"></div></div>
+<div class="sl-block" data-block-type="text" data-block-id="bad0d3cb4d100bc75618595049b452b6" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 22;">
+<h1>Herramientas</h1>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="f1bab058608a4a36bba0ed1a0541a862" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 0px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>Consejos</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="f68d0474bdd689956244ebb1cd8b4ebc" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 140px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<ul>
+	<li>
+	<p>Controladores</p>
+
+	<ul>
+		<li>
+		<p>Quita todo lo que puedas de los controladores, usa servicios reutilizables.</p>
+		</li>
+		<li>
+		<p>No uses $scope, hay una nueva forma de declarar un controlador&nbsp;que usa "this".</p>
+		</li>
+		<li>
+		<p>No uses controladores, crea directivas que hacen la función del controlador.</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p>Módulos</p>
+
+	<ul>
+		<li>
+		<p>Los módulos son útiles en librerías de terceros, en tu aplicación usa un único módulo llamado "app"</p>
+		</li>
+	</ul>
+	</li>
+</ul>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 0px;" data-block-id="7db5b0061824b01bfa622db7ef998f6b"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<h2>Más consejos</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; width: 960px; left: 0px; top: 101px;" data-block-id="076b00c364c8387ffde6f9a840bf0ac3"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;" dir="ui">
+<ul>
+	<li>
+	<p>Usa promesas para casi todo, nunca sabes cuando algo será asíncrono.</p>
+	</li>
+	<li>
+	<p>No abuses del $watch, no suele ser necesario.</p>
+	</li>
+	<li>
+	<p>Arquitectura</p>
+
+	<ul>
+		<li>
+		<p>Un fichero cada clase</p>
+		</li>
+		<li>
+		<p>Ordena los ficheros por funcionalidades y no por tipos</p>
+		</li>
+		<li>
+		<p>Arquitectura en 3 capas</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p>Vuelve a simplificar tus controladores otra vez</p>
+	</li>
+</ul>
+</div></div></section><section style="display: none;" class="future" aria-hidden="true" hidden=""><div class="sl-block" data-block-type="text" data-block-id="ede9a2297c67980089ae2b938c173c11" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 70px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+<p>Nos hemos dejado más cosas.......</p>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="ce9d95a195fd7a3514133d611ea42c90" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 210px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
+<p>especialmente las rutas, pero hoy no era un buen día para contarlas &nbsp;;-)</p>
+</div></div>
+<div class="sl-block" data-block-type="code" data-block-id="5a9b2f0dd5ae6a45d59a2e1692d9d366" style="min-width: 30px; min-height: 30px; width: 800px; height: 149px; left: 80px; top: 350px;"><div class="sl-block-content" style="z-index: 13;"><pre><code class=" hljs coffeescript"><span class="hljs-reserved">var</span> app=angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">'app'</span>,[<span class="hljs-string">'ngNewRouter'</span>]);</code></pre></div></div></section><section style="display: none;" class="future" aria-hidden="true" data-id="03f153cec81a80995821aadcbe9ad607" hidden=""><div class="sl-block" data-block-type="text" data-block-id="903c85e13ad856ddd308a912a64137e6" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 48px;">
+    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" data-has-custom-html="" style="z-index: 11;" dir="ui">
+        <h2>&nbsp;</h2>
+        <h2>Gracias a todos</h2>
+        <h2>por vuestra atención</h2>
+        <h2>&nbsp;</h2>
+        <h2>¿Preguntas?</h2>
+        <p><a target="_blank" href="https://twitter.com/logongas">@logongas</a></p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>Mas en: 
+            
+            <a target="_blank" href="http://cursoangular.es/">http://cursoangular.es</a>
+        </p>
+        <p>Ejemplo en:&nbsp;
+            
+            <a target="_blank" href="https://github.com/logongas/decharlas2015">https://github.com/logongas/decharlas2015</a>
+        </p>
+    </div>
+</div></section>
+				</div>
+			<div class="backgrounds"><div data-loaded="true" style="display: block;" class="slide-background present"></div><div data-loaded="true" style="display: block;" class="slide-background future"></div><div data-loaded="true" style="display: block;" class="slide-background future"></div><div data-loaded="true" style="display: none;" class="slide-background future"></div><div data-loaded="true" style="display: none;" class="slide-background future"></div><div data-loaded="true" style="display: none;" class="slide-background future"></div><div data-loaded="true" style="display: none;" class="slide-background future"></div><div data-loaded="true" style="display: none;" class="slide-background future"></div><div data-loaded="true" style="display: none;" class="slide-background future"></div><div data-loaded="true" style="display: none;" class="slide-background future"></div><div data-loaded="true" style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div><div style="display: none;" class="slide-background future"></div></div><div style="display: block;" class="progress"><span style="width: 0px;"></span></div><aside style="display: block;" class="controls"><div class="navigate-left"></div><div class="navigate-right enabled"></div><div class="navigate-up"></div><div class="navigate-down"></div></aside><div class="slide-number"></div><div class="pause-overlay"></div><div aria-atomic="true" aria-live="polite" id="aria-status-div" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);">
+Introducción a AngularJS
+
+con ejemplos
+
+&nbsp;
+
+
+5 de Marzo de 2015
+
+UJI-Castellón
+
+</div></div>
+		</div>
+	</div>
+
+	<div style="opacity: 1;" class="deck-kudos">
+		<button class="kudos-button kudos-trigger" data-kudos-id="354396" data-kudoed-by-user="false">
+			<div class="kudos-heart">
+				<span class="kudos-icon icon i-heart-fill"></span>
+			</div>
+			<div class="kudos-count" data-kudos-value="1" data-kudos-id="354396"></div>
+		</button>
+	</div>
+
+	
+
+</div>
+
+<div class="column">
+	<header class="extra-wide">
+		<ul class="deck-social">
+			<li><div fb-iframe-plugin-query="app_id=178466085544080&amp;container_width=0&amp;href=http%3A%2F%2Fslides.com%2Flogongas%2Fintroduccion-angularjs-ejemplos-decharlas%23%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false" fb-xfbml-state="rendered" class="fb-like fb_iframe_widget" data-send="false" data-layout="button_count" data-show-faces="false"><span style="vertical-align: bottom; width: 76px; height: 20px;"><iframe class="" src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/like.html" style="border: medium none; visibility: visible; width: 76px; height: 20px;" title="fb:like Facebook Social Plugin" scrolling="no" allowtransparency="true" name="ff3b1ebf715d12" frameborder="0" height="1000px" width="1000px"></iframe></span></div></li>
+			<li><iframe style="width: 106px; height: 20px;" data-twttr-rendered="true" title="Twitter Tweet Button" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/tweet_button.html" allowtransparency="true" scrolling="no" id="twitter-widget-0" frameborder="0"></iframe></li>
+			<li><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px;"><iframe title="+1" data-gapiattached="true" src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/fastbutton.html" name="I0_1427826695785" id="I0_1427826695785" vspace="0" tabindex="0" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" scrolling="no" marginwidth="0" marginheight="0" hspace="0" frameborder="0" width="100%"></iframe></div></li>
+		</ul>
+
+		<div class="deck-promotion">
+			<a class="button cta" href="http://slides.com/pricing">Create a presentation like this <span class="logo"></span></a>
+		</div>
+
+		<div class="deck-options">
+			<a class="fullscreen-button" data-tooltip="Fullscreen" href="#"><span class="icon i-fullscreen"></span></a>
+			<a class="comment-button" data-tooltip="Comments" data-scroll-to="" href="#comments" data-scroll-to-offset="-90"><span class="icon i-comment-stroke"></span></a>
+			<a class="share-button" data-tooltip="Share" href="#"><span class="icon i-share"></span></a>
+		</div>
+
+		<div class="details">
+			<div class="deck-info">
+				<h3 class="title">Introducción a AngularJS con ejemplos</h3>
+				<p class="description">Introducción a AngularJS con ejemplos</p>
+				<ul class="deck-meta">
+					<li data-tooltip="Published date" data-tooltip-delay="500">
+						<span class="icon i-clock"></span>
+						<time class="value ago" datetime="2015-02-26 07:28:30 UTC">a month ago</time>
+					</li>
+					<li data-tooltip="Kudos" data-tooltip-delay="500">
+						<span class="icon i-heart-fill"></span>
+						<span class="value" data-kudos-value="1" data-kudos-id="354396"></span>
+					</li>
+					<li data-tooltip="Views" data-tooltip-delay="500">
+						<span class="icon i-eye"></span>
+						<span class="value">60</span>
+					</li>
+				</ul>
+			</div>
+
+			<div class="user-info">
+	<div class="picture" style="background-image: url(https://www.gravatar.com/avatar/27ac8ce13ce5999d9df8f5df0a93807d?s=140&amp;d=https%3A%2F%2Fs3.amazonaws.com%2Fstatic.slid.es%2Fimages%2Fdefault-profile-picture.png)"></div>
+	<div class="text">
+		<h3>
+			<a href="http://slides.com/logongas" class="username">Lorenzo Gonzalez</a>
+		</h3>
+		<p class="description"></p>
+		<ul class="links">
+			
+			 <li><a href="http://twitter.com/logongas" target="_blank"><span class="icon i-twitter"></span>logongas</a></li> 
+		</ul>
+	</div>
+	<div class="clear"></div>
+</div>
+
+			<div class="clear"></div>
+		</div>
+	</header>
+
+	<section class="comments" id="comments">
+		<div id="disqus_thread"><iframe verticalscrolling="no" horizontalscrolling="no" src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/a.html" style="width: 100% ! important; border: medium none ! important; overflow: hidden ! important; height: 321px ! important;" title="Disqus" tabindex="0" scrolling="no" allowtransparency="true" data-disqus-uid="2" id="dsq-2" frameborder="0" width="100%"></iframe></div>
+	</section>
+
+	<section class="deck-list">
+		<h2>More from <a href="http://slides.com/logongas">Lorenzo Gonzalez</a></h2>
+		<ul class="carousel">
+			<li class="deck-thumbnail">
+  <div class="deck-image" style="background-image: url(https://s3.amazonaws.com/media-p.slid.es/thumbnails/secure/4282b4/decks.jpg)">
+    <a class="deck-link" href="http://slides.com/logongas/arquitectura-3-capas-modelos-ricos"></a>
+  </div>
+  <footer class="deck-details">
+    <a class="author" href="http://slides.com/logongas">
+      <span class="picture" style="background-image: url(https://www.gravatar.com/avatar/27ac8ce13ce5999d9df8f5df0a93807d?s=140&amp;d=https%3A%2F%2Fs3.amazonaws.com%2Fstatic.slid.es%2Fimages%2Fdefault-profile-picture.png)"></span>
+      <span class="name">Lorenzo Gonzalez</span>
+    </a>
+    <div class="stats">
+      <div>123<span class="icon i-eye"></span></div>
+    </div>
+  </footer>
+</li>
+<li class="deck-thumbnail">
+  <div class="deck-image" style="background-image: url(https://s3.amazonaws.com/media-p.slid.es/thumbnails/logongas/f67046/directivas-en-angularjs.jpg)">
+    <a class="deck-link" href="http://slides.com/logongas/directivas-en-angularjs"></a>
+  </div>
+  <footer class="deck-details">
+    <a class="author" href="http://slides.com/logongas">
+      <span class="picture" style="background-image: url(https://www.gravatar.com/avatar/27ac8ce13ce5999d9df8f5df0a93807d?s=140&amp;d=https%3A%2F%2Fs3.amazonaws.com%2Fstatic.slid.es%2Fimages%2Fdefault-profile-picture.png)"></span>
+      <span class="name">Lorenzo Gonzalez</span>
+    </a>
+    <div class="stats">
+      <div>3,712<span class="icon i-eye"></span></div>
+    </div>
+  </footer>
+</li>
+<li class="deck-thumbnail">
+  <div class="deck-image" style="background-image: url(https://s3.amazonaws.com/media-p.slid.es/thumbnails/logongas/f0c575/introduccion-a-angularjs.jpg)">
+    <a class="deck-link" href="http://slides.com/logongas/introduccion-a-angularjs"></a>
+  </div>
+  <footer class="deck-details">
+    <a class="author" href="http://slides.com/logongas">
+      <span class="picture" style="background-image: url(https://www.gravatar.com/avatar/27ac8ce13ce5999d9df8f5df0a93807d?s=140&amp;d=https%3A%2F%2Fs3.amazonaws.com%2Fstatic.slid.es%2Fimages%2Fdefault-profile-picture.png)"></span>
+      <span class="name">Lorenzo Gonzalez</span>
+    </a>
+    <div class="stats">
+      <div>4,672<span class="icon i-eye"></span></div>
+    </div>
+  </footer>
+</li>
+<li class="deck-thumbnail">
+  <div class="deck-image" style="background-image: url(https://s3.amazonaws.com/media-p.slid.es/thumbnails/logongas/7ad50e/proyecto-2-daw.jpg)">
+    <a class="deck-link" href="http://slides.com/logongas/proyecto-2-daw"></a>
+  </div>
+  <footer class="deck-details">
+    <a class="author" href="http://slides.com/logongas">
+      <span class="picture" style="background-image: url(https://www.gravatar.com/avatar/27ac8ce13ce5999d9df8f5df0a93807d?s=140&amp;d=https%3A%2F%2Fs3.amazonaws.com%2Fstatic.slid.es%2Fimages%2Fdefault-profile-picture.png)"></span>
+      <span class="name">Lorenzo Gonzalez</span>
+    </a>
+    <div class="stats">
+      <div>718<span class="icon i-eye"></span></div>
+    </div>
+  </footer>
+</li>
+
+		</ul>
+	</section>
+
+</div>
+
+      </div>
+      <footer class="global-footer">
+    <div class="link-group">
+      <h5>Product</h5>
+      <a href="http://slides.com/">Home</a>
+      <a href="http://slides.com/explore">Explore</a>
+      <a href="http://slides.com/features">Features</a>
+      <a href="http://slides.com/pricing">Pricing</a>
+    </div>
+
+    <div class="link-group">
+      <h5>Help</h5>
+      <a href="http://help.slides.com/" target="_blank">Forum</a>
+      <a href="http://help.slides.com/knowledgebase" target="_blank">Knowledge base</a>
+      <a href="#" data-feedback-mode="smartvote">Give feedback</a>
+      <a href="#" data-feedback-mode="contact">Report an issue</a>
+    </div>
+
+    <div class="link-group">
+      <h5>News</h5>
+      <a href="http://blog.slides.com/" target="_blank">Blog</a>
+      <a href="http://twitter.com/slidesapp" target="_blank">Twitter</a>
+      <a href="http://facebook.com/slidesapp" target="_blank">Facebook</a>
+      <a href="https://plus.google.com/+slidesapp/" rel="publisher" target="_blank">Google+</a>
+    </div>
+
+    <div class="link-group">
+      <h5>Company</h5>
+      <a href="http://slides.com/about">About Slides</a>
+      <a href="http://slides.com/changelog">Changelog</a>
+      <a href="http://slides.com/terms">Terms of Service</a>
+      <a href="http://slides.com/privacy">Privacy Policy</a>
+    </div>
+
+    <div class="copyright"><span>Slides is made by Whim, LLC. ©2015</span></div>
+</footer>
+
+    </div> <!--! end of #container -->
+    <script>
+UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/f7sH7NavrjjvuGxByaw.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+
+UserVoice.push(['set', {
+  accent_color: '#448dd6',
+  trigger_color: 'white',
+  trigger_background_color: 'rgba(46, 49, 51, 0.6)',
+  position: 'automatic'
+}]);
+
+</script>
+    
+<script>
+	var SLConfig = {"deck":{"id":354396,"slug":"introduccion-angularjs-ejemplos-decharlas","title":"Introducción a AngularJS con ejemplos","description":"Introducción a AngularJS con ejemplos","visibility":"all","published_at":"2015-02-26T07:28:30.526Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/secure/dfe6a2/decks.jpg","view_count":60,"user":{"id":35420,"username":"logongas","name":"Lorenzo Gonzalez","description":"","thumbnail_url":"https://www.gravatar.com/avatar/27ac8ce13ce5999d9df8f5df0a93807d?s=140\u0026d=https%3A%2F%2Fs3.amazonaws.com%2Fstatic.slid.es%2Fimages%2Fdefault-profile-picture.png","pro":false,"enterprise":false,"enterprise_manager":false,"registered":true},"background_transition":"slide","transition":"slide","theme_id":null,"theme_font":"montserrat","theme_color":"white-blue","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":true,"rolling_links":false,"center":false,"should_loop":false,"rtl":false,"version":2}};
+</script>
+    <script defer="defer" src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/application-6aa62300aa42f7f8c754bbb65721740e.js"></script>
+    	<script defer="defer" src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/reveal.js"></script>
+	
+
+
+  
+
+<script src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/highlight-7402c6534a9b758348350ef3a07c9a11.js" type="text/javascript"></script><div class=" fb_reset" id="fb-root"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/ping.html" style="display: none;" scrolling="no" allowtransparency="true" name="f1b5515f8332ee" frameborder="0"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/6Dg4oLkBbYq.html" style="border: medium none;" tabindex="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_http" scrolling="no" allowtransparency="true" name="fb_xdm_frame_http" frameborder="0"></iframe><iframe src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/6Dg4oLkBbYq_002.html" style="border: medium none;" tabindex="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_https" scrolling="no" allowtransparency="true" name="fb_xdm_frame_https" frameborder="0"></iframe></div></div></div><iframe tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Introducci%C3%B3n%20a%20AngularJS%20con%20ejemplos%20by%20Lorenzo%20Gonzalez_files/postmessageRelay.html" id="oauth2relay1340032789" name="oauth2relay1340032789"></iframe></body></html>

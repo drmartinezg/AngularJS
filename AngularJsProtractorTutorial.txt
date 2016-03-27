@@ -1,0 +1,457 @@
+AngularJs Protractor Tutorial
+=============================
+
+01 - Framework Setup
+
+Protractor es un framework Javascript, basado en node.js que permite escribir test de aceptación (end-to-end test).
+Los test escritos en JavaScript permiten simular historias de usuario en el browser.
+Protractor se basa en Webdriver.
+Infraestructura:
+
+* NodeJs - Instalar desde nodejs.org
+** Comprobar instalación de Nodejs: 
+   $ node --version  -> 0.12.6
+** Comprobar Node Package Manager:  
+   $ npm --version   -> 2.11.2
+
+* Protractor 
+  $ npm install -g protractor
+  Se instala en %HOMEPATH%\AppData\Roaming\npm y %HOMEPATH%\AppData\Roaming\npm-cache
+** Comprobar Protractor
+  $ protractor --version  -> 2.1.0
+** Listado con módulos globales instalados
+  $ npm -g list
+
+* Selenium Server - WebDriver
+** Se necesita Selenium Server para ejecutar los test con Protractor. Selenimun Server necesita un JDK instalado.
+** Actualizar webdriver-manager para obtener la última versión (incluye chromedriver)
+  $ webdriver-manager update
+** Arrancar Selenium Server
+  $ webdriver-manager start
+
+* Con protractor se instalan unos dummy test para verificar que todo está bien instalado.
+  Se instalan en %HOMEPATH%\AppData\Roaming\npm\node_modules\protractor\example
+** Ejecutar los test
+  $ protractor conf.js
+
+** Contenido de example_spec.js
+	describe('angularjs homepage', function() {
+	  it('should greet the named user', function() {
+	    browser.get('http://www.angularjs.org');
+
+	    element(by.model('yourName')).sendKeys('Julie');
+
+	    var greeting = element(by.binding('yourName'));
+
+	    expect(greeting.getText()).toEqual('Hello Julie!');
+	  });
+
+	  describe('todo list', function() {
+	    var todoList;
+
+	    beforeEach(function() {
+	      browser.get('http://www.angularjs.org');
+
+	      todoList = element.all(by.repeater('todo in todoList.todos'));
+	    });
+
+	    it('should list todos', function() {
+	      expect(todoList.count()).toEqual(2);
+	      expect(todoList.get(1).getText()).toEqual('build an angular app');
+	    });
+
+	    it('should add a todo', function() {
+	      var addTodo = element(by.model('todoList.todoText'));
+	      var addButton = element(by.css('[value="add"]'));
+
+	      addTodo.sendKeys('write a protractor test');
+	      addButton.click();
+
+	      expect(todoList.count()).toEqual(3);
+	      expect(todoList.get(2).getText()).toEqual('write a protractor test');
+	    });
+	  });
+	});
+
+02 - Configuration and Basic Test
+
+* Configuration file - Contenido del conf.js
+	// An example configuration file.
+	exports.config = {
+	  // Using ChromeDriver directly (new)
+	  directConnect: true,
+
+	  // Using Selenium Server
+	  // seleniumAddress: 'http://localhost:4444/wd/hub',
+
+	  // Capabilities to be passed to the webdriver instance.
+	  capabilities: {
+	    'browserName': 'chrome'
+	  },
+
+	  // Framework to use. Jasmine 2 is recommended.
+	  framework: 'jasmine2',
+
+	  // Spec patterns are relative to the current working directly when
+	  // protractor is called.
+	  specs: ['zoo_spec.js'],
+
+	  // Options to be passed to Jasmine.
+	  jasmineNodeOpts: {
+	    defaultTimeoutInterval: 30000
+	  }
+	};
+
+* Basic Test - Contenido de zoo_spec.js
+	describe('Test zoo site for input field on home page', function() {
+		it('should test input field and check text output', function() {
+			browser.get("http://www.thetestroom.com/jswebapp/")
+			element(by.model("person.name")).sendKeys("I will subscribe to this channel");
+			element(by.binding("person.name")).getText().then(function(text) {
+				console.log(text);
+			})
+		});
+	});
+
+03 - Using Locators
+
+* zoo_spec.js con varios ejemplos de localización de elementos y navegación entre páginas.
+
+	describe('Adopt an animal on the zoo test site', function() {
+
+		it('should able to adopt an animal', function() {
+			browser.get("http://www.thetestroom.com/jswebapp/")
+			element(by.model("person.name")).sendKeys("Manuel");
+			element(by.binding("person.name")).getText().then(function(text) {
+				console.log(text);
+			});
+			element(by.buttonText("CONTINUE")).click();
+			element(by.model("animal")).$('[value="1"]').click();
+			element(by.partialButtonText("CONT")).click();
+
+		});	
+
+	});
+
+04 - Using Expects
+
+* zoo_spec.js con varios escenarios con ejemplos de diferentes validaciones.
+
+	describe('Adopt an animal on the zoo test site', function() {
+
+		it('should able on correct page', function() {
+			browser.get("http://www.thetestroom.com/jswebapp/");
+			expect(browser.getCurrentUrl()).toContain("jswebapp");
+			expect(browser.getCurrentUrl()).toEqual("http://www.thetestroom.com/jswebapp/");
+		});	
+
+		it('should generate correct text', function() {
+			browser.get("http://www.thetestroom.com/jswebapp/");
+			var textMessage = "Manuel es el nombre de la persona";
+
+			element(by.model("person.name")).sendKeys(textMessage);
+			element(by.binding("person.name")).getText().then(function(text) {
+				expect(text).toEqual(textMessage);
+			});
+		});	
+
+		it('should check the correct number of items in drop down', function() {
+			browser.get("http://www.thetestroom.com/jswebapp/");
+			element(by.buttonText("CONTINUE")).click();
+			element(by.model("animal")).$('[value="1"]').click();
+
+			element.all(by.css(".ng-pristine option")).then(function(items) {
+				expect(items.length).toBe(4);
+				expect(items[1].getText()).toBe("George the Turtle");
+			});
+		});	
+
+		it('should check user is on the thank you page', function() {
+			browser.get("http://www.thetestroom.com/jswebapp/");
+			element(by.buttonText("CONTINUE")).click();
+			element(by.buttonText("CONTINUE")).click();
+			expect(browser.getCurrentUrl()).toContain("confirm");
+		});	
+
+	});
+
+05 - Before and After
+
+* beforeEach y afterEach se utilizan para ejecutar sentencias antes de despues de cada escenario/test.
+* zoo_spec.js con ejemplos de métodos beforeEach y afterEach.
+
+	describe('Adopt an animal on the zoo test site', function() {
+
+		beforeEach(function() {
+			browser.get("http://www.thetestroom.com/jswebapp/");
+		});
+
+		afterEach(function() {
+			console.log("After method executed");
+		});
+
+		it('should able on correct page', function() {
+			expect(browser.getCurrentUrl()).toEqual("http://www.thetestroom.com/jswebapp/");
+		});	
+
+		describe('should generate correct text', function() {
+			var textMessage;
+
+			beforeEach(function() {
+				textMessage = "Manuel es el nombre de la persona";			
+			});
+
+			it('should check correct text', function() {
+				element(by.model("person.name")).sendKeys(textMessage);
+				element(by.binding("person.name")).getText().then(function(text) {
+					expect(text).toEqual(textMessage);
+				});
+			});
+		});	
+
+		describe('should check the correct number of items in drop down', function() {
+
+			var lengthOfItems;
+
+			beforeEach(function() {
+				lengthOfItems = 4;
+			});
+
+			it('should check number of items', function() {
+				element(by.buttonText("CONTINUE")).click();
+				element(by.model("animal")).$('[value="1"]').click();
+
+				element.all(by.css(".ng-pristine option")).then(function(items) {
+					expect(items.length).toBe(lengthOfItems);
+					expect(items[1].getText()).toBe("George the Turtle");
+				});
+			});
+		});	
+
+		it('should check user is on the thank you page', function() {
+			element(by.buttonText("CONTINUE")).click();
+			element(by.buttonText("CONTINUE")).click();
+			expect(browser.getCurrentUrl()).toContain("confirm");
+		});	
+
+	});
+
+06 - Writting CSS Expressions
+
+* zoo_css_exp_spec.js con ejemplos de expresiones CSS para seleccionar elementos de una página.
+	describe('Testing the JavaScript zoo site', function() {
+		
+		beforeEach(function() {
+			browser.get("http://www.thetestroom.com/jswebapp/index.html");
+		});
+
+		it('should test by using CSS expressions', function() {
+			// css tag
+			element(by.css('input')).sendKeys("text test");
+
+			// css class
+			element(by.css('.ng-binding')).getText().then(function (text) {
+				console.log(text);
+			});
+
+			// css ids
+			element(by.css('#continue_button')).click();
+
+			// css chaining
+			element(by.css('button#continue_button')).click();
+
+			// css child nodes
+			element(by.css('table td a')).getText().then(function (text) {
+				console.log(text);
+			});
+
+			// css attributes
+			element(by.css('h1[id="title"]')).getText().then(function (text) {
+				console.log(text);
+			});
+		});
+	});
+
+07 - Using Page Object Pattern
+
+* Page Object es la representación de una página web.
+* zoo_page_object_spec.js - Partimos de un escenario simplificado que navega y valida las tres páginas.
+	describe('To test the animal adoption flow', function() {
+
+		beforeEach(function() {
+			browser.get("http://www.thetestroom.com/jswebapp/");
+		});
+
+		it('should be to adopt an animal', function() {
+			var	textMessage = "Manuel es el nombre de la persona";
+			element(by.model("person.name")).sendKeys(textMessage);
+			var dynamicText = element(by.binding("person.name")).getText();
+			expect(dynamicText).toBe(textMessage);
+			element(by.buttonText("CONTINUE")).click();
+
+			element(by.model("animal")).$('[value="2"]').click();
+			element(by.buttonText("CONTINUE")).click();
+
+			var thankYouText = element(by.css("h1")).getText();
+			expect(thankYouText).toBe('Thank you');
+		});	
+	});
+
+* Creamos los directorios conf, test y page. 
+  Copiamos conf.js a conf, zoo_page_object_spec.js a test.
+  Modificamos conf.js para que ejecute los escenarios del directorio test.
+
+* Creamos home_page.js en page. Define el objeto home_page y lo exporta.
+	var home_page = function () {
+	};
+	module.exports = new home_page();
+
+* Creamos los métodos en home_page.js
+	var home_page = function () {
+
+		this.enterFieldValue = function (value) {
+			element(by.model('person.name')).sendKeys(value);
+		};
+
+		this.getDynamicText = function () {
+			return element(by.binding('person.name')).getText();
+		};
+
+
+		this.clickContinue = function () {
+			element(by.buttonText('CONTINUE')).click();
+		};
+		
+	};
+	module.exports = new home_page();
+
+* Generamos un nuevo escenario que utiliza el objeto home_page. Verificamos su funcionamiento.
+	describe('To test the animal adoption flow', function() {
+
+		beforeEach(function() {
+			browser.get("http://www.thetestroom.com/jswebapp/");
+		});
+
+		var home_page = require('../page/home_page.js');
+
+		it('should be able to adopt an animal by page objects', function() {
+			var	textMessage = "Francisco José López";
+			home_page.enterFieldValue(textMessage);
+			var getHomePageText = home_page.getDynamicText();
+			expect(getHomePageText).toBe(textMessage);
+			home_page.clickContinue();
+
+		});
+	});	
+
+* Creamos animal_page.js con los métodos propios de está página:
+	var animal_page = function () {
+
+		this.selectAnimal = function (index) {
+			element(by.model('animal')).$('[value="' + index + '"]').click();
+		}
+
+		this.clickContinue = function () {
+			element(by.buttonText('CONTINUE')).click();
+		};
+	};
+
+	module.exports = new animal_page();
+
+* Modificamos el método clickContinue de home_page para que devuelva una referencia a la página animal_page
+  y añadimos la sentencia require para importar el módulo.
+
+	require('../page/animal_page.js');
+
+	var home_page = function () {
+	...
+			this.clickContinue = function () {
+				element(by.buttonText('CONTINUE')).click();
+				return require('./animal_page.js'); 
+			};
+	};
+		
+* Añadimos animal_page al nuevo escenario de home_page. Comprobamos su funcionamiento.
+	describe('To test the animal adoption flow', function() {
+	...
+		it('should be able to adopt an animal by page objects', function() {
+		...	
+			var animal_page = home_page.clickContinue();
+
+			animal_page.selectAnimal(2);
+			animal_page.clickContinue();
+		});
+	});
+
+* Modificamos el método clickContinue de animal_page para que devuelva una referencia a la página confirm_page
+  y añadimos la sentencia require para importar el módulo.
+
+	require('../page/confirm_page.js');
+
+	var animal_page = function () {
+	...
+		this.clickContinue = function () {
+			element(by.buttonText('CONTINUE')).click();
+			return require('./confirm_page.js');
+		};
+	};
+
+* Creamos confirm_page.js
+	var confirm_page = function () {
+
+		this.getTitle = function () {
+			return element(by.css('h1')).getText();
+		}
+	};
+
+	module.exports = new confirm_page();
+
+* Añadimos confirm_page al escenario de zoo_page_object_spec.js
+	describe('To test the animal adoption flow', function() {
+	...
+		it('should be able to adopt an animal by page objects', function() {
+		...
+			var confirm_page = animal_page.clickContinue();
+			expect(confirm_page.getTitle()).toBe('Thank you');
+		});
+
+	}); 
+	
+08 - Aplicación local y ejecución con distintos navegadores
+
+* El directorio thetestroom contiene la aplicación utilizada en las pruebas, adaptada para ser ejecutada en local.
+  Pruebas con XAMPP
+
+* El fichero conf.js contiene diversas configuraciones para lanzar los test en chrome, firefox o en ambos simultaneamente.
+	exports.config = {
+	...
+	  capabilities: {
+	    'browserName': 'chrome',
+	    'chromeOptions': {
+	      'args': ['show-fps-counter=true']
+	    }
+	  },
+
+	  capabilities: {
+	    'browserName': 'firefox',
+	    'firefox_binary': 'C:/Program Files (x86)/Mozilla Firefox_11/firefox.exe',
+	    'binary_': 'C:/Program Files (x86)/Mozilla Firefox_11/firefox.exe'
+	  },
+
+	  capabilities: {
+	    'browserName': 'internet explorer'
+	  },
+
+	  multiCapabilities: [{
+	      'browserName': 'firefox',
+	      'firefox_binary': 'C:/Program Files (x86)/Mozilla Firefox_11/firefox.exe',
+	      'binary_': 'C:/Program Files (x86)/Mozilla Firefox_11/firefox.exe'
+	    }, {
+	      'browserName': 'chrome',
+	      'chromeOptions': {
+	        'args': ['show-fps-counter=true']
+	      }
+	  }],
+	...  
+	};
+

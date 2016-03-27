@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Animaciones - AngularJS</title>
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="animacion.css">
+
+  <script src="http://code.angularjs.org/1.2.13/angular.min.js"></script>
+  <script src="http://code.angularjs.org/1.2.13/angular-animate.js"></script>
+  <script src="animacion.js"></script>
+</head>
+<body ng-app="miAp">
+  <div class="container" ng-controller="AnimacionCtrl">
+  	<div class="page-header">
+  		<h1 class="animar" ng-if="visible">Animaciones <small>con AngularJS</small></h1>
+  	</div>
+  	<button class="btn btn-success btn-lg fa fa-play" ng-click="visible=!visible"></button>
+  </div> 
+</body>
+</html>

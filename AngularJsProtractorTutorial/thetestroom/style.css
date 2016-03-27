@@ -1,0 +1,57 @@
+table, th, td {
+    border: 1px solid black;
+}
+div.container {
+    width:80%;
+    margin:0%;
+    display: inline-block;
+    vertical-align: top;
+}
+table#table1 {
+    text-align:center;
+    vertical-align: top;
+    margin-left:auto;
+    margin-right:auto;
+    width:80%;
+    background-image:url("image/table_background.png");
+}
+tr,td {
+    text-align:left;
+}
+table td {
+    display: table-cell;
+    vertical-align: top;
+}
+table#table2 {
+    text-align:center;
+    vertical-align: top;
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;
+}
+body {
+    background-image:url("image/background.png");
+}
+tr.head {
+    background-image: url("image/page_head_background.png");
+    height: 50px;
+}
+tr.foot {
+    background-image: url("image/page_foot_background.png");
+    height: 50px;
+}
+td.content {
+    background-image: url("image/page_content_background.png");
+}
+table.inner_table {
+    background-image: url("image/page_inner_table_background.png");
+}
+td.left_link {
+    background-image: url("image/page_left_link_background.png");
+}
+h1.subhead {
+    font-size: 25px;
+}
+a.home {
+
+}

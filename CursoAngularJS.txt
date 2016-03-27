@@ -1,0 +1,214 @@
+Curso AngularJS
+
+* Node.js
+** Instalar desde nodejs.org
+** Comprobar instalación: 
+   $ node --version
+   $ npm --version
+
+* Servidor ExpressJs
+** Instalar: 
+   $ npm install -g express-generator
+** Crear un servidor: 
+   $ express miservidor  
+   $ cd miservidor
+   $ npm install
+** Arrancar servidor
+   $ npm start
+
+* GRUNT (Automatizador de Tareas. Similar a Maven)
+** Instalar desde consola con permisos de administrador:
+   $ npm install -g grunt-cli	// Grunt Command Line Interface 
+   $ npm install -g grunt-init  // Grunt Initializer
+   $ mkdir miproyecto
+   $ cd miproyecto
+   $ touch package.json
+   {
+   	 "name": "MiProyecto",
+   	 "version": "0.1.0",
+   	 "devDependencies": {
+   	 	"grunt": "~0.4.5",
+   	 	"grunt-contrib-jshint": "~0.10.0",
+   	 	"grunt-contrib-concat": "~0.4.0",
+   	 	"grunt-contrib-uglify": "~0.5.0",
+   	 	"grunt-shell": "~0.7.0"
+   	 }
+   }
+   $ npm install --save-dev
+** Comprobar instalación   
+   $ grunt --version
+
+* Depurar codigo con Grunt
+** Fichero gruntfile.js
+   module.exports = function(grunt) {
+   	  // Project configuration.
+   	  grunt.initConfig({
+   	     jshint: {
+   	        all: ['scripts.js']
+   	     }
+   	  });
+   	  grunt.loadNpmTasks('grunt-contrib-jshint');
+   	  // Default task.
+   	  grunt.registerTask('default', ['jshint']);
+   };
+   $ grunt
+
+* Mezclar y reducir archivos .js con Grunt
+** Dentro de gruntfile.js definir las tareas
+   grunt.initConfig({
+      concat: {
+         dist: {
+            src: ['scripts.js', 'script1.js', 'script2.js'],
+            dest: 'unidos.js'
+         }
+      },
+      uglify: {
+         dist: {
+            src: 'unidos.js',
+            dest: 'build/unidos.min.js'
+         }
+      }	
+   });
+** Cargar los plugins
+   	  grunt.loadNpmTasks('grunt-contrib-concat');
+   	  grunt.loadNpmTasks('grunt-contrib-uglify');
+** Registrar las tareas
+   	  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+
+* Uso de Grunt-Shell
+** En gruntfile.js definir las tareas
+   grunt.initConfig({
+       shell: {
+           multiple: {
+               command: [
+                   'del unidos.js',
+                   'mkdir deploy',
+                   'move build\\unidos.min.js deploy\\unidos.min.js'
+               ].join('&&')
+           }
+       }
+   })
+** Cargar el plugin del shell
+   	  grunt.loadNpmTasks('grunt-shell');
+** Registrar las tareas
+   	  grunt.registerTask('default', ['jshint', 'concat', 'uglify','shell']);
+
+* Scaffolding Web con Yeoman
+** Instalar Yeoman desde consola con permisos de administrador:
+   $ npm install -g yo
+** Instalar generador AngularJs de Yeoman
+   $ npm install -g generator-angular
+** Crear proyecto
+   $ mkdir proyecto
+   $ cd proyecto
+   $ yo angular
+     Sass? No
+     Bootstrap? Y 
+   $ grunt serve (Servidor incluido en grunt. Uso desaconsejado)
+
+* Dependencias en una aplicación Yeoman
+** bower -> Gestor de dependencias
+** Como instalar Bower  
+    $ npm install -g bower
+*** bower_compnents -> Librerias usadas (bootstrap, angular, jquery, ...) 
+*** bower.json -> Nombre y version del proyecto, dependencias, ...
+** Karma -> Herramienta de testing
+*** karma.conf.js -> Fichero de cofiguración. Esta en el directorio "test"
+*** jasmine -> Framework de testing
+
+* Crear lista de tareas con Yeoman
+** Proceso de instalación de Yeoman
+*** Prerequisitos: Node.js, npm, git
+*** Instalar el Set de herramientas que forman Yeoman:
+    $ npm install -g yo
+*** Comprobar versiones
+    $ yo --version && bower --version && grunt --version
+*** Instalar el generador de Yeoman para Angular    
+	$ npm install -g generator-angular@0.9.8
+** Crear proyecto
+*** El generador de AngularJs usa el nombre del directorio como namespace
+	$ mkdir tareas & cd tareas
+	$ yo
+	$ npm install
+	$ grunt serve
+*** Instalar el modulo "sortable" de Angular-UI
+    $ bower list -> Lista los modulos instalados
+    $ bower search angular-ui-sortable -> Busca modulos en repositorio
+    $ bower install --save angular-ui-sortable jquery-ui
+*** Añadir enlace a los nuevos módulos en index.html
+    Lo hace automáticamente al ejecutar $grunt serve
+*** Cargar el módulo sortable dentro de nuestra aplicación
+    Modificar el archivo scripts/app.js
+    Añadir 'ui.sortable' a la lista de módulos
+*** Generar módulos AngularJs desde Yeoman
+    $ yo angular:controller myController
+    $ yo angular:directive myDirective
+    $ yo angular:filter myFilter
+    $ yo angular:service myService   
+    $ yo angular:view myView
+
+* Pruebas unitarias con Karma y Jasmine
+** Instalar Karma
+   $ npm install -g karma
+** Ejecutar los test
+   $ grunt test
+** Actualizar configuración en test/karma.confg.js añadiendo todos los componentes usados.
+    files: [
+      ...
+      'bower_components/jquery/dist/jquery.js',
+      'bower_components/jquery-ui/ui/jquery-ui.js',
+      'bower_components/angular-ui-sortable/sortable.js',
+    ],
+** test/spec/controllers - Pruebas unitarias para cada controller
+
+* Persistir datos en almacenamiento local
+** Módulo para almacenar datos en local
+   $ bower install --save angular-local-storage
+** Añadir en index.html una referencia al módulo que acaba de ser instalado
+   Lo añade automáticamente yeoman si lanzamos el servidor.
+   $ grunt serve
+** Cargar el módulo sortable dentro de nuestra aplicación
+   Modificar el archivo scripts/app.js
+   Añadir 'LocalStorageModule' a la lista de módulos
+** Configurar módulo en app.js (entre el array de módulos y el .config(..))   
+   .config(['localStorageServiceProvider', function(localStorageServiceProvider) {
+      localStorageServiceProvider.setPrefix('ls');
+   }])
+** Actualizar en app/script/controllers/main.js
+   Añadir dependencia en MainController
+   .controller('MainCtrl', function ($scope, localStorageService)) {
+     var tareasEnAlmacen = localStorageService.get('tareas');
+     $scope.tareas = tareasEnAlmacen && tareasEnAlmacen.split('\n') || [];
+     $scope.$watch('tareas', function() {
+       localStorageService.add('tareas', $scope.tareas.join(\n));
+     }, true);
+     ...
+   }
+
+* Crear una versión para publicar el proyecto. (21)
+  $ grunt --force
+** Tareas que realiza:
+*** Optimizar código
+*** Realizar pruebas
+*** Minimizar scripts
+*** Optimizar imágenes y compilar salida de cualquier pre-procesador que estemos usando.
+
+* Creación rápida de prototipos con Yeoman (22)
+  $ mkdir prototipo && cd prototipo
+  $ yo angular
+  $ npm install -g generator-angular
+  $ bower install angular-bootstrap
+  $ grunt serve
+** index.html
+   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+** app.js
+  .module('prototipoApp', [
+    ...,
+    'ui.bootstrap'
+  ])
+** Crear un menu -> index.html
+** Añadir un Carrusel (22b)
+** Completar página principal (23)
+** Automatizar creación MVC con Yeoman. (24)
+
+

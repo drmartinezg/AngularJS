@@ -1,0 +1,16 @@
+CursoApiWebRestful
+
+* NodeJs
+** Instalar desde nodejs.org
+** Comprobar instalación: 
+   $ node --version
+   $ npm --version
+
+* Express
+** Instalar Express de manera global
+   $ npm -g express
+** Instalar Express de manera local al proyecto
+   $ npm express
+** Comprobar modulos locales instalados
+   $ npm ls
+   

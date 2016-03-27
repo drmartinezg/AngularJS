@@ -1,0 +1,1 @@
+/**/__twttr.receiveCount({"count":0,"url":"http:\/\/slides.com\/logongas\/introduccion-angularjs-ejemplos-decharlas\/"});

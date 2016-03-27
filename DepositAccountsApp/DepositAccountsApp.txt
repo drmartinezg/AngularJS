@@ -1,0 +1,88 @@
+DepositAccountsApp
+==================
+* Tareas para incluir test
+** Instalar karma local o global (recomendado)
+	$ npm install karma --save-dev  -> local
+	$ npm install -g karma -> global
+** Instalar Jasmine
+	$ npm install karma-jasmine --save-dev
+	$ npm install karma-chrome-launcher --save-dev
+** Configurar karma   
+	$ karma init
+	Testing framework > jasmine
+	Require.js > no
+	Browser > Chrome
+	Sources > app/scripts/**/*.js
+	Test > test/**/*.js
+	Karma watch all files > yes
+
+** Instalar plugins de jasmin y karma para gulp
+	$ npm install --save-dev gulp-jasmine
+	$ npm install --save-dev gulp-karma
+
+** Instalar plugin phantomjs para karma	
+    $ npm install karma-phantomjs-launcher --save-dev	
+
+** Instalar ng-table via bower
+	$ bower install --save ng-table
+
+==================
+Jenkins 
+==================
+* Crear ambiente de pruebas:
+** Jenkins (W2003CMAS de INT-CHQ) : http://10.0.2.19:8080/jenkins/
+*** Version: 1.483
+*** Sonar Plugin: 1.8
+** Jenkins (Portatil Toshiba) : http://10.0.2.60:8080/jenkins/
+*** Version: 1.462
+*** Sonar Plugin: 1.8
+
+** Sonar para pruebas (INT-CHQ) : http://10.0.2.18:9000
+*** Version: 3.3
+	
+** Instalar plugins para generar informes de junit y coverage
+npm install -g karma-junit-reporter
+npm install karma-junit-reporter --save-dev 
+npm install -g karma-coverage
+npm install karma karma-coverage --save-dev
+
+** Instalar el plugin gulp-replace para corregir el problema de path incorrecto generado en el informe LCOV
+npm install --save-dev gulp-replace
+
+** Job del Jenkins: DepositAccountsApp
+*** URL repositorio: https://svn.ipsa.es/tecnologia/AtrilCaptureApplet/branches/atril-capture-applications-2.1-ValidacionesDE-SNAPSHOT/DepositAccountsProject/DepositAccountsApp
+*** Ejecutar comando Windows
+npm install
+bower install
+gulp test-ci
+*** Invoke Standalone Sonar Analysis -> Project properties
+############################################################################
+# required metadata
+sonar.projectKey=angular:DepositAccountApp
+sonar.projectName=Deposit Accounts Application
+sonar.projectVersion=1.0.0
+sonar.projectBaseDir=.
+ 
+# optional description
+sonar.projectDescription=CRUD de Cuentas de Depósito usando AngularJS.
+ 
+# path to source directories (required)
+sonar.sources=app/scripts
+sources=app/scripts
+ 
+# The value of the property must be the key of the language.
+sonar.language=js
+ 
+# Encoding of the source code
+sonar.sourceEncoding=UTF-8
+
+# Coverage
+sonar.javascript.lcov.reportPath=test/results/lcov.info
+sonar.javascript.jstest.reportsPath=test/results/
+############################################################################
+
+
+** Tarea 'clean' en Gulpfile.js para limpiar directorio dist antes de build
+npm install --save-dev gulp del
+
+

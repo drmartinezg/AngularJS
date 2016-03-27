@@ -1,0 +1,379 @@
+Phonecat Tutorial
+==================
+
+* Necesario tener instalado git y nodejs
+  $ node --version
+* Clonar repositorio
+  $ git clone https://github.com/angular/angular-phonecat.git
+  $ cd angular-phonecat
+* Descargar herramientas NodeJs en directorio node_modules: 
+** Bower -> Gestor de paquetes
+** Htt-Server -> Servidor web local
+** Karma -> unit test runner
+** Protractor -> end to end (E2E) test runner
+  $ npm install
+* Scripts preconfigurados
+  $ npm start -> Arranca servidor web local de desarrollo 
+    http://localhost:8000/app/index.html 
+  $ npm test  -> Arranca el ejecutor de test unitarios de Karma
+  $ npm run protractor -> Ejecuta los test E2E con Protractor
+  $ npm run update-webdriver -> Instala los drivers que necesita Protractor
+
+0 - Bootstrapping 
+  $ git checkout -f step-0
+  -> index.html ->  <p>1 + 2 = {{ 1 + 2 }}</p>
+
+1 - Static Template
+  $ git checkout -f step-1
+
+2 - Angular Templates
+  $ git checkout -f step-2
+
+  -> test/unit/controllersSpec.js:
+		describe('PhoneListCtrl', function(){
+		  beforeEach(module('phonecatApp'));
+		  it('should create "phones" model with 3 phones', inject(function($controller) {
+		    var scope = {},
+		        ctrl = $controller('PhoneListCtrl', {$scope:scope});
+
+		    expect(scope.phones.length).toBe(3);
+		  }));
+		});
+
+  $ npm test
+
+3 - Filtering Repeaters (2a)
+  $ git checkout -f step-3
+  -> index.html
+		Search: <input ng-model="query">
+		<li ng-repeat="phone in phones | filter:query">
+
+  -> test/e2e/scenarios.js:
+		describe('PhoneCat App', function() {
+		  describe('Phone list view', function() {
+		    beforeEach(function() {
+		      browser.get('app/index.html');
+		    });
+		    it('should filter the phone list as a user types into the search box', function() {
+		      var phoneList = element.all(by.repeater('phone in phones'));
+		      var query = element(by.model('query'));
+		      expect(phoneList.count()).toBe(3);
+
+		      query.sendKeys('nexus');
+		      expect(phoneList.count()).toBe(1);
+
+		      query.clear();
+		      query.sendKeys('motorola');
+		      expect(phoneList.count()).toBe(2);
+		    });
+		  });
+		});
+
+** Ejecutar test End to End con Protractor
+  $ npm start -> Arranca servidor web local de desarrollo 
+  $ npm run protractor -> Ejecuta los test E2E con Protractor
+  $ npm run update-webdriver -> Instala los drivers que necesita Protractor
+
+4 - Two-way Data Binding (2b)
+  $ git checkout -f step-4
+
+  -> index.html
+		Search: <input ng-model="query">
+		Sort by:
+		<select ng-model="orderProp">
+		  <option value="name">Alphabetical</option>
+		  <option value="age">Newest</option>
+		</select>
+
+		<ul class="phones">
+		  <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
+		    <span>{{phone.name}}</span>
+		    <p>{{phone.snippet}}</p>
+		  </li>
+		</ul>
+
+5 - XHRs & Dependency Injection (3a)
+  $ git checkout -f step-5
+
+  -> controllers.js
+		var phonecatApp = angular.module('phonecatApp', []);
+
+		phonecatApp.controller('PhoneListCtrl', ['$scope', '$http', function($scope, $http) {
+		  $http.get('phones/phones.json').success(function(data) {
+		    $scope.phones = data;
+		  });
+
+		  $scope.orderProp = 'age';
+		}]);  
+
+6 - Templating Links & Images (3b)
+  $ git checkout -f step-6
+
+  -> index.html
+        <ul class="phones">
+          <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" class="thumbnail">
+            <a href="#/phones/{{phone.id}}" class="thumb"><img ng-src="{{phone.imageUrl}}"></a>
+            <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
+            <p>{{phone.snippet}}</p>
+          </li>
+        </ul>
+
+  -> test/e2e/scenarios.js:
+		it('should render phone specific links', function() {
+		  var query = element(by.model('query'));
+		  query.sendKeys('nexus');
+		  element(by.css('.phones li a')).click();
+		  browser.getLocationAbsUrl().then(function(url) {
+		    expect(url.split('#')[1]).toBe('/phones/nexus-s');
+		  });
+		});
+
+7 - Routing & Multiple Views (4a)
+  $ git checkout -f step-7
+
+  -> app/js/app.js:
+		var phonecatApp = angular.module('phonecatApp', [
+		  'ngRoute',
+		  'phonecatControllers'
+		]);
+
+		phonecatApp.config(['$routeProvider',
+		  function($routeProvider) {
+		    $routeProvider.
+		      when('/phones', {
+		        templateUrl: 'partials/phone-list.html',
+		        controller: 'PhoneListCtrl'
+		      }).
+		      when('/phones/:phoneId', {
+		        templateUrl: 'partials/phone-detail.html',
+		        controller: 'PhoneDetailCtrl'
+		      }).
+		      otherwise({
+		        redirectTo: '/phones'
+		      });
+		  }]);
+
+8 - More Templating (4b)
+  $ git checkout -f step-8
+
+  -> controllers.js
+		phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', '$http',
+		  function($scope, $routeParams, $http) {
+		    $http.get('phones/' + $routeParams.phoneId + '.json').success(function(data) {
+		      $scope.phone = data;
+		    });
+		  }]);  
+
+9 - Filters (5a)
+  $ git checkout -f step-9
+
+  -> app/js/filters.js:
+		angular.module('phonecatFilters', []).filter('checkmark', function() {
+		  return function(input) {
+		    return input ? '\u2713' : '\u2718';
+		  };
+		});
+
+  -> app/js/app.js:
+		...
+		angular.module('phonecatApp', ['ngRoute','phonecatControllers','phonecatFilters']);
+		...
+
+  -> app/partials/phone-detail.html:
+		...
+		    <dl>
+		      <dt>Infrared</dt>
+		      <dd>{{phone.connectivity.infrared | checkmark}}</dd>
+		      <dt>GPS</dt>
+		      <dd>{{phone.connectivity.gps | checkmark}}</dd>
+		    </dl>
+		...
+
+  -> test/unit/filtersSpec.js:
+		describe('filter', function() {
+
+		  beforeEach(module('phonecatFilters'));
+
+		  describe('checkmark', function() {
+
+		    it('should convert boolean values to unicode checkmark or cross',
+		        inject(function(checkmarkFilter) {
+		      expect(checkmarkFilter(true)).toBe('\u2713');
+		      expect(checkmarkFilter(false)).toBe('\u2718');
+		    }));
+		  });
+		});
+
+10 - Event Handlers (5b)
+  $ git checkout -f step-10
+
+  -> app/js/controllers.js:
+		...
+		var phonecatControllers = angular.module('phonecatControllers',[]);
+
+		phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', '$http',
+		  function($scope, $routeParams, $http) {
+		    $http.get('phones/' + $routeParams.phoneId + '.json').success(function(data) {
+		      $scope.phone = data;
+		      $scope.mainImageUrl = data.images[0];
+		    });
+
+		    $scope.setImage = function(imageUrl) {
+		      $scope.mainImageUrl = imageUrl;
+		    }
+		  }]);
+
+  -> app/partials/phone-detail.html:
+		<img ng-src="{{mainImageUrl}}" class="phone">
+		...
+		<ul class="phone-thumbs">
+		  <li ng-repeat="img in phone.images">
+		    <img ng-src="{{img}}" ng-click="setImage(img)">
+		  </li>
+		</ul>
+		...
+
+  -> test/e2e/scenarios.js:
+		...
+		  describe('Phone detail view', function() {
+		...
+
+		    it('should display the first phone image as the main phone image', function() {
+		      expect(element(by.css('img.phone')).getAttribute('src')).toMatch(/img\/phones\/nexus-s.0.jpg/);
+		    });
+
+		    it('should swap main image if a thumbnail image is clicked on', function() {
+		      element(by.css('.phone-thumbs li:nth-child(3) img')).click();
+		      expect(element(by.css('img.phone')).getAttribute('src')).toMatch(/img\/phones\/nexus-s.2.jpg/);
+
+		      element(by.css('.phone-thumbs li:nth-child(1) img')).click();
+		      expect(element(by.css('img.phone')).getAttribute('src')).toMatch(/img\/phones\/nexus-s.0.jpg/);
+		    });
+		  });
+
+11 - REST and Custom Services (6)
+  $ git checkout -f step-11
+
+  -> app/index.html
+		...
+		  <script src="bower_components/angular-resource/angular-resource.js"></script>
+		  <script src="js/services.js"></script>
+		...
+
+  -> app/js/services.js.
+		var phonecatServices = angular.module('phonecatServices', ['ngResource']);
+
+		phonecatServices.factory('Phone', ['$resource',
+		  function($resource){
+		    return $resource('phones/:phoneId.json', {}, {
+		      query: {method:'GET', params:{phoneId:'phones'}, isArray:true}
+		    });
+		  }]);
+
+  -> app/js/app.js.
+		...
+		angular.module('phonecatApp', ['ngRoute', 'phonecatControllers','phonecatFilters', 'phonecatServices']).
+		...
+
+  -> app/js/controllers.js.
+		var phonecatControllers = angular.module('phonecatControllers', []);
+		...
+		phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Phone', function($scope, Phone) {
+		  $scope.phones = Phone.query();
+		  $scope.orderProp = 'age';
+		}]);
+
+		phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone', function($scope, $routeParams, Phone) {
+		  $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone) {
+		    $scope.mainImageUrl = phone.images[0];
+		  });
+
+		  $scope.setImage = function(imageUrl) {
+		    $scope.mainImageUrl = imageUrl;
+		  }
+		}]);
+
+  -> test/karma.conf.js:
+		files : [
+		  'app/bower_components/angular/angular.js',
+		  'app/bower_components/angular-route/angular-route.js',
+		  'app/bower_components/angular-resource/angular-resource.js',
+		  'app/bower_components/angular-mocks/angular-mocks.js',
+		  'app/js/**/*.js',
+		  'test/unit/**/*.js'
+		],
+
+  -> test/unit/controllersSpec.js:
+		describe('PhoneCat controllers', function() {
+
+		  beforeEach(function(){
+		    this.addMatchers({
+		      toEqualData: function(expected) {
+		        return angular.equals(this.actual, expected);
+		      }
+		    });
+		  });
+
+		  beforeEach(module('phonecatApp'));
+		  beforeEach(module('phonecatServices'));
+
+
+		  describe('PhoneListCtrl', function(){
+		    var scope, ctrl, $httpBackend;
+
+		    beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
+		      $httpBackend = _$httpBackend_;
+		      $httpBackend.expectGET('phones/phones.json').
+		          respond([{name: 'Nexus S'}, {name: 'Motorola DROID'}]);
+
+		      scope = $rootScope.$new();
+		      ctrl = $controller('PhoneListCtrl', {$scope: scope});
+		    }));
+
+
+		    it('should create "phones" model with 2 phones fetched from xhr', function() {
+		      expect(scope.phones).toEqualData([]);
+		      $httpBackend.flush();
+
+		      expect(scope.phones).toEqualData(
+		          [{name: 'Nexus S'}, {name: 'Motorola DROID'}]);
+		    });
+
+
+		    it('should set the default value of orderProp model', function() {
+		      expect(scope.orderProp).toBe('age');
+		    });
+		  });
+
+
+		  describe('PhoneDetailCtrl', function(){
+		    var scope, $httpBackend, ctrl,
+		        xyzPhoneData = function() {
+		          return {
+		            name: 'phone xyz',
+		            images: ['image/url1.png', 'image/url2.png']
+		          }
+		        };
+
+
+		    beforeEach(inject(function(_$httpBackend_, $rootScope, $routeParams, $controller) {
+		      $httpBackend = _$httpBackend_;
+		      $httpBackend.expectGET('phones/xyz.json').respond(xyzPhoneData());
+
+		      $routeParams.phoneId = 'xyz';
+		      scope = $rootScope.$new();
+		      ctrl = $controller('PhoneDetailCtrl', {$scope: scope});
+		    }));
+
+
+		    it('should fetch phone detail', function() {
+		      expect(scope.phone).toEqualData({});
+		      $httpBackend.flush();
+
+		      expect(scope.phone).toEqualData(xyzPhoneData());
+		    });
+		  });
+		});
+
+12 - Applying Animations (7)
+  $ git checkout -f step-12

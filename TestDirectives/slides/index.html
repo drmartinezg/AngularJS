@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>AngularJS - Training</title>
+
+        <meta name="description" content="AngulaJS Directives">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+        <script>
+            document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>Directives</h2>
+                    <small>AngularJS</small>
+                </section>
+                <section>
+                    <small>Descripción</small>
+                    <h2>XML DOM - El objeto <a href="http://www.w3schools.com/dom/dom_element.asp">Element</a></h2>
+                    <p class="fragment fade-in">« estilo »</p>
+                    <p class="fragment fade-in">« template »</p>
+                    <p class="fragment fade-in">« comportamiento »</p>
+                    <small class="fragment em2 fade-in">« Interactua con el controlador mediante el $scope »</small>
+                </section>
+                <section>
+                    <section>
+                        <small>Ejercicio 1</small>
+                        <h2>Mi primera directiva</h2>
+                        <p>¡Hello world!</p>
+                    </section>
+                    <section>
+                        <h2>Conceptos básicos</h2>
+                    </section>
+                    <section>
+                        <small>Conceptos básicos</small>
+                        <h3>Convención de nombres</h3>
+                        <pre><code>app.directive('ngBind', [...])</code></pre>
+<pre class="fragment fade-in"><code><span ng-bind="name"></span>
+<span ng:bind="name"></span>
+<span ng_bind="name"></span>
+<span data-ng-bind="name"></span>
+<span x-ng-bind="name"></span> </code></pre>
+                    </section>
+                    <section>
+                        <small>Conceptos básicos</small>
+                        <h3>Renderizado</h3>
+<pre><code><my-dir></my-dir>
+<span my-dir="exp"></span>
+<!-- directive: my-dir exp -->
+<span class="my-dir: exp;"></span> </code></pre>
+                    </section>
+                    <section>
+                        <small>Conceptos básicos</small>
+                        <h3>Element</h3>
+                        <i>
+                            jQuery
+                            &nbsp;&nbsp;&nbsp;
+                            ?
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="http://jquery.com/" target="blank">jQuery</a>
+                            &nbsp;&nbsp;&nbsp;
+                            :
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="http://docs.angularjs.org/api/angular.element" target="blank">jqLite</a>
+                        </i>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Estructura de una directiva</h2>
+                        <ul>
+                            <li>
+                                Se crea una directiva mediante una función
+                                que retorna un objeto de configuración
+                            </li>
+                            <li>
+                                las opciones obligatorias, van en función de las necesidades
+                            </li>
+                            <li>
+                                La opción de "postLink" es la más utilizada en las directivas
+                            </li>
+                        </ul>
+
+
+                    </section>
+                    <section>
+                        <small>Estructura de una directiva</small>
+                        <h3>Version extendida</h3>
+<pre><code class="javascript">
+var myModule = angular.module(...);
+
+myModule.directive('directiveName', function factory(injectables) {
+  var directiveDefinitionObject = {
+    priority: 0,
+    template: '<div></div>', // or // function(tElement, tAttrs) { ... },
+    // or
+    // templateUrl: 'directive.html', // or // function(tElement, tAttrs) { ... },
+    replace: false,
+    transclude: false,
+    restrict: 'A',
+    scope: false,
+    controller: function($scope, $element, $attrs, $transclude, otherInjectables) { ... },
+    require: 'siblingDirectiveName', // or // ['^parentDirectiveName', '?optionalDirectiveName', '?^optionalParent'],
+    compile: function compile(tElement, tAttrs, transclude) {
+      return {
+        pre: function preLink(scope, iElement, iAttrs, controller) { ... },
+        post: function postLink(scope, iElement, iAttrs, controller) { ... }
+      }
+      // or
+      // return function postLink( ... ) { ... }
+    },
+    // or
+    // link: {
+    //  pre: function preLink(scope, iElement, iAttrs, controller) { ... },
+    //  post: function postLink(scope, iElement, iAttrs, controller) { ... }
+    // }
+    // or
+    // link: function postLink( ... ) { ... }
+  };
+  return directiveDefinitionObject;
+});
+</code></pre>
+                    </section>
+                    <section>
+                        <small>Estructura de una directiva</small>
+                        <h3>Version mínima: template</h3>
+                        <pre><code class="javascript">
+app.directive('mydirective',function() {
+  var mydirectiveConfiguration = {
+    template: 'Name: {{customer.name}} Address: {{customer.address}}'
+  };
+  return mydirectiveConfiguration;
+});
+                        </code></pre>
+                    </section>
+                    <section>
+                        <small>Estructura de una directiva</small>
+                        <h3>Version mínima: postLink</h3>
+                        <pre><code class="javascript">
+app.directive('mydirective',function() {
+  var mydirectiveConfiguration = {
+    link: function(scope, iElement, iAttrs, controller){
+        iElement.addClass('mydirective')
+    }
+  };
+  return mydirectiveConfiguration;
+});
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <h2>Atributos del DOM</h2>
+                    <p>Utilizamos los atributos del elemento para configurar la directiva</p>
+                    <pre><code>
+<mydirective data-optiona="a" data-optionb="b"></mydirective>
+                    </code></pre>
+                    <pre><code class="javascript">
+app.directive('mydirective',function() {
+  var mydirectiveConfiguration = {
+    link: function(scope, iElement, iAttrs, controller){
+        console.log(iAttrs.optiona);
+        console.log(iAttrs.optionb);
+    }
+  };
+  return mydirectiveConfiguration;
+});
+</code></pre>
+                </section>
+                <section>
+                    <section>
+                        <h2>$scope</h2>
+                        <p><small>AKA: model, view, view-data, ...</small></p>
+                        <ul>
+                            <li>podemos usar...</li>
+                            <li>el del padre(por defecto) <pre><code class="javascript">scope:false</code></pre> </li>
+                            <li>crear uno nuevo basado en el padre <pre><code class="javascript">scope:true</code></pre></li>
+                            <li>uno totalmente nuevo <pre><code class="javascript">scope:{...}</code></pre></li>
+                        <ul>
+                    </section>
+                    <section>
+                        <span><small>$scope</small></span>
+                        <h3>Atributos del DOM  + $scope</h3>
+                        <p>
+                            Cuando creamos un nuevo $scope,
+                            enlazamos los atributos del nuevo $scope con los del elemento DOM
+                        </p>
+                    </section>
+                    <section>
+                        <span><small>$scope</small></span>
+                        <h3>@ / @attr</h3>
+                        <p>Admite sólo valores tipo strings, es como si fuera el valor del atributo tal cual e incluye el parseo</p>
+                        <pre><code>
+<mydirective data-optiona="a" data-optionb="b and {{c}}"></mydirective>
+</code></pre>
+                        <pre><code class="javascript">
+app.directive('mydirective',function() {
+  var mydirectiveConfiguration = {
+    template:'A => "{{opitiona}}" | B => "{{otherOption}}"',
+    scope: {opitiona:'@', otherOption:'@optionb'}
+  };
+  return mydirectiveConfiguration;
+});
+</code></pre>
+                    </section>
+                    <section>
+                        <span><small>$scope</small></span>
+                        <h3>= / =attr</h3>
+                        <p>Crea un enlace bi-direccional con el valor del atributo</p>
+                        <p>El valor es una referencia al atributo del $scope padre</p>
+
+                        <pre><code>
+<mydirective data-optiona="parentOptionA" data-optionb="parentOptionB"></mydirective>
+</code></pre>
+                        <pre><code class="javascript">
+app.directive('mydirective',function() {
+  var mydirectiveConfiguration = {
+    template:'A => "{{opitiona}}" | B => "{{otherOption}}"',
+    scope: {opitiona:'=', otherOption:'=optionB'}
+  };
+  return mydirectiveConfiguration;
+});
+</code></pre>
+                        <p><small>Si no existe el atributo en el elemento DOM dará una excepción "NON_ASSIGNABLE_MODEL_EXPRESSION"; en caso de
+                        que el atributo sea opcional se tendrá que añadir el caracter "=?"</small></p>
+                    </section>
+                    <section>
+                        <span><small>$scope</small></span>
+                        <h3>& / &attr</h3>
+                        <p>Referencia al modelo del padre; se suele usar con métodos definidos en el $scope del padre</p>
+                        <pre><code>
+<mydirective data-optiona="parentOptionMethodA"></mydirective>
+</code></pre>
+                        <pre><code class="javascript">
+app.directive('mydirective',function() {
+  var mydirectiveConfiguration = {
+    scope: {opitiona:'&'},
+    link: function(scope, iElement, attrs){
+        console.log( scope.optionaa() );
+    }
+  };
+  return mydirectiveConfiguration;
+});
+</code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>compile/link</h2>
+                        <p>Permite administrar el elemento al que ha sido asignado nuestra directiva</p>
+                    </section>
+                    <section>
+                        <span><small>compile/link</small></span>
+                        <h3>Ejemplo</h3>
+                        <p>modificando el DOM con jQuery</p>
+                        <pre><code class="javascript">
+var element = $('#item');
+if( element.attr('active') ){
+    element.css({color:'red'}).show();
+}else{
+    element.hide();
+}
+</code></pre>
+                    </section>
+                    <section>
+                        <span><small>compile/link</small></span>
+                        <h3>Ejemplo</h3>
+                        <p>Modificando el DOM con una directiva</p>
+                        <pre><code class="javascript">
+app.directive('item',function() {
+  var mydirectiveConfiguration = {
+    link: function(scope, iElement, attrs){
+        if(attrs.active){
+            iElement.css({color:'red'}).show();
+        }else{
+            iElement.hide();
+        }
+    }
+  };
+  return mydirectiveConfiguration;
+});
+</code></pre>
+                    </section>
+                    <section>
+                        <span><small>compile/link</small></span>
+                        <h3>Estructura</h3>
+                        <p>Diferentes alias/formas de definir este parámentro</p>
+<pre><code class="javascript">
+{
+    //...
+    compile: function compile(tElement, tAttrs, transclude) {
+      return {
+        pre: function preLink(scope, iElement, iAttrs, controller) { ... },
+        post: function postLink(scope, iElement, iAttrs, controller) { ... }
+      }
+      // or
+      // return function postLink( ... ) { ... }
+    },
+    // or
+    // link: {
+    //  pre: function preLink(scope, iElement, iAttrs, controller) { ... },
+    //  post: function postLink(scope, iElement, iAttrs, controller) { ... }
+    // }
+    // or
+    // link: function postLink( ... ) { ... }
+}
+</code></pre>
+                    </section>
+                    <section>
+                        <span><small>compile/link</small></span>
+                        <h3>Proceso de compilación</h3>
+                        <p>
+                            <img src="images/link-html.jpg" /><br/>
+                            <img src="images/link-animation.gif" />
+                        </p>
+                        <span style="background:#b0b0b0; padding: 0 5px">
+                            <span style="color:red">prelink</span> &nbsp;&nbsp;&nbsp; <span style="color:green">postlink</span>
+                        </span>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>controller</h2>
+                        <p>será nuestra "clase" dentro de la directiva con opción a compartir su instancia</p>
+                    </section>
+                    <section>
+                        <span><small>controller</small></span>
+                        <h3>Uso basico</h3>
+                        <p>como namespace para ordenar el código dentro de nuestra directiva</p>
+<pre><code class="javascript">
+app.directive('btn', function(){
+  return {
+    scope:true,
+    controller: function($scope){
+      this.text = '';
+      this.log = function(){
+        console.log(this.text, ' - estado actual: ', $scope.selected?'activo':'inactivo');
+      }
+    },
+    link:function(scope, iElement, iAttrs, ctrl){
+      scope.selected = false;
+      ctrl.text = iElement.text();
+      scope.toogle = function(){
+        scope.selected = !scope.selected;
+        ctrl.log();
+      };
+
+    }
+  }
+});
+</code></pre>
+<a href="http://plnkr.co/edit/ChyoU0Zu3BgiZJjAiMWJ?p=preview" target="_blank">plnkr.co/edit/ChyoU0Zu3BgiZJjAiMWJ</a>
+                    </section>
+                    <section>
+                        <span><small>controller</small></span>
+                        <h3>Uso compartido</h3>
+                        <p>dejar que otras directivas puedan usar la instancia de nuestro controllador</p>
+<pre><code class="javascript">
+app.directive('btns', function(){
+  return {
+    scope:{},
+    controller:function($scope){
+      var buttons = [];
+      this.active = function(button){
+        angular.forEach(buttons, function(button) {
+          button.selected = false;
+        });
+        button.selected = true;
+      };
+      this.addButton = function(button){
+        buttons.push(button);
+      }
+    }
+  }
+});
+
+app.directive('btn', function(){
+  return {
+    scope:true,
+    require:'^btns',
+    link:function(scope, iElement, iAttrs, btnsController){
+      btnsController.addButton(scope);
+      scope.active = function(){
+        btnsController.active(scope)
+      }
+    }
+  }
+});
+</code></pre>
+<a href="http://plnkr.co/edit/LFWh8R1scQJrzfKiNe7d?p=preview" target="_blank">plnkr.co/edit/LFWh8R1scQJrzfKiNe7d</a>
+                    </section>
+                    <!--
+                    el controllador lo podemos usar como una clase, que se instanciará con el Scope de la directiva y lo usaremos para
+                    ordernar nuestro código y así tener los métodos que vayamos a usar de una manera más orgnizada
+
+                    dentro del controller vamos a meter todas las funcionalidades comunes que queremos usar en nuestras directivas
+                    Recomiendo que los métodos mejor usarlos como prototipos.
+                    Dentro del controllador nos llega una referencia al scope que se vaya a usar en nuestas directivas; dentro de éste scope
+                    podemos meter métodos comunes que vayan a interactuar con nuestras directivas.
+                    (ejemplo de los tabs)
+                    -->
+                </section>
+                <section>
+                    <section>
+                        <h2>require</h2>
+                        <p>recupera controladores de otras directivas</p>
+                    </section>
+                    <section>
+                        <span><small>require</small></span>
+                        <h3>Sintaxis basada en prefijos</h3>
+<pre><code class="javascript">require:'miOtraDirectiva' // ['miOtraDirectiva'],
+//...
+link:function(scope, iElement, iAttrs, miOtraDirectivaController){}
+</code></pre>
+                        <ul class="small" style="font-size:60%">
+                            <li>
+                                Podemos llamar a N controlladores,
+                                sólo tenemos que asiganar un Array con todas las directivas que se necesiten
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <span><small>require : prefijo</small></span>
+                        <h3>Sin prefijo</h3>
+                        <p>Obliga que que la directiva esté en el mismo elemento</p>
+<pre><code class="html">
+<span counter item />
+</code></pre>
+<pre><code class="javascript">
+app.directive('item', function(){
+  return {
+    require:'counter' // ['counter']
+    //...
+  }
+});
+</code></pre>
+                    </section>
+                    <section>
+                        <span><small>require : prefijo</small></span>
+                        <h3>?</h3>
+                        <p>La directiva no es obligartorio y en caso de no existir devuelve un NULL como valor del controlador</p>
+<pre><code class="html">
+<span counter item ></span>
+<span item ></span>
+</code></pre>
+<pre><code class="javascript">
+app.directive('item', function(){
+  return {
+    require:'?counter' // ['?counter']
+    //...
+  }
+});
+</code></pre>
+                    </section>
+                    <section>
+                        <span><small>require : prefijo</small></span>
+                        <h3>^</h3>
+                        <p>Obliga a que la directiva esté en un elemento padre</p>
+<pre><code class="html">
+<span counter> <span item ></span> </span>
+</code></pre>
+<pre><code class="javascript">
+app.directive('item', function(){
+  return {
+    require:'^counter' // ['^counter']
+    //...
+  }
+});
+</code></pre>
+                    </section>
+                    <section>
+                        <span><small>require : prefijo</small></span>
+                        <h3>?^</h3>
+                        <p>La directiva padre no es obligatoria y en caso de no existir devuelve un NULL como valor del controlador</p>
+<pre><code class="html">
+<span counter> <span item ></span> </span>
+<span item ></span>
+</code></pre>
+<pre><code class="javascript">
+app.directive('item', function(){
+  return {
+    require:'?^counter' // ['?^counter']
+    //...
+  }
+});
+</code></pre>
+                    </section>
+                    <section>
+                        <span><small>require</small></span>
+                        <h3>Ejemplo</h3>
+<pre><code class="javascript">
+app.directive('counter', function(){
+  return {
+    controller: function($scope){
+        this.plus = function(){
+            $scope.total++;
+        }
+    }
+    //.....
+  }
+});
+
+app.directive('item', function(){
+  return {
+    require:'^counter',
+    link:function(scope, iElement, iAttrs, counterController){
+      counterController.plus();
+    }
+  }
+});
+</code></pre>
+<a href="http://plnkr.co/edit/Y4p7102Exa3CiOAMaYff?p=preview" target="_blank">plnkr.co/edit/Y4p7102Exa3CiOAMaYff</a>
+                    </section>
+
+                </section>
+                <section>
+                    <section>
+                        <h2>priority</h2>
+                        <p>Ordenando la compilación de nuestras directivas en un mismo elemento</p>
+<pre><code class="html"><span cero uno dos></span></code></pre><pre><code class="javascript">//...
+priority : 0, // cero va primero, uno va segundo, N último
+//...</code></pre>
+                    </section>
+                    <section>
+                        <span><small>priority</small></span>
+                        <h3>Ejemplo</h3>
+<pre><code class="javascript">
+app.directive('cero',function(){
+  return {
+    priority:0,
+    link:function(){
+      console.log('cero');
+    }
+  }
+});
+app.directive('uno',function(){
+  return {
+    priority:1,
+    link:function(){
+      console.log('uno');
+    }
+  }
+});
+app.directive('dos',function(){
+  return {
+    priority:2,
+    link:function(){
+      console.log('dos');
+    }
+  }
+});
+</code></pre>
+<a href="http://plnkr.co/edit/5oS4fboKICpAM3FreewZ?p=preview" target="_blank">plnkr.co/edit/5oS4fboKICpAM3FreewZ</a>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>template/templateUrl</h2>
+                        <p>Incluyendo plantillas en nuestra directiva</p>
+<pre><code class="javascript">//...
+template: '<div></div>', // or // function(tElement, tAttrs) { ... },
+// or
+// templateUrl: 'directive.html', // or // function(tElement, tAttrs) { ... }
+//...
+</code></pre>
+                    </section>
+                    <section>
+                        <span><small>template/templateUrl</small></span>
+                        <h3>HTML Compiler</h3>
+<pre><code class="javascript">var html = '<div ng-bind="exp"></div>';
+
+// Step 1: parse HTML into DOM element
+var template = angular.element(html);
+
+// Step 2: compile the template
+var linkFn = $compile(template);
+
+// Step 3: link the compiled template with the scope.
+var element = linkFn(scope);
+
+// Step 4: Append to DOM (optional)
+parent.appendChild(element);</code></pre>
+                    </section>
+                    <section>
+                        <span><small>template/templateUrl</small></span>
+                        <h3>Ejemplo</h3>
+<pre><code class="javascript">app.directive('test2', function(){
+  return {
+    template:'<ul class="list-group">'+
+      '<li class="list-group-item" ng-repeat="animal in animales">'+
+        '<span class="badge">{{animal.total}}</span>'+
+        '{{animal.name}}'+
+      '</li>'+
+    '</ul>',
+    link:function($scope){
+      $scope.animales = [
+        {name:'Perros', total:'10'},
+        {name:'Gatos', total:'15'},
+        {name:'Peces', total:'20'}
+      ];
+    }
+  };
+});</code></pre>
+<a href="http://plnkr.co/edit/DTTsBkF3RDgGEjBP9wsL?p=preview" target="_blank">plnkr.co/edit/DTTsBkF3RDgGEjBP9wsL</a>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>replace</h2>
+                        <p>¿Reemplazamos el elemento, de nuestra directiva, con el template?</p>
+<pre><code class="javascript">//...
+replace:false,
+//...</code></pre>
+<a href="http://plnkr.co/edit/DTTsBkF3RDgGEjBP9wsL?p=preview" target="_blank">plnkr.co/edit/DTTsBkF3RDgGEjBP9wsL</a>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>transclude</h2>
+                        <p></p>
+                    </section>
+                </section>
+            </div>
+
+        </div>
+        <!--
+        <div class="share-reveal" style="position: absolute; bottom: 14px; width:100%; text-align:center; z-index: 20; color:grey">
+            <i>jimmy collazos // <a href="#" style="color:grey; text-decoration:none">@acido69</a> </i>
+        </div>
+        -->
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>

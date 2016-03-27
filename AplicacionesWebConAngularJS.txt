@@ -1,0 +1,1004 @@
+Aplicaciones Web con AngularJS
+==============================
+
+* Estructura de directorios y ficheros
+  Esqueleto inicial del proyecto:
+  project/
+  	├── app/
+  	├── dist/
+  	├── package.json
+  	├── bower.json
+  	├── .gitignore
+  	├── .editorconfig
+  	├── .jshintrc
+
+** app  -> Código fuente de la aplicación, sin minificar ni optimizar.
+** dist -> Contiene el proyecto minificado y optimizado para ser desplegado.
+** package.json -> Contiene la información del proyecto, y las dependencias utilizadas en desarrollo, incluyendo la versión.
+** bower.json -> Se utiliza para gestionar las dependencias de frameworks y librerias utilizadas (AngularJs, jQuery, ...)
+** .gitignore -> Indica a Git qué archivos no queremos que se suban al repositorio.
+** .editorconfig -> permite configurar y unificar las opciones del editor utilizado en el proyecto.
+** .jshintrc -> Fichero JSON con la configuración utilizada por analizador de código JavaScript. 
+** .bowerrc -> Configuración de Bower. Configurar ubicación del directorio de dependencias.
+
+* Contenido inicial de los ficheros
+** .editorconfig -> http://editorconfig.org/
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+** .jshintrc -> http://www.jshint.com/docs/options/
+{
+  "node": true,
+  "browser": true,
+  "esnext": true,
+  "bitwise": true,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "immed": true,
+  "indent": 4,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "quotmark": "single",
+  "undef": true,
+  "unused": true,
+  "strict": true,
+  "trailing": true,
+  "smarttabs": true,
+  "jquery": true,
+  "globals": {
+    "angular": false
+  }
+}
+
+** package.json -> https://www.npmjs.org/doc/files/package.json.html
+{
+  "name": "DepositAccountsApplication",
+  "version": "0.0.1",
+  "description": "Deposit Accounts Management",
+  "author": "Investigación y Programas, S.A.",
+  "keywords": [
+    "angular",
+    "webapp",
+    "boilerplate",
+    "gulp",
+    "javascript"
+  ],
+  "license": {
+    "type": "",
+    "url": ""
+  },
+  "repository": {
+    "type": "svn",
+    "url": ""
+  },
+  "dependencies": {},
+  "devDependencies": {
+  }
+}
+
+Nota: El objeto devDependencies se actualizará cada vez que instalemos un nuevo paquete vía *npm*.
+
+** bower.json -> http://bower.io/
+{
+    "name": "DepositAccountsApplication",
+    "version": "0.0.1",
+    "description": "Deposit Accounts Management",
+    "devDependencies": {
+    },
+    "dependencies": {
+    }
+}
+
+Nota: El objeto dependencies lo iremos actualizando cada vez que instalemos una nueva dependencia vía *bower*.
+
+* Automatizando flujo de trabajo
+
+** Instalar NodeJs
+$ node -v  -> 0.12.4
+$ npm -v   -> 2.10.1
+
+** Instalar *gulp* y *bower* de forma global
+
+*** gulp - Permite automatizar tareas. Hasta ahora se utilizaba Grunt, pero últimamente se está extendiendo el uso de Gulp
+$ npm install -g gulp
+C:\Users\Ramon\AppData\Roaming\npm\gulp -> C:\Users\Ramon\AppData\Roaming\npm\node_modules\gulp\bin\gulp.js
+gulp@3.9.0 C:\Users\Ramon\AppData\Roaming\npm\node_modules\gulp
+├── pretty-hrtime@1.0.0
+├── interpret@0.6.4
+├── deprecated@0.0.1
+├── archy@1.0.0
+├── minimist@1.1.1
+├── tildify@1.1.0 (os-homedir@1.0.0)
+├── v8flags@2.0.9 (user-home@1.1.1)
+├── semver@4.3.6
+├── chalk@1.1.0 (escape-string-regexp@1.0.3, supports-color@2.0.0, ansi-styles@2.1.0, strip-ansi@3.0.0, has-ansi@2.0.0)
+├── orchestrator@0.3.7 (stream-consume@0.1.0, sequencify@0.0.7, end-of-stream@0.1.5)
+├── liftoff@2.1.0 (extend@2.0.1, rechoir@0.6.1, flagged-respawn@0.3.1, resolve@1.1.6, findup-sync@0.2.1)
+├── vinyl-fs@0.3.13 (graceful-fs@3.0.8, strip-bom@1.0.0, defaults@1.0.2, vinyl@0.4.6, mkdirp@0.5.1, through2@0.6.5, glob-stream@3.1.18, glob-watcher@0.0.6)
+└── gulp-util@3.0.6 (array-differ@1.0.0, array-uniq@1.0.2, lodash._reevaluate@3.0.0, lodash._reescape@3.0.0, lodash._reinterpolate@3.0.0, beeper@1.1.0, object-assign@3.0.0, replace-ext@0.0.1, vinyl@0.5.0, lodash.template@3.6.2, through2@2.0.0, multipipe@0.1.2, dateformat@1.0.11)  
+
+$ gulp -v  -> CLI version 3.9.0
+
+*** bower
+$ npm install -g bower
+$ bower -v  -> 1.4.1
+
+** Instalar dependencias y plugins localmente
+$ npm install --save-dev gulp
+$ npm install --save-dev gulp-connect
+$ npm install --save-dev connect-history-api-fallback
+$ npm install --save-dev gulp-jshint
+$ npm install --save-dev gulp-useref
+$ npm install --save-dev gulp-if
+$ npm install --save-dev gulp-uglify
+$ npm install --save-dev gulp-minify-css
+$ npm install --save-dev gulp-stylus
+$ npm install --save-dev nib
+
+Estas dependencias sirven para analizar el código JavaScript, el minificado de código, disponer de un servidor web de desarrollo para ver los cambios en tiempo real.
+Añadidas automáticamente las dependencias al objeto *devDependencies* del fichero *package.json* gracias al flag --save :
+  "devDependencies": {
+    "connect-history-api-fallback": "0.0.4",
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.0.6",
+    "gulp-if": "^1.2.4",
+    "gulp-inject": "^1.0.1",
+    "gulp-jshint": "^1.8.0",
+    "gulp-minify-css": "^0.3.7",
+    "gulp-newer": "^0.3.0",
+    "gulp-stylus": "^1.3.0",
+    "gulp-uglify": "^0.3.1",
+    "gulp-uncss": "^0.4.5",
+    "gulp-useref": "^0.6.0",
+    "jshint-stylish": "^0.4.0",
+    "nib": "^1.0.3",
+    "wiredep": "^1.8.2"
+  }
+
+** Crear fichero Gulpfile.js básico
+
+'use strict';
+
+var gulp      = require('gulp'),
+    connect   = require('gulp-connect'),
+    historyApiFallback = require('connect-history-api-fallback');
+
+// Servidor web de desarrollo
+gulp.task('server', function() {
+  connect.server({
+    root: './app',
+    hostname: '0.0.0.0',
+    port: 8084,
+    livereload: true,
+    middleware: function(connect, opt) {
+      return [ historyApiFallback ];
+    }
+  });
+});
+
+- Tarea que muestra el contenido de *app* como si fuera un servidor web en la dirección http://localhost:8084. 
+- Con *hostname* 0.0.0.0 y *livereload* a true conseguimos ver los cambios en tiempo real. 
+
+** Gulpfile.js -> Tareas para vigilar cambios y recargar aplicación 
+
+var stylus    = require('gulp-stylus'),
+    nib       = require('nib'),
+...
+// Preprocesa archivos Stylus a CSS y recarga los cambios
+gulp.task('css', function() {
+  gulp.src('./app/stylesheets/main.styl')
+    .pipe(stylus({ use: nib() }))
+    .pipe(gulp.dest('./app/stylesheets'))
+    .pipe(connect.reload());
+});
+
+// Recarga el navegador cuando hay cambios en el HTML
+gulp.task('html', function() {
+  gulp.src('./app/**/*.html')
+    .pipe(connect.reload());
+});
+
+// Vigila cambios que se produzcan en el código
+// y lanza las tareas relacionadas
+gulp.task('watch', function() {
+  gulp.watch(['./app/**/*.html'], ['html']);
+  gulp.watch(['./app/stylesheets/**/*.styl'], ['css']);
+});
+
+gulp.task('default', ['server', 'watch']);
+
+- La tarea *css* preprocesa main.styl en main.css, usando la libreria nib, que añade de forma automática las propiedades css para Firefox, IE y Webkit que se nos olviden.
+- La tarea *html* reinicia el navegador a través de *connect.reload()* cada vez que haya cambios en ficheros .html
+- La tarea *default* lanza las tareas *server* y *watch* al ejecutar *gulp* en el terminal.
+
+** Ejemplo básico de aplicación para comprobar el funcionamiento del Gulp
+*** app/index.html
+<!doctype html>
+<html lang="es-ES">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Deposit Accounts Application</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Coloca favicon.ico y apple-touch-icon(s) en el directorio raíz -->
+
+    <link rel="stylesheet" href="/stylesheets/main.css">
+
+  </head>
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browsehappy">
+        Estás usando un navegador <strong>desactualizado</strong>.
+        Por favor <a href="http://browsehappy.com/">actualiza tu navegador</a>
+        Para mejorar la experiencia..
+      </p>
+    <![endif]-->
+    <h1>Deposit Accounts Application</h1>
+
+  </body>
+</html>
+
+*** app/stylesheets/main.css
+body
+  background white;
+  color black;
+
+- Probar que la aplicación muestra los cambios realizados sobre index.html y main.styl
+
+** Gulpfile.js -> Tarea para revisar el código JavaScript
+
+var jshint    = require('gulp-jshint'),
+    stylish   = require('jshint-stylish'),
+...
+// Busca errores en el JS y nos los muestra por pantalla
+gulp.task('jshint', function() {
+  return gulp.src('./app/scripts/**/*.js')
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter('fail'));
+});
+...
+// Vigila cambios que se produzcan en el código
+// y lanza las tareas relacionadas
+gulp.task('watch', function() {
+...
+  gulp.watch(['./app/scripts/**/*.js'], ['jshint']);
+});
+
+*** Añadir dependencia que mejora la visualización de errores por el terminal.
+$ npm install --save-dev jshint-stylish
+
+- Para probar JSHint creamos un fichero main.js en app/scripts que contenga un error.
+(function() {
+  console.log('Prueba con JSHint')
+})();
+- Mostrará 2 errores: Missing 'use strict'; y "Missing semicolom"
+
+==============================
+==   Aplicación AngularJs   ==
+==============================
+
+* HTML5Boilerplate
+- Partimos del index.html que es la plantilla HTML5Boilerplate (https://html5boilerplate.com/).
+- Será nuestra única página HTML completa. El resto serán plantillas que se cargarán dinámicamente. 
+- Es lo que se conoce como Single Page Applications (SPA)
+
+* Instalando dependencias
+- Se utiliza Bower para instalar las librerias de Frontend.
+- En el fichero .bowerrc configuramos el directorio:
+{
+  "directory": "app/lib"
+}
+
+- Preparamos el HTML para que Bower y Gulp puedan inyectar los css y js
+<!doctype html>
+<html lang="es-ES">
+  <head>
+    [...]
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- inject:css -->
+    <!-- endinject -->
+  </head>
+  <body>
+    [...]
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- inject:js -->
+    <!-- endinject -->
+  </body>
+</html>
+
+- Instalamos los plugins requeridos:
+$ npm install --save-dev gulp-inject
+$ npm install --save-dev wiredep
+
+- Añadimos las tareas en el Gulpfile.js
+var inject    = require('gulp-inject'),
+    wiredep   = require('wiredep').stream;
+...
+// Busca en las carpetas de estilos y javascript los archivos
+// para inyectarlos en el index.html
+gulp.task('inject', function() {
+  return gulp.src('index.html', {cwd: './app'})
+    .pipe(inject(
+      gulp.src(['./app/scripts/**/*.js']).pipe(angularFilesort()), {
+      read: false,
+      ignorePath: '/app'
+    }))
+    .pipe(inject(
+      gulp.src(['./app/stylesheets/**/*.css']), {
+        read: false,
+        ignorePath: '/app'
+      }
+    ))
+    .pipe(gulp.dest('./app'));
+});
+
+// Inyecta las librerias que instalemos vía Bower
+gulp.task('wiredep', function () {
+  gulp.src('./app/index.html')
+    .pipe(wiredep({
+      directory: './app/lib'
+    }))
+    .pipe(gulp.dest('./app'));
+});
+
+// Vigila cambios que se produzcan en el código
+// y lanza las tareas relacionadas
+gulp.task('watch', function() {
+  gulp.watch(['./app/**/*.html'], ['html']);
+  gulp.watch(['./app/stylesheets/**/*.styl'], ['css', 'inject']);
+  gulp.watch(['./app/scripts/**/*.js', './Gulpfile.js'], ['jshint', 'inject']);
+  gulp.watch(['./bower.json'], ['wiredep']);
+});
+
+gulp.task('default', ['server', 'inject', 'wiredep', 'watch']);
+
+- Con Gulp ejecutandose, instalamos las dependencias con Bower desde otra ventana de terminal.
+$ bower install --save angular
+$ bower install --save bootstrap
+
+- Comprobamos que las dependencias se han añadido automáticamente al index.html
+<!doctype html>
+<html lang="es-ES">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Deposit Accounts Application</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Coloca favicon.ico y apple-touch-icon(s) en el directorio raíz -->
+
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <!-- endinject -->
+
+  </head>
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browsehappy">
+        Estás usando un navegador <strong>desactualizado</strong>.
+        Por favor <a href="http://browsehappy.com/">actualiza tu navegador</a>
+        Para mejorar la experiencia..
+      </p>
+    <![endif]-->
+    <h1>Deposit Accounts Application</h1>
+
+    <!-- bower:js -->
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbower -->
+    <!-- inject:js -->
+    <script src="/scripts/main.js"></script>
+    <!-- endinject -->
+
+  </body>
+</html>
+
+* Módulos de la aplicación
+  En app/scripts van a estar los ficheros que contienen la funcionalidad de la aplicación.
+  Lo ideal en Angular es crear módulos para cada funcionalidad.
+
+- Estructura
+app/
+!-- lib/
+!-- scripts/
+| !-- services.js
+| !-- controllers.js
+| !-- app.js
+!-- stylesheets/
+!-- views/
+| !-- account-detail.tpl.html
+| !-- account-list.tpl.html
+| !-- account-create.tpl.html
+|
+!-- index.html
+
+- Instalar librerias angular-route y angular-resource (con gulp ejecutándose)
+$ bower install --save angular-route
+$ bower install --save angular-resource
+
+*angular-route* permite hacer uso de la directiva $routeProvider para manejar URLs desde el navegador y mostrar una página u otra.
+*angular-resource* utiliza la directiva $resource que nos permite realizar peticiones AJAX a recursos REST de una manera sencilla que con la directiva $http
+
+- Añadir el atributo ng-app al index.html. 
+  También añadimos el atributo ng-view para indicar a Angular donde se cargarán las vistas parciales.
+
+- Añadir scripts/app.js -> Los JS se van a agrupar por módulos Angular y a su vez como closures.
+(function () {
+  'use strict';
+  angular.module('app', ['ngRoute']);
+})();
+
+- Añadir función de configuración de rutas, controladores y vistas parciales, mediante la directiva $routeProvider
+(function () {
+  ...
+  function config ($locationProvider, $routeProvider) {
+    $locationProvider.html5Mode( {enabled: true, requireBase: false });
+
+    $routeProvider
+      .when('/', {
+        templateUrl: 'views/account-list.tpl.html',
+        controller: 'AccountListCtrl',
+        controllerAs: 'accountlist'
+      })
+      .when('/account/:accountId', {
+        templateUrl: 'views/account-detail.tpl.html',
+        controller: 'AccountDetailCtrl',
+        controllerAs: 'accountdetail'
+      })
+      .when('/new', {
+        templateUrl: 'views/account-create.tpl.html',
+        controller: 'AccountCreateCtrl',
+        controllerAs: 'accountcreate'
+      });
+  }
+})();
+
+  -> $locationProvider.html5Mode(true) permite que las URLs no lleven el caracter # al inicio, y quedan así más limpias.
+
+- Añadir dependencia al módulo de controladores y asociar función config
+(function () {
+  'use strict';
+  angular.module('app', ['ngRoute', 'app.controllers']);
+  ...
+  angular
+    .module('app')
+    .config(config);
+})();
+
+** Servicios script/services.js
+- Crear modulo angular del servicio con directiva $resource que permita hacer llamadas AJAX al REST
+(function () {
+  'use strict';
+  angular.module('app.services', ['ngResource']);
+})();
+
+- Crear factory que apunturá a la URL del REST. La URL base se pasará como parámetro
+(function () {
+  ...
+  function Account ($resource, BaseUrl) {
+    return $resource( BaseUrl + '/DepositAccounts/:id',
+                      { accountId: '@_id'},
+                      { 'update': { method: 'PUT' } }
+    );
+  }  
+})();
+
+- Crear constante BaseUrl y asociar factoria al modulo
+(function () {
+  ...
+  angular
+    .module('app.services')
+    .constant('BaseUrl', 'http://localhost:8080/DepositAccountsRestService/resources')
+    .factory('Account', Account);
+})();
+    
+** Controladores scripts/controllers.js
+- Crear módulo angular con la dependencia de app.services y lo incluimos dentro de un closure
+(function () {
+  'use strict';
+  angular.module('app.controllers', ['app.services']);
+})();
+
+- Crear controlador AccountListCtrl
+(function () {
+  ...
+  function AccountListCtrl(Account) {
+    this.accounts = Account.query();
+  }
+})();
+
+- Crear controlador AccountDetailCtrl
+(function () {
+  ...
+  function AccountDetailCtrl ($routeParams, Account) {
+    this.account = {};
+    this.message = '';
+
+    var self = this;  // Para guardar la referencia
+
+    Account.get({ id: $routeParams.accountId })
+      .$promise.then(
+          // Success
+          function (account) {
+            self.account = account;
+          },
+          // Error
+          function (error) {
+            self.message = 'Error al obtener la cuenta - ' + error;
+            console.log('ERROR: ' + error);
+          }
+        );
+
+    this.update = function () {
+      Account.update({ id: $routeParams.accountId }, self.account)
+      .$promise.then(
+          // Success
+          function (data) {
+            self.account.id = data.id;
+            self.message = 'Cuenta con id ' + data.id + ' actualizada correctamente';
+          },
+          // Error
+          function (error) {
+            self.message = 'Error al actualizar la cuenta - ' + error;
+            console.log(self.message);
+          }
+        );
+    };
+  }  
+})();
+
+- Crear controlador AccountCreateCtrl
+(function () {
+  ...
+  function AccountCreateCtrl (Account) {
+    this.message = '';
+    var self = this;
+
+    this.create = function () {
+      Account.save(self.account)
+      .$promise.then(
+          // Success
+          function (data) {
+            self.account.id = data.id;
+            self.message = 'Cuenta con id ' + data.id + ' creada correctamente';
+            self.account = {};
+          },
+          // Error
+          function (error) {
+            self.message = 'Error al crear cuenta ' + error;
+            console.log(self.message);
+          }
+        );
+    };
+  }
+})();
+
+- Asociar controladores al módulo
+(function () {
+  ...
+  angular
+    .module('app.controllers')
+    .controller('AccountListCtrl', AccountListCtrl)
+    .controller('AccountDetailCtrl', AccountDetailCtrl)
+    .controller('AccountCreateCtrl', AccountCreateCtrl);
+
+})();
+
+** Vistas parciales básicas
+- Crear views/account-list.tpl.html
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-info" >
+            <div class="panel-heading">
+                <div class="panel-title">Listado de Cuentas de Depósito</div>
+                <div style="float:right; position: relative; top:-28px">
+                  <a ng-href="/new" class="btn btn-primary">Añadir</a>
+                </div>
+            </div>
+            <div class="panel-body" >
+                <table class="table table-bordered table-condensed">
+                    <tr>
+                        <th>Id</th>
+                        <th>Banco</th>
+                        <th>Sucursal</th>
+                        <th>Cuenta</th>
+                        <th>Referencia</th>
+                        <th>Grupo</th>
+                    </tr>
+                    <tr ng-repeat="account in accountlist.accounts">
+                        <td><a ng-href="{{ account.id }}">{{account.id}}</a></td>
+                        <td>{{account.bank}}</td>
+                        <td>{{account.branch}}</td>
+                        <td>{{account.account}}</td>
+                        <td>{{account.reference}}</td>
+                        <td>{{account.ownerGroup}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+- Crear views/account-create.tpl.html
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-info" >
+            <div class="panel-heading">
+                <div class="panel-title">Nueva Cuenta de Depósito</div>
+            </div>
+            <div class="panel-body" >
+                <form name="createAccount" class="form-horizontal" role="form" ng-submit="accountcreate.create()">
+                    <fieldset>
+                        <legend>Datos de la Cuenta de Depósito</legend>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="number">Id</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountcreate.account.id" type="text" class="form-control" name="account_id" id="account_id" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Banco</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountcreate.account.bank" type="text" class="form-control" name="account_bank" id="account_bank" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Sucursal</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountcreate.account.branch" type="text" class="form-control" name="account_branch" id="account_branch" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Cuenta</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountcreate.account.account" type="text" class="form-control" name="account_account" id="account_account" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Referencia</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountcreate.account.reference" type="text" class="form-control" name="account_reference" id="account_reference" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Grupo</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountcreate.account.ownerGroup" type="text" class="form-control" name="account_ownerGroup" id="account_ownerGroup" required>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="col-lg-offset-4 col-lg-2">
+                      <button type="submit" class="btn btn-primary" ng-disabled="!createAccount.$valid">
+                          <span>Grabar</span>
+                      </button>
+                    </div>
+                    <div class="col-lg-offset-2 col-lg-4">
+                        <a ng-href="/" class="btn btn-primary">Volver</a>
+                    </div>
+                    <hr>
+                    <div class="col-lg-12">
+                        <p class="bg-primary text-primary">{{accountcreate.message}}</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+- Crear views/account-detail.tpl.html
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-info" >
+            <div class="panel-heading">
+                <div class="panel-title">Cuenta de Depósito {{accountdetail.account.id}}</div>
+            </div>
+            <div class="panel-body" >
+                <form name="updateAccount" class="form-horizontal" role="form" ng-submit="accountdetail.update()">
+                    <fieldset>
+                        <legend>Datos de la Cuenta de Depósito</legend>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="number">Id</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountdetail.account.id" type="text" class="form-control" name="account_id" id="account_id" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Banco</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountdetail.account.bank" type="text" class="form-control" name="account_bank" id="account_bank" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Sucursal</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountdetail.account.branch" type="text" class="form-control" name="account_branch" id="account_branch" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Cuenta</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountdetail.account.account" type="text" class="form-control" name="account_account" id="account_account" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Referencia</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountdetail.account.reference" type="text" class="form-control" name="account_reference" id="account_reference" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Grupo</label>
+                            <div class="col-sm-9">
+                                <input ng-model="accountdetail.account.ownerGroup" type="text" class="form-control" name="account_ownerGroup" id="account_ownerGroup" required>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="col-lg-offset-4 col-lg-2">
+                      <button type="submit" class="btn btn-primary" ng-disabled="!updateAccount.$valid">
+                          <span>Grabar</span>
+                      </button>
+                    </div>
+                    <div class="col-lg-offset-2 col-lg-4">
+                        <a ng-href="/" class="btn btn-primary">Volver</a>
+                    </div>
+                    <hr>
+                    <div class="col-lg-12">
+                        <p class="bg-primary text-primary">{{accountdetail.message}}</p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+=====================================
+==   Optimizando para producción   ==
+=====================================
+Ya tenemos la aplicación funcionando, pero tiene varios archivos CSS con
+partes de Bootstrap que quizá ni lleguemos a usar; demasiados archivos JS, que
+suponen varias peticiones al servidor y hacen que nuestra página tarde más en cargar.
+Lo ideal es que el HTML solo tenga un fichero CSS al que llamar, y también un
+solo JS. Debemos concatenarlos en uno solo y si es posible minificarlos para 
+que el fichero pese menos y su carga sea más rápida.
+Gulp dispone de una serie de plugins que permiten automatizar esta tarea.
+
+- Instalar plugins de Gulp
+$ npm install --save-dev gulp-minify-css
+$ npm install --save-dev gulp-angular-templatecache
+$ npm install --save-dev gulp-uncss
+$ npm install --save-dev gulp-if
+
+* Cacheado de plantillas
+- Añadir tarea a Gulpfile.js que genera modulo templates.js
+var templateCache = require('gulp-angular-templatecache');
+...
+// Compila las plantillas HTML parciales a JavaScript
+// para ser inyectadas por AngularJS y minificar el código
+gulp.task('templates', function() {
+  gulp.src('./app/views/**/*.tpl.html')
+    .pipe(templateCache({
+      root: 'views/',
+      module: 'app.templates',
+      standalone: true
+    }))
+    .pipe(gulp.dest('./app/scripts'));
+});
+...
+gulp.task('default', ['server', 'templates', 'inject', 'wiredep', 'jshint', 'watch']);
+
+- Incluir el nuevo módulo creado por la taea Gulp como dependencia en app/scripts/apps.js
+(function () {
+  'use strict';
+  angular.module('app', ['ngRoute', 'app.controllers', 'app.templates']);
+  ...
+})();
+
+- Añadir enlace en index.html
+    <script src="/scripts/templates.js"></script>
+
+- Crear fichero .jshintignore para que Jshint no analice templates.js
+./app/scripts/**/templates.js
+
+* Concatenación de ficheros JS y CSS
+- Añadir los siguientes comentarios al index.html
+    ...
+    <!-- build:css css/style.min.css -->
+    ...
+    <!-- endbuild -->
+    ...
+    <!-- build:js js/vendor.min.js -->
+    ...
+    <!-- endbuild -->
+    <!-- build:js js/app.min.js -->
+    ...
+    <!-- endbuild -->
+
+- Añadir tarea en Gulpfile.js que comprime CCS y JS y los enlaza en index.html
+var gulpif    = require('gulp-if');
+var minifyCss = require('gulp-minify-css');
+var useref    = require('gulp-useref');
+var uglify    = require('gulp-uglify');
+
+// Comprime los archivos CSS y JS enlazados en el index.html
+// y los minifica.
+gulp.task('compress', function() {
+  gulp.src('./app/index.html')
+    .pipe(useref.assets())
+    .pipe(gulpif('*.js', uglify({mangle: false })))
+    .pipe(gulpif('*.css', minifyCss()))
+    .pipe(gulp.dest('./dist'));
+});
+
+- Añadir tarea en Gulfile.js que procesa index.html y lo copia a "dist"
+  Suprime los comentarios y actualiza los enlaces a los nuevos ficheros minificados.
+// Copia el contenido de los estáticos e index.html al directorio
+// de producción sin tags de comentarios
+gulp.task('copy', function() {
+  gulp.src('./app/index.html')
+    .pipe(useref())
+    .pipe(gulp.dest('./dist'));
+});
+
+- Crear tarea "build" en Gulpfile.js que genera la versión para producción.
+gulp.task('build', ['templates', 'compress', 'copy']);
+
+- Estructura del directorio "dist" generado con "$gulp build"
+/dist/
+  ├── js/
+  |   ├── vendor.min.js
+  |   ├── app.min.js
+  ├── ccs/
+  |   ├── styles.min.css
+  ├── index.html
+
+* Servidor web con entorno de producción
+- Crear tarea Gulpfile.js
+// Servidor web para probar el entorno de producción
+gulp.task('server-dist', function() {
+  connect.server({
+    root: './dist',
+    hostname: '0.0.0.0',
+    port: 8080,
+    livereload: true,
+    middleware: function(connect, opt) {
+      return [ historyApiFallback ];
+    }
+  });
+});
+
+- Comandos para probar entorno de producción
+$ gulp build
+$ gulp server-dist
+
+* Reducción de código CSS
+- Instalar plugin de Gulp
+$ npm install --save-dev gulp-uncss
+
+- Crear tarea en Gulpfile.js
+var uncss = require('gulp-uncss');
+...
+// Elimina el CSS que no es utilizado para reducir el peso del archivo
+gulp.task('uncss', function() {
+  gulp.src('./dist/css/style.min.css')
+    .pipe(uncss({
+      html: ['./app/index.html', './app/views/account-list.tpl.html', './app/views/account-detail.tpl.html']
+    }))
+    .pipe(gulp.dest('./dist/css'));
+});
+...
+gulp.task('build', ['templates', 'compress', 'copy', 'uncss']);
+
+===================================
+==   Internaciolización (i18n)   ==
+===================================
+
+- Con Gulp ejecutandose, instalamos la dependencia a angular-translate con Bower desde otra ventana de terminal.
+$ bower install --save angular-translate
+
+- Añadir dependencia en nuestro modulo app de angular
+angular.module('app', ['ngRoute', 'app.controllers', 'app.templates', 'pascalprecht.translate']);
+
+- Añadir el proveedor de traducciones (translateProvider) al método de configuración de nuestro módulo app de angular.
+  function config ($locationProvider, $routeProvider, $translateProvider) {
+  ...
+  }
+  config.$inject=['$locationProvider', '$routeProvider', '$translateProvider'];
+
+- Añadir traduciones y establecer el idioma por defecto
+  function config ($locationProvider, $routeProvider, $translateProvider) {
+  ...
+      $translateProvider.translations('es', ´{
+        'APP_TITLE': 'Cuentas de Depósito'
+      });
+
+      $translateProvider.translations('en', ´{
+        'APP_TITLE': 'Deposit Accounts Application'
+      });
+
+      $translateProvider.preferredLanguage('es');  
+  }
+
+- Cambiar el idioma mediante el método use() del filtro $translate.
+    this.changeLocale = function(locale) {
+      $translate.use(locale);
+    };
+
+- Incluir filtro 'translate' en literares usados en las páginas html
+  <h1>{{'APP_TITLE' | translate}}</h1>
+
+- Aplicar filtro $translate en constantes utilizadas en controladores de la aplicación.
+  function AccountListCtrl($location, $translate, Account) {
+  ...
+    this.delete = function(index, account) {
+      if (!window.confirm($translate.instant('DELETE_WARNING'))) {
+        return;
+      }
+  ...
+  }
+  AccountListCtrl.$inject=['$location', '$translate', 'Account'];
+
+- Añadir la dependencia al fichero de configuración karma.conf.js
+    files: [
+    ...
+      'app/lib/angular-translate/angular-translate.js',
+    ...
+    ],
+
+===================================
+==   Jenkins - Job Integración   ==
+===================================
+
+* Configuración del Job 
+** Comando Windows
+npm install
+** Comando Windows
+bower install
+** Comando Windows
+gulp test-ci
+** Comando Windows
+gulp build
+** Comando Windows
+gulp target
+** Invoke Standalone Sonar Analysis
+    # required metadata
+    sonar.projectKey=es.ipsa:DepositAccountsApplication
+    sonar.projectName=DepositAccountsApplication
+    sonar.projectVersion=0.0.1
+     
+    # optional description
+    sonar.projectDescription=Deposit Accounts Management
+     
+    # path to source directories (required)
+    sonar.sources=app;app/scripts
+    sources=app;app/scripts
+     
+    # The value of the property must be the key of the language.
+    sonar.language=js
+     
+    # Encoding of the source code
+    sonar.sourceEncoding=UTF-8
+
+    # Coverage
+    sonar.javascript.lcov.reportPath=test/reports/coverage/lcov.info
+    sonar.javascript.jstest.reportsPath=test/reports/junit
+
+** Guardar archivos generados : **/*.war
+** Publicar resultados JUnit: test/reports/junit/**/TEST-xunit.xml
+

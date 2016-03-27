@@ -1,0 +1,40 @@
+<div class="row" ng-controller="IssueDetailController">
+    <div class="col-xs-12">
+        <div class="panel panel-info" >
+            <div class="panel-heading">
+                <div class="panel-title">Issue {{issue.number}}</div>
+                <div style="float:right; position: relative; top:-33px"><img style="width: 44px;height: 44px;" src="{{issue.user.avatar_url}}" title="{{issue.user.login}}"></div>
+
+            </div>     
+
+            <div class="panel-body" >
+                
+                <form class="form-horizontal" role="form">
+                    <fieldset>
+                        <legend>Datos</legend>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="number">N&uacute;mero</label>
+                            <div class="col-sm-9">
+                                <input ng-model="issue.number" type="text" class="form-control" name="number" id="number">
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="title">Titulo</label>
+                            <div class="col-sm-9">
+                                <input ng-model="issue.title" type="text" class="form-control" name="title" id="title">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="body">Descripci&oacute;n</label>
+                            <div class="col-sm-9">
+                                <textarea rows="8" cols="50" ng-model="issue.body"  class="form-control" name="body" id="body"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>

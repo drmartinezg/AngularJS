@@ -1,0 +1,17 @@
+body {
+  background: #fff;
+  color: #000;
+}
+
+.messages {
+  color: red;
+}
+
+form.ng-submitted input.ng-invalid{
+  border-color: red;
+}
+
+form input.ng-invalid.ng-touched {
+  border-color: red;
+}
+

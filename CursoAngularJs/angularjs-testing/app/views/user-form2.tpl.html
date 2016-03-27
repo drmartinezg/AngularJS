@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-info" >
+            <div class="panel-heading">
+                <div class="panel-title">AngularJS - Gestión de Formularios (ngMessages)</div>
+            </div>
+
+            <div class="panel-body" >
+                <form name="userForm2" class="form-horizontal">
+                    <fieldset>
+                        <legend>Datos del Usuario</legend>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="name">Nombre</label>
+                            <div class="col-sm-6">
+                                <input name="name" type="text" class="form-control" ng-model="userctrl.user.name" ng-minlength="5" ng-maxlength="20" required>
+                            </div>
+                            <div ng-messages="userForm2.name.$error" role="alert" class="col-sm-3 messages" >
+                              <div ng-message="required">El campo es obligatorio</div>
+                              <div ng-message="minlength">La longitud mínima es 5</div>
+                              <div ng-message="maxlength">La longitud máxmima es 20</div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="email">Email</label>
+                            <div class="col-sm-6">
+                                <input name="email" type="email" class="form-control" ng-model="userctrl.user.email" required>
+                            </div>
+                            <div ng-messages="userForm2.email.$error" role="alert" class="col-sm-3 messages" >
+                              <div ng-message="required">El campo es obligatorio</div>
+                              <div ng-message="email">Formato de mail incorrecto</div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="age">Edad</label>
+                            <div class="col-sm-6">
+                                <input name="age" type="number" class="form-control" ng-model="userctrl.user.age" min="0" max="150">
+                            </div>
+                            <div ng-messages="userForm2.age.$error" role="alert" class="col-sm-3 messages" >
+                              <div ng-message="required">El campo es obligatorio</div>
+                              <div ng-message="min">La edad no puede ser negativa</div>
+                              <div ng-message="max">La edad no puede exceder de 150</div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="col-sm-offset-4 col-sm-2">
+                      <button type="submit" class="btn btn-primary" ng-click="userctrl.update()" ng-disabled="!userForm2.$valid">
+                          <span>Submit</span>
+                      </button>
+                    </div>
+                    <div class="col-sm-offset-2 col-sm-4">
+                        <a ng-click="userctrl.reset(userForm2)" class="btn btn-primary">Reset</a>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer" ng-hide="userctrl.message===''">
+              <div class="alert alert-info" role="alert" >
+                  {{userctrl.user | json}}
+              </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
