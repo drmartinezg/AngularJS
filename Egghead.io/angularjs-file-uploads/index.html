@@ -7,7 +7,7 @@
 <body>
 	<form ng-controller="uploader">
 		<input type="file"
-			ng-model="files"
+			onchange="angular.element(this).scope().filesChanged(this)" 
 			multiple />
 		<button ng-click="upload()">Upload</button>
 		<li ng-repeat="file in files">{{file.name}}</li>
@@ -17,13 +17,21 @@
 		angular.module('app', []).
 		controller('uploader', ['$scope', '$http', 
 			function($scope, $http) {
-				$http.post('upload.php', $scope.files, 
-				{
-					headers:{'Content.Type': 'multipart/form-data'}
-				})
-				.success(function (d) {
-					console.log(d);
-				})
+
+				$scope.filesChanged = function(elm) {
+					$scope.files = elm.files;
+					$scope.$apply();
+				}
+
+				$scope.upload = function() {
+					$http.post('upload.php', $scope.files, 
+					{
+						headers:{'Content-Type': 'multipart/form-data'}
+					})
+					.success(function (d) {
+						console.log(d);
+					})
+				}
 			}
 		]);
 	</script>
