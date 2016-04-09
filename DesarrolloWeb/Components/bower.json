@@ -1,0 +1,13 @@
+{
+  "name": "ComponentesAngularJs",
+  "version": "0.0.1",
+  "description": "Componentes en AngularJS 1.5",
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "devDependencies": {
+    "angular": "1.5.3"
+  },
+  "dependencies": {}
+}
