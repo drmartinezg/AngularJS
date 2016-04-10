@@ -6,6 +6,10 @@
   function userDetailController() {
     var vm = this;
 
+    vm.cambiarEmail = function() {
+      vm.usuario.email = "prueba@gmail.com";
+    }
+
   }
 
   var userDetail = {
