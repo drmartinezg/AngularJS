@@ -74,19 +74,28 @@ Spies• spyOn : so⇥
 • createSpyObj : cso⇥
 
 * Instalar Plugin Emmet
-** Preference -> PackageControl -> Install Package -> Emmet
+** Preferences -> PackageControl -> Install Package -> Emmet
 https://packagecontrol.io/packages/Emmet
 http://www.hongkiat.com/blog/html-css-faster-emmet/
-** html:5 and press Ctrl + E
+** html:5 -> Ctrl-E
+** div.container>div.row>div.col-md4*3 -> Ctrl-E
+** ul>li*3>p>{Valor $} -> Ctrl-E
+** css -> Seleccionar + Ctrl-F9 -> Ordena por orden alfabético.
 
 * Instalar Plugin Git
-** Preference -> PackageControl -> Install Package -> Git
+** Preferences -> PackageControl -> Install Package -> Git
 https://packagecontrol.io/packages/Git
 ** git config --global core.editor 'subl.exe -w'
 
 * Instalar Plugin GitGutter
-** Preference -> PackageControl -> Install Package -> GitGutter
+** Preferences -> PackageControl -> Install Package -> GitGutter
 https://packagecontrol.io/packages/GitGutter
 https://github.com/jisaacks/GitGutter
 
+* Auto-indenting 
+https://coderwall.com/p/7yxpdw/auto-indenting-on-sublime-text-3
+** Preferences -> Key Bindings-User  
+{"keys": ["alt+shift+f"], "command": "reindent", "args": {"single_line": false}}
 
+* Dividir area edición en varias columnas -> Alt + Shift + n (n= 1 a 4)
+* Dividir area edición en varias filas -> Alt + Shift + 8 / 9 
