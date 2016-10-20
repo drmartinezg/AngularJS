@@ -1,0 +1,106 @@
+Webpack - Primeros pasos
+========================
+
+* Crear proyecto con npm para generar package.json
+$ npm init -y
+
+* Instalar librerias de desarrollo: 
+$ npm i -D webpack webpack-dev-server babel-loader babel-cli babel-preset-es2015
+
+** -D para que se instalen en el directorio de desarrollo del proyecto.
+** Webpack funciona con loaders, que son los que permiten que dependiendo del tipo de archivo, procesarlo.
+** Usamos babel para poder utilizar ES6 y transformarlo a ES2015 que es el JS que soportan actualmente todos los navegadores.
+
+* Fichero package.json
+{
+  "name": "webpack-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1   }
+}
+
+* Crear fichero webpack.config.js
+module.exports ={
+	entry: {
+		app: './src/index.js'
+	},
+	output: {
+		path: './build',
+		filename: 'bundle.js',
+		publicPath: '/build/'
+	},
+	resolve: {
+		extensions: ['', '.js', '.jsx']
+	},
+	devServer: {
+		host: '0.0.0.0',
+		port: 8080,
+		inline: true
+	},
+	module: {
+		loaders: [
+			{
+				test: /(\.js|.jsx)$/,
+				loader: 'babel',
+				exclude: '/node_modules',
+				query: {
+					presets: ['es2015']
+				}
+			}
+		]
+	}
+}
+
+* Definir unos scritps en el fichero package.json
+{
+	...
+	"scripts": {
+		"build": "webpack --watch --colors",
+		"start": "webpack-dev-server --progress --colors"
+	},
+	...
+}
+
+* Creamos carpeta build
+* Creamos build/index.html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejemplo Webpack</title>
+</head>
+<body>
+	<<div id="app"></div>
+	<script src="/build/bundle.js"></script>
+</body>
+</html>
+
+* Creamos build/src/index.js
+import Persona from './persona'
+
+const person = new Persona('carlos')
+person.saluda()
+
+* Creamos build/src/persona.js
+export default class Persona {
+	constructor(nombre) {
+		this.nombre = nombre
+	}
+
+	saluda() {
+		console.log(`Hola! Soy ${this.nombre}`)
+	}
+}
+
